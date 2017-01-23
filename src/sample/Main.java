@@ -4,16 +4,19 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    public static Stage myStage;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        primaryStage.getIcons().add(new Image("file:///C:/Users/bpanay/IdeaProjects/Meeseeks/src/sample/MeeseeksLogo.png"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
+        myStage =primaryStage;
     }
 
 
