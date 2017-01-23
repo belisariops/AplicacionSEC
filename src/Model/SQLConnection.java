@@ -8,6 +8,6 @@ public class SQLConnection {
     SQLConnection connection;
 
     public SQLConnection() {
-        connection = new SQLConnection()
+        //connection = new SQLConnection()
     }
 }
