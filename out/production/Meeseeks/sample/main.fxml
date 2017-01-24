@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fitHeight="106.0" fitWidth="800.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Banner.JPG" />
+         </image>
+      </ImageView>
+      <Text layoutX="242.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa:">
+         <font>
+            <Font name="Corbel" size="20.0" />
+         </font>
+      </Text>
+      <TextField layoutX="335.0" layoutY="147.0" promptText="Nombre Empresa" />
+      <Text layoutX="242.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos:">
+         <font>
+            <Font name="Corbel" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="myButton" layoutX="338.0" layoutY="221.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="25.0" prefWidth="125.0" text="Buscar archivo" />
+   </children>
+</AnchorPane>
