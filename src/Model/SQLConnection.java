@@ -10,7 +10,7 @@ public class SQLConnection {
     public SQLConnection() throws SQLException {
         //connection = new SQLConnection()
 
-        connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+        connection = DriverManager.getConnection("jdbc:sqlite:src/Model/database.db");
 
     }
 }
