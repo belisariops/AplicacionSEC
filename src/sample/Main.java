@@ -1,5 +1,6 @@
 package sample;
 
+import Model.DataBaseModel;
 import Model.SQLConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,17 +13,23 @@ public class Main extends Application {
     public static Stage myStage;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = fxmlLoader.load();
         primaryStage.getIcons().add(new Image("file:src/Images/MeeseeksLogo.png"));
         primaryStage.setTitle("Hello World");
+
+
+        DataBaseModel myModel = new DataBaseModel();
+        Controller myController = fxmlLoader.getController();
+        myController.initModel(myModel,primaryStage,fxmlLoader);
+
+        SQLConnection connection = new SQLConnection();
         primaryStage.setScene(new Scene(root, 800, 600));
         //Stages stages = Stages.getInstance();
-        myStage = primaryStage;
         primaryStage.show();
 
 
-        SQLConnection connection = new SQLConnection();
-        //connection.executeQuery();
+
     }
 
 
