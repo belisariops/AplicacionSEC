@@ -1,5 +1,7 @@
 package sample;
 
+import Model.SQLConnection;
+import View.Stages;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,11 +14,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        primaryStage.getIcons().add(new Image("file:///C:/Users/bpanay/IdeaProjects/Meeseeks/src/sample/MeeseeksLogo.png"));
+        primaryStage.getIcons().add(new Image("file:src/Images/MeeseeksLogo.png"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 800, 600));
+        //Stages stages = Stages.getInstance();
+        myStage = primaryStage;
         primaryStage.show();
-        myStage =primaryStage;
+
+
+        SQLConnection connection = new SQLConnection();
     }
 
 
