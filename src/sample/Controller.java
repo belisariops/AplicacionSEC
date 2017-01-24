@@ -1,5 +1,6 @@
 package sample;
 
+import View.Stages;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,7 +18,7 @@ public class Controller {
     @FXML void buttonPressed() {
         FileChooser fileChooser  = new FileChooser();
         fileChooser.setTitle("Seleccionar archivo");
-        fileChooser.showOpenDialog(Main.myStage);
+        fileChooser.showOpenDialog(Stages.getInstance().getFirstStage());
     }
 
 

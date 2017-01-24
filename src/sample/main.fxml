@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="106.0" fitWidth="800.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@4317890.JPG" />
+            <Image url="@../Images/Banner.JPG" />
          </image>
       </ImageView>
       <Text layoutX="242.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa:">
