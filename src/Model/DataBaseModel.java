@@ -1,9 +1,14 @@
 package Model;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Base64;
 
 /**
  * Created by juakotorres on 24-01-2017.
@@ -11,7 +16,6 @@ import java.io.IOException;
 public class DataBaseModel {
 
     public DataBaseModel(){
-
     }
 
     public void loadData(File file) throws IOException{
@@ -28,6 +32,4 @@ public class DataBaseModel {
             System.out.println( everything);
         }
     }
-
-
 }

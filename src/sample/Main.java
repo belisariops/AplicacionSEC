@@ -1,6 +1,7 @@
 package sample;
 
 import Model.DataBaseModel;
+import Model.DataCryptor;
 import Model.SQLConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static Stage myStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
@@ -30,6 +32,17 @@ public class Main extends Application {
         //Stages stages = Stages.getInstance();
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        /*
+         * Script para probar encriptación de datos.
+         *
+        DataCryptor crypting = new DataCryptor("SEC_INTERRUPCIONES2016");
+        String encrypt = crypting.encrypt("ALIMENTADOR;PROVIDENCIA;1342");
+        String dencrypt = crypting.decrypt(encrypt);
+
+        System.out.println( encrypt);
+        System.out.println( dencrypt);
+        */
 
 
 
