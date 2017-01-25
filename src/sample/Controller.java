@@ -41,7 +41,7 @@ public class Controller {
             try {
                 model.loadData(file);
             } catch (IOException exc) {
-                // handle exception...
+
             }
         }
     }

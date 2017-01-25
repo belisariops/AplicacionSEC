@@ -1,6 +1,7 @@
 package sample;
 
 import Model.DataBaseModel;
+import Model.DatabaseCreator;
 import Model.SQLConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,16 +17,16 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.getIcons().add(new Image("file:src/Images/MeeseeksLogo.png"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Data checker");
 
 
         DataBaseModel myModel = new DataBaseModel();
         Controller myController = fxmlLoader.getController();
         myController.initModel(myModel,primaryStage,fxmlLoader);
-
-        new Thread(new SQLConnection()).start();
-        //SQLConnection connection = new SQLConnection();
-        //connection.closeConnection();
+        SQLConnection connection = new SQLConnection();
+        DatabaseCreator creator = new DatabaseCreator(connection);
+        creator.run();
+        connection.closeConnection();
         primaryStage.setScene(new Scene(root, 800, 600));
         //Stages stages = Stages.getInstance();
         primaryStage.setResizable(false);
