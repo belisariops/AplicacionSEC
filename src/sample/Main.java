@@ -23,9 +23,12 @@ public class Main extends Application {
         Controller myController = fxmlLoader.getController();
         myController.initModel(myModel,primaryStage,fxmlLoader);
 
-        SQLConnection connection = new SQLConnection();
+        new Thread(new SQLConnection()).start();
+        //SQLConnection connection = new SQLConnection();
+        //connection.closeConnection();
         primaryStage.setScene(new Scene(root, 800, 600));
         //Stages stages = Stages.getInstance();
+        primaryStage.setResizable(false);
         primaryStage.show();
 
 

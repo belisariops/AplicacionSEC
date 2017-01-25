@@ -1,0 +1,3223 @@
+
+
+/*==============================================================*/
+/* Table: ALIMENTADOR                                           */
+/*==============================================================*/
+create table ALIMENTADOR
+(
+   EMPRESA_ID                   numeric(3)                      not null check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR                 varchar(6)                      not null check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID              integer                         not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ALIMENTADOR_ID               numeric(10)                     not null check ("ALIMENTADOR_ID" IS NOT NULL),
+   NOMBRE_ALIMENTADOR           varchar(60)                     null     check (NOMBRE_ALIMENTADOR is null or ("NOMBRE_ALIMENTADOR" IS NOT NULL)),
+   TENSION_NOMINAL              numeric(4,1)                    null     check (TENSION_NOMINAL is null or ("TENSION_NOMINAL" IS NOT NULL)),
+   I_MAX                        numeric(10,2)                   null     check (I_MAX is null or ("I_MAX" IS NOT NULL)),
+   FH_I_MAX                     timestamp                       null     check (FH_I_MAX is null or ("FH_I_MAX" IS NOT NULL)),
+   RECONEXION_AUTOMATICA        numeric(1)                      null     check (RECONEXION_AUTOMATICA is null or ("RECONEXION_AUTOMATICA" IS NOT NULL)),
+   REGULADOR_TENSION            numeric(1)                      null     check (REGULADOR_TENSION is null or ("REGULADOR_TENSION" IS NOT NULL)),
+   RELE_BAJA_FRECUENCIA         numeric(1)                      null     check (RELE_BAJA_FRECUENCIA is null or ("RELE_BAJA_FRECUENCIA" IS NOT NULL)),
+   FRECUENCIA_RELE              numeric(5,2)                    null     check (FRECUENCIA_RELE is null or ("FRECUENCIA_RELE" IS NOT NULL)),
+   I_CC_TRIFASICO_CABECERA      numeric(10,2)                   null     check (I_CC_TRIFASICO_CABECERA is null or ("I_CC_TRIFASICO_CABECERA" IS NOT NULL)),
+   CLIENTES_BT1                 numeric(10)                     null     check (CLIENTES_BT1 is null or ("CLIENTES_BT1" IS NOT NULL)),
+   CLIENTES_OTROS_BT            numeric(10)                     null     check (CLIENTES_OTROS_BT is null or ("CLIENTES_OTROS_BT" IS NOT NULL)),
+   CLIENTES_AT                  numeric(10)                     null     check (CLIENTES_AT is null or ("CLIENTES_AT" IS NOT NULL)),
+   CLIENTES_LIBRES              numeric(10)                     null     check (CLIENTES_LIBRES is null or ("CLIENTES_LIBRES" IS NOT NULL)),
+   KVA_INSTALADOS_U             numeric(10,2)                   null     check (KVA_INSTALADOS_U is null or ("KVA_INSTALADOS_U" IS NOT NULL)),
+   KVA_INSTALADOS_R1            numeric(10,2)                   null     check (KVA_INSTALADOS_R1 is null or ("KVA_INSTALADOS_R1" IS NOT NULL)),
+   ES_SUBALIMENTADOR            numeric(1)                      null     check (ES_SUBALIMENTADOR is null or ("ES_SUBALIMENTADOR" IS NOT NULL)),
+   EMPRESA_SUMINISTRADORA_ID    numeric(3)                      null,
+   ALIMENTADOR_SUMINISTRADOR_ID numeric(10)                     null,
+   PEEM_ID                      numeric(10)                     null,
+   KVA_INSTALADOS_R2            numeric(10,2)                   null,
+   tiene_errores                tinyint                         not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: ALIMENTADOR_AFECTADO                                  */
+/*==============================================================*/
+create table ALIMENTADOR_AFECTADO
+(
+   EMPRESA_ID           numeric(3)                     not null     check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null     check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null     check ("INCIDENCIA_ID" IS NOT NULL),
+   ALIMENTADOR_ID       numeric(10)                    not null     check ("ALIMENTADOR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null     check ("INTERRUPCION_ID" IS NOT NULL),
+   KVA_INTERRUMPIDOS_U  numeric(10,2)                  null         check (KVA_INTERRUMPIDOS_U is null or ("KVA_INTERRUMPIDOS_U" IS NOT NULL)),
+   KVA_INTERRUMPIDOS_R1 numeric(10,2)                  null         check (KVA_INTERRUMPIDOS_R1 is null or ("KVA_INTERRUMPIDOS_R1" IS NOT NULL)),
+   TOTAL_TRANFO_INT_U   numeric(10)                    null         check (TOTAL_TRANFO_INT_U is null or ("TOTAL_TRANFO_INT_U" IS NOT NULL)),
+   TOTAL_CLIENTES_INT   numeric(10)                    null         check (TOTAL_CLIENTES_INT is null or ("TOTAL_CLIENTES_INT" IS NOT NULL)),
+   TOTAL_TRAFO_INT_R1   numeric(10)                    null         check (TOTAL_TRAFO_INT_R1 is null or ("TOTAL_TRAFO_INT_R1" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   KVA_INTERRUMPIDOS_R2 numeric(10,2)                  null,
+   TOTAL_TRAFO_INT_R2   numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: ALIMENTADOR_INCIDENCIA                                */
+/*==============================================================*/
+create table ALIMENTADOR_INCIDENCIA
+(
+   EMPRESA_ID                   numeric(3)                      not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR                 varchar(6)                      not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID              integer                         not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID                numeric(10)                     not null  check ("INCIDENCIA_ID" IS NOT NULL),
+   ALIMENTADOR_ID               numeric(10)                     not null  check ("ALIMENTADOR_ID" IS NOT NULL),
+   NOMBRE_ALIMENTADOR           varchar(60)                     null      check (NOMBRE_ALIMENTADOR is null or ("NOMBRE_ALIMENTADOR" IS NOT NULL)),
+   TENSION_NOMINAL              numeric(4,1)                    null      check (TENSION_NOMINAL is null or ("TENSION_NOMINAL" IS NOT NULL)),
+   I_MAX                        numeric(10,2)                   null      check (I_MAX is null or ("I_MAX" IS NOT NULL)),
+   FH_I_MAX                     timestamp                       null      check (FH_I_MAX is null or ("FH_I_MAX" IS NOT NULL)),
+   RECONEXION_AUTOMATICA        numeric(1)                      null      check (RECONEXION_AUTOMATICA is null or ("RECONEXION_AUTOMATICA" IS NOT NULL)),
+   REGULADOR_TENSION            numeric(1)                      null      check (REGULADOR_TENSION is null or ("REGULADOR_TENSION" IS NOT NULL)),
+   RELE_BAJA_FRECUENCIA         numeric(1)                      null      check (RELE_BAJA_FRECUENCIA is null or ("RELE_BAJA_FRECUENCIA" IS NOT NULL)),
+   FRECUENCIA_RELE              numeric(5,2)                    null      check (FRECUENCIA_RELE is null or ("FRECUENCIA_RELE" IS NOT NULL)),
+   I_CC_TRIFASICO_CABECERA      numeric(10,2)                   null      check (I_CC_TRIFASICO_CABECERA is null or ("I_CC_TRIFASICO_CABECERA" IS NOT NULL)),
+   CLIENTES_BT1                 numeric(10)                     null      check (CLIENTES_BT1 is null or ("CLIENTES_BT1" IS NOT NULL)),
+   CLIENTES_OTROS_BT            numeric(10)                     null      check (CLIENTES_OTROS_BT is null or ("CLIENTES_OTROS_BT" IS NOT NULL)),
+   CLIENTES_AT                  numeric(10)                     null      check (CLIENTES_AT is null or ("CLIENTES_AT" IS NOT NULL)),
+   CLIENTES_LIBRES              numeric(10)                     null      check (CLIENTES_LIBRES is null or ("CLIENTES_LIBRES" IS NOT NULL)),
+   ES_SUBALIMENTADOR            numeric(1)                      null      check (ES_SUBALIMENTADOR is null or ("ES_SUBALIMENTADOR" IS NOT NULL)),
+   ALIMENTADOR_SUMINISTRADOR_ID numeric(10)                     null,
+   EMPRESA_SUMINISTRADORA_ID    numeric(3)                      null,
+   KVA_INSTALADOS_U             numeric(10,2)                   null      check (KVA_INSTALADOS_U is null or ("KVA_INSTALADOS_U" IS NOT NULL)),
+   KVA_INSTALADOS_R1            numeric(10,2)                   null      check (KVA_INSTALADOS_R1 is null or ("KVA_INSTALADOS_R1" IS NOT NULL)),
+   PEEM_ID                      numeric(10)                     null,
+   KVA_INSTALADOS_R2            numeric(10,2)                   null,
+   tiene_errores                tinyint                         not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: ALIMENTADOR_REPOSICION                                */
+/*==============================================================*/
+create table ALIMENTADOR_REPOSICION
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null  check ("INCIDENCIA_ID" IS NOT NULL),
+   ALIMENTADOR_ID       numeric(10)                    not null  check ("ALIMENTADOR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null  check ("INTERRUPCION_ID" IS NOT NULL),
+   BLOQUE_REPOSICION_ID numeric(10)                    not null  check ("BLOQUE_REPOSICION_ID" IS NOT NULL),
+   KVA_REPUESTOS_R1     numeric(10,2)                  null      check (KVA_REPUESTOS_R1 is null or ("KVA_REPUESTOS_R1" IS NOT NULL)),
+   KVA_REPUESTOS_U      numeric(10,2)                  null      check (KVA_REPUESTOS_U is null or ("KVA_REPUESTOS_U" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   KVA_REPUESTOS_R2     numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: ALIMENTADOR_UNICO_ID                                  */
+/*==============================================================*/
+create table ALIMENTADOR_UNICO_ID
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ALIMENTADOR_ID       numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   UNIQUE_ID            numeric                        not null,
+   NOMBRE               varchar(150)                   not null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: ARCHIVO_STAR                                          */
+/*==============================================================*/
+create table ARCHIVO_STAR
+(
+   NOMBRE               varchar(255)                   null      check (NOMBRE is null or ("NOMBRE" IS NOT NULL)),
+   MODULO               varchar(5)                     null,
+   OBLIGATORIO          numeric                        null default 1,
+   TABLA                varchar(30)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: AVISO                                                 */
+/*==============================================================*/
+create table AVISO
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null      check ("INTERRUPCION_ID" IS NOT NULL),
+   AVISO_ID             numeric(10)                    not null      check ("AVISO_ID" IS NOT NULL),
+   TIPO_AVISO_ID        numeric(2)                     null          check (TIPO_AVISO_ID is null or ("TIPO_AVISO_ID" IS NOT NULL)),
+   PUNTO_SUMINISTRO_ID  varchar(30)                    null,
+   DESCRIPCION_AVISO    varchar(200)                   null          check (DESCRIPCION_AVISO is null or ("DESCRIPCION_AVISO" IS NOT NULL)),
+   PRESENTACION_ID      varchar(25)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+/*==============================================================*/
+/* Table: A_TRAFOS_ASOC_ALIM                                    */
+/*==============================================================*/
+create table A_TRAFOS_ASOC_ALIM
+(
+   TRANSFORMADOR_ID     numeric(10)                    not null,
+   NODO_IEC_ID          numeric(15)                    not null,
+   ORIGEN_NODO_IEC_ID   numeric(15)                    null,
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ALIMENTADOR_ID       numeric                        null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   KVA                  numeric(12,2)                  null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: BAJADA                                                */
+/*==============================================================*/
+create table BAJADA
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   BAJADA_ID            numeric(10)                    not null  check ("BAJADA_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+/*==============================================================*/
+/* Table: BCK_FBG_RESUMEN_CARGA                                 */
+/*==============================================================*/
+create table BCK_FBG_RESUMEN_CARGA
+(
+   EMPRESA_ID           numeric                        null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TABLA                varchar(30)                    null,
+   REGISTROS_TEXTO      numeric                        null,
+   REGISTROS_CARGADOS   numeric                        null,
+   REGISTROS_RECHAZADOS numeric                        null,
+   FECHA_INICIO         timestamp                      null,
+   FECHA_TERMINO        timestamp                      null,
+   NOMBRE_ARCHIVO       varchar(255)                   null,
+   tiene_errores        tinyint                        not null default 0
+   );
+
+/*==============================================================*/
+/* Table: BLOQUE_REPOSICION                                     */
+/*==============================================================*/
+create table BLOQUE_REPOSICION
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null  check ("INTERRUPCION_ID" IS NOT NULL),
+   BLOQUE_REPOSICION_ID numeric(10)                    not null  check ("BLOQUE_REPOSICION_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null      check (INCIDENCIA_ID is null or ("INCIDENCIA_ID" IS NOT NULL)),
+   EVENTORED_ID         numeric(10)                    null      check (EVENTORED_ID is null or ("EVENTORED_ID" IS NOT NULL)),
+   DURACION             numeric(10)                    null      check (DURACION is null or ("DURACION" IS NOT NULL)),
+   FH_TERMINO_BLOQUE    timestamp                      null      check (FH_TERMINO_BLOQUE is null or ("FH_TERMINO_BLOQUE" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+/*==============================================================*/
+/* Table: BOVEDA                                                */
+/*==============================================================*/
+create table BOVEDA
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   BOVEDA_ID            numeric(10)                    not null  check ("BOVEDA_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   LARGO                numeric(10)                    null      check (LARGO is null or ("LARGO" IS NOT NULL)),
+   ANCHO                numeric(10)                    null      check (ANCHO is null or ("ANCHO" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+/*==============================================================*/
+/* Table: CALIFICACION_INTERRUPCION                             */
+/*==============================================================*/
+create table CALIFICACION_INTERRUPCION
+(
+   CALIFICACION_INTERRUPCION_ID numeric(2)             not null      check ("CALIFICACION_INTERRUPCION_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: CAMARA                                                */
+/*==============================================================*/
+create table CAMARA
+(
+   EMPRESA_ID           numeric(3)                     not null     check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null     check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   CAMARA_ID            numeric(10)                    not null     check ("CAMARA_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null         check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_TENSION_ID      numeric(2)                     null         check (TIPO_TENSION_ID is null or ("TIPO_TENSION_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null         check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null         check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null         check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null         check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null         check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   APOYO_COMUNICACIONES numeric(3)                     null,
+   APOYO_TV_CABLE       numeric(3)                     null,
+   APOYO_ALUMBRADO      numeric(1)                     null,
+   APOYO_OTROS          numeric(3)                     null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: CANALIZACION                                          */
+/*==============================================================*/
+create table CANALIZACION
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   CANALIZACION_ID      numeric(10)                    not null  check ("CANALIZACION_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_TENSION_ID      numeric(2)                     null      check (TIPO_TENSION_ID is null or ("TIPO_TENSION_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: CAUSA                                                 */
+/*==============================================================*/
+create table CAUSA
+(
+   CAUSA_ID             numeric(5)                     not null  check ("CAUSA_ID" IS NOT NULL),
+   CLASIFICACION        varchar(100)                   null      check (CLASIFICACION is null or ("CLASIFICACION" IS NOT NULL)),
+   DESCRIPCION          varchar(100)                   null      check (DESCRIPCION is null or ("DESCRIPCION" IS NOT NULL)),
+   CALIFICACION_INTERRUPCION_ID numeric(2)             null      check (CALIFICACION_INTERRUPCION_ID is null or ("CALIFICACION_INTERRUPCION_ID" IS NOT NULL)),
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: CGJ_INTERRUPCION_COMUNA                               */
+/*==============================================================*/
+create table CGJ_INTERRUPCION_COMUNA
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null,
+   FH_INICIO_INTERRUPCION timestamp                      null,
+   CAUSA_ID             numeric(5)                     null,
+   INCIDENCIA_ID        numeric(10)                    null,
+   COMUNA_ID            numeric(7)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CGJ_INT_CHILQUINTA                                    */
+/*==============================================================*/
+create table CGJ_INT_CHILQUINTA
+(
+   SIGLA                varchar(30)                    null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   DESC_CALIFICACION_INT varchar(60)                    null,
+   DESC_CAUSA           varchar(100)                   null,
+   COMUNA               varchar(60)                    null,
+   REGION               varchar(60)                    null,
+   CANTIDAD_PUNTOS_CONSUMO numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CMC_COORD_PCONSUMO                                    */
+/*==============================================================*/
+create table CMC_COORD_PCONSUMO
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   NODO_IEC_ID          numeric(15)                    null,
+   DATUM_ID             numeric(2)                     null,
+   NOMBRE               varchar(60)                    null,
+   ZONA_UTM             numeric(2)                     null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CMC_NODO                                              */
+/*==============================================================*/
+create table CMC_NODO
+(
+   NODO_IEC_ID          numeric(15)                    null,
+   EMPRESA_ID           numeric(3)                     null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   DATUM_ID             numeric(2)                     null,
+   ZONA_UTM             numeric(2)                     null,
+   TIPO_NODO_ID         numeric(2)                     null,
+   TIPO_INSTALACION_ID  numeric(2)                     null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CMC_NODO_CABECERA                                     */
+/*==============================================================*/
+create table CMC_NODO_CABECERA
+(
+   NODO_IEC_ID          numeric(15)                    null,
+   EMPRESA_ID           numeric(3)                     null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   DATUM_ID             numeric(2)                     null,
+   ZONA_UTM             numeric(2)                     null,
+   TIPO_NODO_ID         numeric(2)                     null,
+   TIPO_INSTALACION_ID  numeric(2)                     null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CMC_NODO_HOJA                                         */
+/*==============================================================*/
+create table CMC_NODO_HOJA
+(
+   NODO_IEC_ID          numeric(15)                    null,
+   EMPRESA_ID           numeric(3)                     null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   DATUM_ID             numeric(2)                     null,
+   ZONA_UTM             numeric(2)                     null,
+   TIPO_NODO_ID         numeric(2)                     null,
+   TIPO_INSTALACION_ID  numeric(2)                     null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CMC_NODO_MONOHIJO                                     */
+/*==============================================================*/
+create table CMC_NODO_MONOHIJO
+(
+   CORRELATIVO          numeric                        null,
+   EMPRESA_ID           numeric(3)                     null,
+   NODO_IEC_ID          numeric(15)                    null,
+   CANTIDAD             numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CMC_NODO_MULTIHIJO                                    */
+/*==============================================================*/
+create table CMC_NODO_MULTIHIJO
+(
+   CORRELATIVO          numeric                        null,
+   EMPRESA_ID           numeric(3)                     null,
+   NODO_IEC_ID          numeric(15)                    null,
+   CANTIDAD             numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: CMC_NODO_VERTICE                                      */
+/*==============================================================*/
+create table CMC_NODO_VERTICE
+(
+   EMPRESA_ID           numeric(3)                     null,
+   INSTALACION_ID       numeric(10)                    null,
+   TIPO_INSTALACION_ID  numeric(2)                     null,
+   NODO_VERTICE         NODO    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: COLMENA_250M_CHILE_LIMITE_COMU                        */
+/*==============================================================*/
+create table COLMENA_250M_CHILE_LIMITE_COMU
+(
+   OBJECTID             numeric                        not null,
+   CROW                 numeric                        null,
+   CCOL                 numeric                        null,
+   COMUNA_ID            numeric                        null,
+   COMUNA_ID2           numeric                        null,
+   SHAPE_LENGTH         float                          null,
+   SHAPE_AREA           float                          null,
+   GEOM                 char(10)                       null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: COMUNA                                                */
+/*==============================================================*/
+create table COMUNA
+(
+   COMUNA_ID            numeric(7)                     not null  check ("COMUNA_ID" IS NOT NULL),
+   NOMBRE               varchar(60)                    null      check (NOMBRE is null or ("NOMBRE" IS NOT NULL)),
+   PROVINCIA            varchar(60)                    null,
+   REGION               varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: CONEXION_NODO_IEC                                     */
+/*==============================================================*/
+create table CONEXION_NODO_IEC
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID_1        numeric(15)                    not null  check ("NODO_IEC_ID_1" IS NOT NULL),
+   NODO_IEC_ID_2        numeric(15)                    not null  check ("NODO_IEC_ID_2" IS NOT NULL),
+   TIPO_CONEXION_NODO_ID numeric(2)                    null      check (TIPO_CONEXION_NODO_ID is null or ("TIPO_CONEXION_NODO_ID" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: CONEXION_NODO_IEC_CMC                                 */
+/*==============================================================*/
+create table CONEXION_NODO_IEC_CMC
+(
+   EMPRESA_ID           numeric(3)      not null,
+   PERIODO_STAR         varchar(6)      not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID_1        numeric(15)     not null,
+   NODO_IEC_ID_2        numeric(15)     not null,
+   TIPO_CONEXION_NODO_ID numeric(2)     null,
+   CONEXION_TRAMO       numeric(1)      null,
+   tiene_errores        tinyint         not null default 0
+);
+
+/*==============================================================*/
+/* Table: CONEXION_NODO_INCIDENCIA                              */
+/*==============================================================*/
+create table CONEXION_NODO_INCIDENCIA
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null      check ("INCIDENCIA_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID_1 numeric(15)                    not null      check ("NODO_INCIDENCIA_ID_1" IS NOT NULL),
+   NODO_INCIDENCIA_ID_2 numeric(15)                    not null      check ("NODO_INCIDENCIA_ID_2" IS NOT NULL),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: CONS_CHILECTRA_PTO_TRAFO                              */
+/*==============================================================*/
+create table CONS_CHILECTRA_PTO_TRAFO
+(
+   EMPRSA_ID            numeric(4)                     null,
+   PUNTO_CONSUMO_ID     varchar(20)                    null,
+   TRANSFORMADOR_ID     varchar(20)                    null,
+   CONSUMO              numeric(20)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: DATOS_CHILECTRA_INVIERNO                              */
+/*==============================================================*/
+create table DATOS_CHILECTRA_INVIERNO
+(
+   NRO                  numeric                        null,
+   FECHA_INICIO         timestamp                      null,
+   FECHA_TERMINO        timestamp                      null,
+   CANTIDAD_INCIDENCIAS numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: DATUM                                                 */
+/*==============================================================*/
+create table DATUM
+(
+   DATUM_ID             numeric(2)                     not null  check ("DATUM_ID" IS NOT NULL),
+   NOMBRE               varchar(60)                    null      check (NOMBRE is null or ("NOMBRE" IS NOT NULL)),
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: DESCRIPCION_EVENTO                                    */
+/*==============================================================*/
+create table DESCRIPCION_EVENTO
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null      check ("INCIDENCIA_ID" IS NOT NULL),
+   EVENTORED_ID         numeric(10)                    not null      check ("EVENTORED_ID" IS NOT NULL),
+   DESCRIPCION_EVENTO_ID numeric(10)                   not null      check ("DESCRIPCION_EVENTO_ID" IS NOT NULL),
+   TEXTO                varchar(200)                   null          check (TEXTO is null or ("TEXTO" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: DETALLE_INT_CHILECTRA_INV                             */
+/*==============================================================*/
+create table DETALLE_INT_CHILECTRA_INV
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID numeric(10)                    not null,
+   INCIDENCIA_ID        numeric(10)                    null,
+   FH_INICIO_INTERRUPCION timestamp                      null,
+   FH_TERMINO_BLOQUE    timestamp                      null,
+   CAUSA_ID             numeric(5)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: DM_INTERR_PTO_CONSUMO                                 */
+/*==============================================================*/
+create table DM_INTERR_PTO_CONSUMO
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   INTERRUPCION_ID      varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID numeric(10)                    not null,
+   COMUNA_ID            numeric(7)                     null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: EMPALME                                               */
+/*==============================================================*/
+create table EMPALME
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   EMPALME_ID           numeric(10)                    not null  check ("EMPALME_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: EMPRESA                                               */
+/*==============================================================*/
+create table EMPRESA
+(
+   EMPRESA_ID           numeric(3)                     not null         check ("EMPRESA_ID" IS NOT NULL),
+   SIGLA                varchar(30)                    null             check (SIGLA is null or ("SIGLA" IS NOT NULL)),
+   NOMBRE               varchar(60)                    null,
+   GRUPO_ECONOMICO_ID   numeric(3)                     null,
+   TIPO_EMPRESA_ID      numeric(3)                     null default 0   check (TIPO_EMPRESA_ID is null or ("TIPO_EMPRESA_ID" IS NOT NULL)),
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: ENMALLE                                               */
+/*==============================================================*/
+create table ENMALLE
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ENMALLE_ID           numeric(10)                    not null  check ("ENMALLE_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_TENSION_ID      numeric(2)                     null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: EQUIPO                                                */
+/*==============================================================*/
+create table EQUIPO
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   EQUIPO_ID            numeric(10)                    not null  check ("EQUIPO_ID" IS NOT NULL),
+   TIPO_EQUIPO_ID       numeric(2)                     null      check (TIPO_EQUIPO_ID is null or ("TIPO_EQUIPO_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_SERVICIO_EQUIPO_ID numeric(2)                  null      check (TIPO_SERVICIO_EQUIPO_ID is null or ("TIPO_SERVICIO_EQUIPO_ID" IS NOT NULL)),
+   TIPO_TENSION_ID      numeric(2)                     null      check (TIPO_TENSION_ID is null or ("TIPO_TENSION_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   NODO_ESQUEMATICO_ID  numeric(15)                    null      check (NODO_ESQUEMATICO_ID is null or ("NODO_ESQUEMATICO_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   ES_EQUIPO_SUBESTACION numeric(1)                    null      check (ES_EQUIPO_SUBESTACION is null or ("ES_EQUIPO_SUBESTACION" IS NOT NULL)),
+   DENOMINACION         varchar(100)                   null      check (DENOMINACION is null or ("DENOMINACION" IS NOT NULL)),
+   NORMALMENTE_CERRADO  numeric(1)                     null      check (NORMALMENTE_CERRADO is null or ("NORMALMENTE_CERRADO" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   GIS_ID               numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: EQUIPO_TOPOLOGIA                                      */
+/*==============================================================*/
+create table EQUIPO_TOPOLOGIA
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null  check ("INCIDENCIA_ID" IS NOT NULL),
+   EQUIPO_ID            numeric(10)                    not null  check ("EQUIPO_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID   numeric(15)                    null      check (NODO_INCIDENCIA_ID is null or ("NODO_INCIDENCIA_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_TENSION_ID      numeric(2)                     null      check (TIPO_TENSION_ID is null or ("TIPO_TENSION_ID" IS NOT NULL)),
+   TIPO_SERVICIO_EQUIPO_ID numeric(2)                  null      check (TIPO_SERVICIO_EQUIPO_ID is null or ("TIPO_SERVICIO_EQUIPO_ID" IS NOT NULL)),
+   TIPO_EQUIPO_ID       numeric(2)                     null      check (TIPO_EQUIPO_ID is null or ("TIPO_EQUIPO_ID" IS NOT NULL)),
+   ACTIVO_INICIAL       numeric(1)                     null,
+   ACTIVO_FINAL         numeric(1)                     null,
+   CERRADO_INICIAL      numeric(1)                     null      check (CERRADO_INICIAL is null or ("CERRADO_INICIAL" IS NOT NULL)),
+   CERRADO_FINAL        numeric(1)                     null      check (CERRADO_FINAL is null or ("CERRADO_FINAL" IS NOT NULL)),
+   DENOMINACION         varchar(100)                   null      check (DENOMINACION is null or ("DENOMINACION" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: ERRORES_CARGA                                         */
+/*==============================================================*/
+create table ERRORES_CARGA
+(
+   EMPRESA_ID           numeric                        null      check (EMPRESA_ID is null or ("EMPRESA_ID" IS NOT NULL)),
+   PERIODO_STAR         varchar(6)                     null      check (PERIODO_STAR is null or ("PERIODO_STAR" IS NOT NULL)),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TABLA                varchar(30)                    null      check (TABLA is null or ("TABLA" IS NOT NULL)),
+   EXTRA_INFO           varchar(255)                   null,
+   NRO_LINEA            numeric                        null      check (NRO_LINEA is null or ("NRO_LINEA" IS NOT NULL)),
+   DESCRIPCION_ERROR    varchar(255)                   null      check (DESCRIPCION_ERROR is null or ("DESCRIPCION_ERROR" IS NOT NULL)),
+   ERROR_CODE           numeric(7)                     null      check (ERROR_CODE is null or ("ERROR_CODE" IS NOT NULL)),
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: ERRORES_EV                                            */
+/*==============================================================*/
+create table ERRORES_EV
+(
+   EMPRESA_ID           numeric                        null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   CANT                 numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: ERROR_FK                                              */
+/*==============================================================*/
+create table ERROR_FK
+(
+   DESCRIPCION          varchar(255)                   null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: ESTRUCTURA_BT                                         */
+/*==============================================================*/
+create table ESTRUCTURA_BT
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ESTRUCTURA_BT_ID     numeric(10)                    not null  check ("ESTRUCTURA_BT_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   GIS_ID               numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: ESTRUCTURA_MT                                         */
+/*==============================================================*/
+create table ESTRUCTURA_MT
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ESTRUCTURA_MT_ID     numeric(10)                    not null  check ("ESTRUCTURA_MT_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   GIS_ID               numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: ESTRUCTURA_SED                                        */
+/*==============================================================*/
+create table ESTRUCTURA_SED
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ESTRUCTURA_SED_ID    numeric(10)                    not null  check ("ESTRUCTURA_SED_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric                        null,
+   GIS_ID               numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: EVENTO_RED                                            */
+/*==============================================================*/
+create table EVENTO_RED
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null  check ("INCIDENCIA_ID" IS NOT NULL),
+   EVENTORED_ID         numeric(10)                    not null  check ("EVENTORED_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID   numeric(15)                    null      check (NODO_INCIDENCIA_ID is null or ("NODO_INCIDENCIA_ID" IS NOT NULL)),
+   TIPO_EFECTO_EVENTO_ID numeric(2)                    null      check (TIPO_EFECTO_EVENTO_ID is null or ("TIPO_EFECTO_EVENTO_ID" IS NOT NULL)),
+   TIPO_EVENTO_ID       numeric(2)                     null      check (TIPO_EVENTO_ID is null or ("TIPO_EVENTO_ID" IS NOT NULL)),
+   FECHA_EVENTO         timestamp                      null      check (FECHA_EVENTO is null or ("FECHA_EVENTO" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: FBG_RESUMEN_CARGA                                     */
+/*==============================================================*/
+create table FBG_RESUMEN_CARGA
+(
+   EMPRESA_ID           numeric                        null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TABLA                varchar(30)                    null,
+   REGISTROS_TEXTO      numeric                        null,
+   REGISTROS_CARGADOS   numeric                        null,
+   REGISTROS_RECHAZADOS numeric                        null,
+   FECHA_INICIO         timestamp                      null,
+   FECHA_TERMINO        timestamp                      null,
+   NOMBRE_ARCHIVO       varchar(255)                   null
+);
+
+/*==============================================================*/
+/* Table: FUENTE_ENERGIA_RED                                    */
+/*==============================================================*/
+create table FUENTE_ENERGIA_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   FUENTE_ENERGIA_RED_ID numeric(10)                   not null,
+   INCIDENCIA_ID        numeric(10)                    not null,
+   TIPO_FUENTE_ENERGIA_ID numeric(2)                   null      check (TIPO_FUENTE_ENERGIA_ID is null or ("TIPO_FUENTE_ENERGIA_ID" IS NOT NULL)),
+   NODO_INCIDENCIA_ID   numeric(15)                    null      check (NODO_INCIDENCIA_ID is null or ("NODO_INCIDENCIA_ID" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: GRUPO_ECONOMICO                                       */
+/*==============================================================*/
+create table GRUPO_ECONOMICO
+(
+   GRUPO_ECONOMICO_ID   numeric(3)                     not null check ("GRUPO_ECONOMICO_ID" IS NOT NULL),
+   NOMBRE               varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: G_INTERRUPCION_PTO_CONSUMO                            */
+/*==============================================================*/
+create table G_INTERRUPCION_PTO_CONSUMO
+(
+   EMPRESA_ID           numeric(3)                     null      check (EMPRESA_ID is null or ("EMPRESA_ID" IS NOT NULL)),
+   PERIODO_STAR         varchar(6)                     null      check (PERIODO_STAR is null or ("PERIODO_STAR" IS NOT NULL)),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null      check (INCIDENCIA_ID is null or ("INCIDENCIA_ID" IS NOT NULL)),
+   INTERRUPCION_ID      varchar(18)                    null      check (INTERRUPCION_ID is null or ("INTERRUPCION_ID" IS NOT NULL)),
+   TIEMPO_INTERRUMPIDO  numeric(10)                    null      check (TIEMPO_INTERRUMPIDO is null or ("TIEMPO_INTERRUMPIDO" IS NOT NULL)),
+   DATUM_ID             numeric(2)                     null      check (DATUM_ID is null or ("DATUM_ID" IS NOT NULL)),
+   TIPO_NODO_ID         numeric(2)                     null      check (TIPO_NODO_ID is null or ("TIPO_NODO_ID" IS NOT NULL)),
+   X                    numeric(15,3)                  null      check (X is null or ("X" IS NOT NULL)),
+   Y                    numeric(15,3)                  null      check (Y is null or ("Y" IS NOT NULL)),
+   ZONA_UTM             numeric(2)                     null      check (ZONA_UTM is null or ("ZONA_UTM" IS NOT NULL)),
+   FMIK                 numeric                        null,
+   FMIT                 numeric                        null,
+   TTIT                 numeric                        null,
+   TTIK                 numeric                        null,
+   CALIFICACION         varchar(100)                   null,
+   CAUSA                varchar(100)                   null,
+   UBICACION            char(10)                       null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: INCIDENCIA                                            */
+/*==============================================================*/
+create table INCIDENCIA
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null      check ("INCIDENCIA_ID" IS NOT NULL),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: INCIDENCIA_NODOS_QUEUE                                */
+/*==============================================================*/
+create table INCIDENCIA_NODOS_QUEUE (
+   EMPRESA_ID           numeric(3)                     not null,
+   INCIDENCIA_ID        numeric(10)                    not null,
+   NODO_PADRE_ID        numeric(15)                    null,
+   NODO_INCIDENCIA_ID   numeric(15)                    not null,
+   PROCESADO            numeric(1)                     null,
+   EN_LOOP              numeric(1)                     null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: INCIDENCIA_PROCESADA                                  */
+/*==============================================================*/
+create table INCIDENCIA_PROCESADA (
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(10)                    null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: INC_PCONSUMOS_CONECTADOS                              */
+/*==============================================================*/
+create table INC_PCONSUMOS_CONECTADOS
+(
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   CONECTADOS           numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: INC_PUNTO_CONSUMO_CONECTADOS                          */
+/*==============================================================*/
+create table INC_PUNTO_CONSUMO_CONECTADOS
+(
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null,
+   CONECTADOS           numeric                        null,
+   INFORMADOS           numeric                        null,
+   CARGADOS             numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: INF_PCONSUMOS_CONECTADOS                              */
+/*==============================================================*/
+create table INF_PCONSUMOS_CONECTADOS
+(
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   CONECTADOS           numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: INTERRUPCION                                          */
+/*==============================================================*/
+create table INTERRUPCION
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null  check ("INTERRUPCION_ID" IS NOT NULL),
+   CALIFICACION_INTERRUPCION_ID numeric(2)             null      check (CALIFICACION_INTERRUPCION_ID is null or ("CALIFICACION_INTERRUPCION_ID" IS NOT NULL)),
+   TIPO_ORIGEN_INTERRUPCION_ID numeric(2)              null      check (TIPO_ORIGEN_INTERRUPCION_ID is null or ("TIPO_ORIGEN_INTERRUPCION_ID" IS NOT NULL)),
+   SISTEMA_ELECTRICO_ID numeric(10)                    null      check (SISTEMA_ELECTRICO_ID is null or ("SISTEMA_ELECTRICO_ID" IS NOT NULL)),
+   CAUSA_ID             numeric(5)                     null      check (CAUSA_ID is null or ("CAUSA_ID" IS NOT NULL)),
+   INCIDENCIA_ID        numeric(10)                    null      check (INCIDENCIA_ID is null or ("INCIDENCIA_ID" IS NOT NULL)),
+   EVENTORED_ID         numeric(10)                    null      check (EVENTORED_ID is null or ("EVENTORED_ID" IS NOT NULL)),
+   EMPRESA_SUMINISTRADORA_ID numeric(3)                null,
+   INTERRUPCION_SUMINISTRADORA_ID varchar(18)          null,
+   FH_INICIO_INTERRUPCION timestamp                    null      check (FH_INICIO_INTERRUPCION is null or ("FH_INICIO_INTERRUPCION" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: INTERRUPCION_AUDIT                                    */
+/*==============================================================*/
+create table INTERRUPCION_AUDIT
+(
+   EMPRESA_ID                       numeric(3)                     not null,
+   PERIODO_STAR                     varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID                  varchar(18)                    not null,
+   CALIFICACION_INTERRUPCION_ID     numeric(2)                     null,
+   TIPO_ORIGEN_INTERRUPCION_ID      numeric(2)                     null,
+   SISTEMA_ELECTRICO_ID             numeric(10)                    null,
+   CAUSA_ID                         numeric(5)                     null,
+   INCIDENCIA_ID                    numeric(10)                    null,
+   EVENTORED_ID                     numeric(10)                    null,
+   EMPRESA_SUMINISTRADORA_ID        numeric(3)                     null,
+   INTERRUPCION_SUMINISTRADORA_ID   varchar(18)                    null,
+   FH_INICIO_INTERRUPCION           timestamp                      null,
+   PEEM_ID                          numeric(10)                    null,
+   tiene_errores                    tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: INTERRUPCION_PUNTO_CONSUMO                            */
+/*==============================================================*/
+create table INTERRUPCION_PUNTO_CONSUMO
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     null      check (PERIODO_STAR is null or ("PERIODO_STAR" IS NOT NULL)),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null      check (INCIDENCIA_ID is null or ("INCIDENCIA_ID" IS NOT NULL)),
+   INTERRUPCION_ID      varchar(18)                    not null  check ("INTERRUPCION_ID" IS NOT NULL),
+   BLOQUE_REPOSICION_ID numeric(10)                    not null  check ("BLOQUE_REPOSICION_ID" IS NOT NULL),
+   PUNTO_CONSUMO_ID     numeric(30)                    not null  check ("PUNTO_CONSUMO_ID" IS NOT NULL),
+   TIEMPO_INTERRUMPIDO  numeric(10)                    null      check (TIEMPO_INTERRUMPIDO is null or ("TIEMPO_INTERRUMPIDO" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: LVL_INTERRUPCION_VIIIREGION                           */
+/*==============================================================*/
+create table LVL_INTERRUPCION_VIIIREGION
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   COMUNA_ID            numeric(7)                     null,
+   NOMBRE_COMUNA        varchar(100)                   null,
+   REGION_ID            numeric(6)                     null,
+   NOMBRE_REGION        varchar(100)                   null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   TIPO_RURALIDAD       varchar(60)                    null,
+   INTERRUPCION_ID      varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID numeric(10)                    not null,
+   DURACION             numeric(10)                    null,
+   FH_TERMINO_BLOQUE    timestamp                      null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: MARCA                                                 */
+/*==============================================================*/
+create table MARCA
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   MARCA_ID             numeric(10)                    not null  check ("MARCA_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TEXTO                varchar(250)                   null      check (TEXTO is null or ("TEXTO" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: MATRIZ_TABLA                                          */
+/*==============================================================*/
+create table MATRIZ_TABLA
+(
+   IDENTIFICADOR        numeric                        null,
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_ID              numeric(15)                    null,
+   TIPO_CONEXION_NODO_ID numeric(2)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: MEDIDOR                                               */
+/*==============================================================*/
+create table MEDIDOR
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   MEDIDOR_ID           numeric(10)                    not null  check ("MEDIDOR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_ESQUEMATICO_ID  numeric(15)                    null      check (NODO_ESQUEMATICO_ID is null or ("NODO_ESQUEMATICO_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: MED_INTERRUPCIONES                                    */
+/*==============================================================*/
+create table MED_INTERRUPCIONES
+(
+   EMPRESA_ID                   numeric(3)                     null,
+   PERIODO_STAR                 varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID              varchar(18)                    null,
+   BLOQUE_REPOSICION_ID         numeric(10)                    null,
+   CALIFICACION_INTERRUPCION_ID numeric(2)                     null,
+   CAUSA_ID                     numeric(5)                     null,
+   FH_INICIO_INTERRUPCION       timestamp                      null,
+   FH_TERMINO_BLOQUE            timestamp                      null,
+   DURACION                     numeric                        null,
+   CANTIDAD                     numeric                        null,
+   tiene_errores                tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: MED_SAIDI                                             */
+/*==============================================================*/
+create table MED_SAIDI (
+   FECHA                timestamp                      null,
+   HORAS                numeric                        null,
+   SAIDI                numeric                        null,
+   LN                   numeric                        null,
+   ALPHA                numeric                        null,
+   BETA                 numeric                        null,
+   MED                  numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: MODULO_I3                                             */
+/*==============================================================*/
+create table MODULO_I3
+(
+   MODULO               char(5)                        null,
+   ARCHIVOS_REQUERIDOS  numeric                        null,
+   OBLIGATORIOS         numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: MVW_COMUNA_PUNTO_CONSUMO                              */
+/*==============================================================*/
+create table MVW_COMUNA_PUNTO_CONSUMO
+(
+   COMUNA_ID            numeric(7)                     null,
+   CLIENTES             numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+comment on table MVW_COMUNA_PUNTO_CONSUMO is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_COMUNA_PUNTO_CONSUMO';
+
+/*==============================================================*/
+/* Table: MVW_DM_BASE_SAIDI_PCONSUMO                            */
+/*==============================================================*/
+create table MVW_DM_BASE_SAIDI_PCONSUMO
+(
+   EMPRESA_ID               numeric(3)                     not null,
+   PUNTO_CONSUMO_ID         numeric(30)                    not null,
+   INTERRUPCION_ID          varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID     numeric(10)                    not null,
+   COMUNA_ID                numeric(7)                     null,
+   ALIMENTADOR_ID           numeric(10)                    null,
+   PERIODO_STAR             varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   FH_INICIO_INTERRUPCION   timestamp                      null,
+   FH_TERMINO_BLOQUE        timestamp                      null,
+   DURACION_HRS             numeric                        null,
+   CAUSA                    varchar(100)                   null,
+   SUBCAUSA                 varchar(100)                   null,
+   CLASIFICACION_FINAL      varchar(60)                    null,
+   COMUNA                   varchar(60)                    null,
+   ALIMENTADOR              varchar(60)                    null,
+   tiene_errores            tinyint                        not null default 0
+);
+comment on table MVW_DM_BASE_SAIDI_PCONSUMO is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_DM_BASE_SAIDI_PCONSUMO';
+
+/*==============================================================*/
+/* Table: MVW_PUNTO_CONSUMO_HRS_INTERR                          */
+/*==============================================================*/
+create table MVW_PUNTO_CONSUMO_HRS_INTERR
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   COMUNA_ID            numeric                        null,
+   ANHO_MES             varchar(7)                     null,
+   EXTERNAS             numeric                        null,
+   INTERNAS             numeric                        null,
+   FMAYOR               numeric                        null,
+   CAUSA                varchar(100)                   null,
+   SUBCAUSA             varchar(100)                   null,
+   tiene_errores        tinyint                        not null default 0
+);
+comment on table MVW_PUNTO_CONSUMO_HRS_INTERR is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_PUNTO_CONSUMO_HRS_INTERR';
+
+/*==============================================================*/
+/* Table: MVW_REGION_COMUNA_EMPRESA                             */
+/*==============================================================*/
+create table MVW_REGION_COMUNA_EMPRESA
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   COMUNA_ID            numeric(6)                     null,
+   NOMBRE_COMUNA        varchar(100)                   null,
+   EMPRESA              varchar(30)                    null,
+   CANTIDAD             numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+comment on table MVW_REGION_COMUNA_EMPRESA is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_REGION_COMUNA_EMPRESA';
+
+/*==============================================================*/
+/* Table: NODO_CONECTADO                                        */
+/*==============================================================*/
+create table NODO_CONECTADO
+(
+   NODO_IEC_ID          numeric(15)                    null,
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC                                              */
+/*==============================================================*/
+create table NODO_IEC
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null  check ("NODO_IEC_ID" IS NOT NULL),
+   DATUM_ID             numeric(2)                     null      check (DATUM_ID is null or ("DATUM_ID" IS NOT NULL)),
+   TIPO_NODO_ID         numeric(2)                     null      check (TIPO_NODO_ID is null or ("TIPO_NODO_ID" IS NOT NULL)),
+   TIPO_INSTALACION_ID  numeric(2)                     null      check (TIPO_INSTALACION_ID is null or ("TIPO_INSTALACION_ID" IS NOT NULL)),
+   ALIMENTADOR_ID       numeric(10)                    null      check (ALIMENTADOR_ID is null or ("ALIMENTADOR_ID" IS NOT NULL)),
+   X                    numeric(15,3)                  null      check (X is null or ("X" IS NOT NULL)),
+   Y                    numeric(15,3)                  null      check (Y is null or ("Y" IS NOT NULL)),
+   ZONA_UTM             numeric(2)                     null      check (ZONA_UTM is null or ("ZONA_UTM" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_CABECERA                                     */
+/*==============================================================*/
+create table NODO_IEC_CABECERA
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null      check ("NODO_IEC_ID" IS NOT NULL),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_CMC                                          */
+/*==============================================================*/
+create table NODO_IEC_CMC
+(
+   NODO_IEC_SEC         numeric(20)                    null,
+   NODO_IEC_ID          numeric(15)                    not null,
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ALIMENTADOR_ID       numeric(10)                    null,
+   DATUM_ID             numeric(2)                     not null,
+   ZONA_UTM             numeric(2)                     not null,
+   TIPO_NODO_ID         numeric(2)                     not null,
+   TIPO_INSTALACION_ID  numeric(2)                     not null,
+   X                    numeric(15,3)                  not null,
+   Y                    numeric(15,3)                  not null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_CMC_PROCESADO                                */
+/*==============================================================*/
+create table NODO_IEC_CMC_PROCESADO
+(
+   NODO_IEC_SEC         numeric(20)                    null,
+   NODO_IEC_ID          numeric(15)                    not null,
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ALIMENTADOR_ID       numeric(10)                    null,
+   DATUM_ID             numeric(2)                     not null,
+   ZONA_UTM             numeric(2)                     not null,
+   TIPO_NODO_ID         numeric(2)                     not null,
+   TIPO_INSTALACION_ID  numeric(2)                     not null,
+   X                    numeric(15,3)                  not null,
+   Y                    numeric(15,3)                  not null,
+   PADRES               varchar(4000)                  null,
+   HIJOS                varchar(4000)                  null,
+   ES_CABECERA          numeric(1)                     null default 0,
+   NIVEL                numeric(5)                     null default 0,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_CMC_PROCESADO2                               */
+/*==============================================================*/
+create table NODO_IEC_CMC_PROCESADO2
+(
+   NODO_IEC_SEC         numeric(20)                    null,
+   NODO_IEC_ID          numeric(15)                    not null,
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   ALIMENTADOR_ID       numeric(10)                    not null,
+   DATUM_ID             numeric(2)                     not null,
+   ZONA_UTM             numeric(2)                     not null,
+   TIPO_NODO_ID         numeric(2)                     not null,
+   TIPO_INSTALACION_ID  numeric(2)                     not null,
+   X                    numeric(15,3)                  not null,
+   Y                    numeric(15,3)                  not null,
+   ES_CABECERA          numeric(1)                     null default 0,
+   NIVEL                numeric(10)                    null default 0,
+   RAMA                 numeric(10)                    null default 0,
+   NODO_PADRE           numeric(15)                    not null default 0,
+   ARBOL                numeric(5)                     null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_CONECTADO_RWO                                */
+/*==============================================================*/
+create table NODO_IEC_CONECTADO_RWO
+(
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   EMPRESA_ID           numeric(3)                     not null,
+   NODO_IEC_ID          numeric(15)                    not null,
+   EN_LOOP              numeric                        null,
+   ORIGEN_NODO_IEC_ID   numeric(15)                    null,
+   NIVEL                numeric(10)                    null,
+   ALIMENTADOR_ID       numeric                        null default 10,
+   TIPO_INSTALACION_ID  numeric(2)                     null,
+   INSTALACION_ID       numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_CONEXION                                     */
+/*==============================================================*/
+create table NODO_IEC_CONEXION
+(
+   EMPRESA_ID           numeric(3)                     null      check (EMPRESA_ID is null or ("EMPRESA_ID" IS NOT NULL)),
+   PERIODO_STAR         varchar(6)                     null      check (PERIODO_STAR is null or ("PERIODO_STAR" IS NOT NULL)),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PREV_NODO_IEC_ID     numeric(15)                    null,
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   CNX_TRAMO_BT         numeric(1)                     null,
+   CNX_TRAMO_MT         numeric(1)                     null,
+   FALLO_CNX_CORTA      numeric(1)                     null,
+   CNX_EMPALME          numeric(1)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_DIRECTO                                      */
+/*==============================================================*/
+create table NODO_IEC_DIRECTO
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   DATUM_ID             numeric(2)                     null,
+   TIPO_NODO_ID         numeric(2)                     null,
+   TIPO_INSTALACION_ID  numeric(2)                     null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   ZONA_UTM             numeric(2)                     null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: NODO_IEC_EXTERNO                                      */
+/*==============================================================*/
+create table NODO_IEC_EXTERNO
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null  check ("NODO_IEC_ID" IS NOT NULL),
+   EMPRESA_EXTERNA_ID   numeric(3)                     null      check (EMPRESA_EXTERNA_ID is null or ("EMPRESA_EXTERNA_ID" IS NOT NULL)),
+   NODO_EXTERNO_ID      numeric(10)                    null      check (NODO_EXTERNO_ID is null or ("NODO_EXTERNO_ID" IS NOT NULL)),
+   SENTIDO_ENERGIA_ID   numeric(10)                    null      check (SENTIDO_ENERGIA_ID is null or ("SENTIDO_ENERGIA_ID" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: NODO_INCIDENCIA                                       */
+/*==============================================================*/
+create table NODO_INCIDENCIA
+(
+   EMPRESA_ID                       numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR                     varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID                    numeric(10)                    not null  check ("INCIDENCIA_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID               numeric(15)                    not null  check ("NODO_INCIDENCIA_ID" IS NOT NULL),
+   TIPO_INSTALACION_INCIDENCIA_ID   numeric(2)                     null      check (TIPO_INSTALACION_INCIDENCIA_ID is null or ("TIPO_INSTALACION_INCIDENCIA_ID" IS NOT NULL)),
+   ALIMENTADOR_ID                   numeric(10)                    null      check (ALIMENTADOR_ID is null or ("ALIMENTADOR_ID" IS NOT NULL)),
+   DATUM_ID                         numeric(2)                     null      check (DATUM_ID is null or ("DATUM_ID" IS NOT NULL)),
+   TIPO_NODO_ID                     numeric(2)                     null      check (TIPO_NODO_ID is null or ("TIPO_NODO_ID" IS NOT NULL)),
+   X                                numeric(15,3)                  null      check (X is null or ("X" IS NOT NULL)),
+   Y                                numeric(15,3)                  null      check (Y is null or ("Y" IS NOT NULL)),
+   ZONA_UTM                         numeric(2)                     null      check (ZONA_UTM is null or ("ZONA_UTM" IS NOT NULL)),
+   PEEM_ID                          numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: NODO_INCIDENCIA_CABECERA                              */
+/*==============================================================*/
+create table NODO_INCIDENCIA_CABECERA
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null      check ("INCIDENCIA_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID   numeric(15)                    not null      check ("NODO_INCIDENCIA_ID" IS NOT NULL),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: NODO_INCIDENCIA_CONECTADO                             */
+/*==============================================================*/
+create table NODO_INCIDENCIA_CONECTADO
+(
+   EMPRESA_ID           numeric(3)                     null,
+   INCIDENCIA_ID        numeric(10)                    null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID   numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: NODO_INCIDENCIA_EXTERNO                               */
+/*==============================================================*/
+create table NODO_INCIDENCIA_EXTERNO
+(
+   EMPRESA_ID                   numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR                 varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID                numeric(10)                    not null  check ("INCIDENCIA_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID           numeric(15)                    not null  check ("NODO_INCIDENCIA_ID" IS NOT NULL),
+   EMPRESA_EXTERNA_ID           numeric(3)                     null      check (EMPRESA_EXTERNA_ID is null or ("EMPRESA_EXTERNA_ID" IS NOT NULL)),
+   NODO_INCIDENCIA_EXTERNO_ID   numeric(10)                    null      check (NODO_INCIDENCIA_EXTERNO_ID is null or ("NODO_INCIDENCIA_EXTERNO_ID" IS NOT NULL)),
+   SENTIDO_ENERGIA_ID           numeric(10)                    null      check (SENTIDO_ENERGIA_ID is null or ("SENTIDO_ENERGIA_ID" IS NOT NULL)),
+   PEEM_ID                      numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: NODO_SUBESTACION                                      */
+/*==============================================================*/
+create table NODO_SUBESTACION
+(
+   EMPRESA_ID                   numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   NODO_IEC_ID                  numeric(15)                    not null  check ("NODO_IEC_ID" IS NOT NULL),
+   PERIODO_STAR                 varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   SUBESTACION_DISTRIBUCION_ID  numeric(10)                    null      check (SUBESTACION_DISTRIBUCION_ID is null or ("SUBESTACION_DISTRIBUCION_ID" IS NOT NULL)),
+   PEEM_ID                      numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: NUMERO_FASES                                          */
+/*==============================================================*/
+create table NUMERO_FASES
+(
+   NUMERO_FASES         numeric(1)                     not null      check ("NUMERO_FASES" IS NOT NULL),
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: PCT_NOT_EXISTS                                        */
+/*==============================================================*/
+create table PCT_NOT_EXISTS
+(
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null,
+   PUNTO_CONSUMO_ID     numeric(30)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PERIODO_INFORMACION                                   */
+/*==============================================================*/
+create table PERIODO_INFORMACION
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   MES_INFORMA          varchar(6)                     null      check (MES_INFORMA is null or ("MES_INFORMA" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: POSTE                                                 */
+/*==============================================================*/
+create table POSTE
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   POSTE_ID             numeric(10)                    not null  check ("POSTE_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_TENSION_ID      numeric(2)                     null      check (TIPO_TENSION_ID is null or ("TIPO_TENSION_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   APOYO_COMUNICACIONES numeric(3)                     null,
+   APOYO_TV_CABLE       numeric(3)                     null,
+   APOYO_ALUMBRADO      numeric(1)                     null,
+   APOYO_OTROS          numeric(3)                     null,
+   PEEM_ID              numeric(10)                    null,
+   GIS_ID               numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: PROD_INT_CAUSA_2015                                   */
+/*==============================================================*/
+create table PROD_INT_CAUSA_2015
+(
+   FECHA_PERIODO        timestamp                      null,
+   EMPRESA_ID           numeric(3)                     not null,
+   SIGLA                varchar(30)                    null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID      varchar(18)                    not null,
+   CALIFICACION_INTERRUPCION_ID numeric(2)                     null,
+   DESC_CLASIFICACION   varchar(100)                   null,
+   DESC_CALIFICACION_INT varchar(60)                    null,
+   CAUSA_ID             numeric(5)                     null,
+   DESC_CAUSA           varchar(100)                   null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   COMUNA_ID            numeric(7)                     null,
+   COMUNA               varchar(60)                    null,
+   PROVINCIA            varchar(60)                    null,
+   REGION               varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PTO_CONS_TOPO                                         */
+/*==============================================================*/
+create table PTO_CONS_TOPO
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   TENSION              varchar(60)                    null,
+   RURALIDAD            varchar(60)                    null,
+   EMPALME              varchar(60)                    null,
+   TRANSFORMADOR_ID     numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PUENTE                                                */
+/*==============================================================*/
+create table PUENTE
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null,
+   PUENTE_ID            numeric(10)                    not null,
+   NODO_INCIDENCIA_ID   numeric(15)                    null      check (NODO_INCIDENCIA_ID is null or ("NODO_INCIDENCIA_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   ACTIVO_INICIAL       numeric(1)                     null,
+   ACTIVO_FINAL         numeric(1)                     null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO                                         */
+/*==============================================================*/
+create table PUNTO_CONSUMO
+(
+   EMPRESA_ID               numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR             varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PUNTO_CONSUMO_ID         numeric(30)                    not null  check ("PUNTO_CONSUMO_ID" IS NOT NULL),
+   PUNTO_SUMINISTRO_ID      varchar(30)                    null      check (PUNTO_SUMINISTRO_ID is null or ("PUNTO_SUMINISTRO_ID" IS NOT NULL)),
+   NODO_IEC_ID              numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_EMPALME_ID          numeric(2)                     null      check (TIPO_EMPALME_ID is null or ("TIPO_EMPALME_ID" IS NOT NULL)),
+   SUBESTACION_PRIMARIA_ID  numeric(10)                    null      check (SUBESTACION_PRIMARIA_ID is null or ("SUBESTACION_PRIMARIA_ID" IS NOT NULL)),
+   COMUNA_ID                numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_ESQUEMATICO_ID      numeric(15)                    null      check (NODO_ESQUEMATICO_ID is null or ("NODO_ESQUEMATICO_ID" IS NOT NULL)),
+   NUMERO_FASES             numeric(1)                     null      check (NUMERO_FASES is null or ("NUMERO_FASES" IS NOT NULL)),
+   TIPO_RURALIDAD_ID        numeric(2)                     null      check (TIPO_RURALIDAD_ID is null or ("TIPO_RURALIDAD_ID" IS NOT NULL)),
+   PEEM_ID                  numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO012013026                                */
+/*==============================================================*/
+create table PUNTO_CONSUMO012013026
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   PUNTO_SUMINISTRO_ID  varchar(30)                    null,
+   NODO_IEC_ID          numeric(15)                    null,
+   TIPO_EMPALME_ID      numeric(2)                     null,
+   SUBESTACION_PRIMARIA_ID numeric(10)                    null,
+   COMUNA_ID            numeric(7)                     null,
+   NODO_ESQUEMATICO_ID  numeric(15)                    null,
+   NUMERO_FASES         numeric(1)                     null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO_8_9                                     */
+/*==============================================================*/
+create table PUNTO_CONSUMO_8_9
+(
+   REGION_ID            numeric(6)                     null,
+   EMPRESA_ID           numeric(3)                     not null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   COMUNA_ID            numeric(7)                     null,
+   ZONA_UTM             numeric(2)                     null,
+   DATUM_ID             numeric(2)                     null,
+   X                    numeric                        null,
+   Y                    numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO_DIRECTO                                 */
+/*==============================================================*/
+create table PUNTO_CONSUMO_DIRECTO
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   PUNTO_SUMINISTRO_ID  varchar(30)                    null,
+   NODO_IEC_ID          numeric(15)                    null,
+   TIPO_EMPALME_ID      numeric(2)                     null,
+   SUBESTACION_PRIMARIA_ID numeric(10)                    null,
+   COMUNA_ID            numeric(7)                     null,
+   NODO_ESQUEMATICO_ID  numeric(15)                    null,
+   NUMERO_FASES         numeric(1)                     null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO_HORAS_INT_22                            */
+/*==============================================================*/
+create table PUNTO_CONSUMO_HORAS_INT_22
+(
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   EXTERNAS             numeric                        null,
+   INTERNAS             numeric                        null,
+   FMAYOR               numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO_TOPOLOGIA                               */
+/*==============================================================*/
+create table PUNTO_CONSUMO_TOPOLOGIA
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   TRANSFORMADOR_ID     numeric(10)                    null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   NODO_INCIDENCIA_ID   numeric(15)                    null,
+   TIPO_EMPALME_ID      numeric(2)                     null,
+   PUNTO_SUMINISTRO_ID  varchar(30)                    null,
+   COMUNA_ID            numeric(7)                     null,
+   ACTIVO_INICIAL       numeric(1)                     null,
+   ACTIVO_FINAL         numeric(1)                     null,
+   ENERGIZADO_INICIAL   numeric(1)                     null,
+   ENERGIZADO_FINAL     numeric(1)                     null,
+   NUMERO_FASES         numeric(1)                     null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO_TOPOLOGIA_TXT3                          */
+/*==============================================================*/
+create table PUNTO_CONSUMO_TOPOLOGIA_TXT3
+(
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null,
+   PUNTO_CONSUMO_ID     numeric(30)                    null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   TRANSFORMADOR_ID     numeric(10)                    null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   NODO_INCIDENCIA_ID   numeric(15)                    null,
+   TIPO_EMPALME_ID      numeric(2)                     null,
+   PUNTO_SUMINISTRO_ID  varchar(30)                    null,
+   COMUNA_ID            numeric(7)                     null,
+   ACTIVO_INICIAL       numeric(1)                     null,
+   ACTIVO_FINAL         numeric(1)                     null,
+   ENERGIZADO_INICIAL   numeric(1)                     null,
+   ENERGIZADO_FINAL     numeric(1)                     null,
+   NUMERO_FASES         numeric(1)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PUNTO_CONSUMO_TXT                                     */
+/*==============================================================*/
+create table PUNTO_CONSUMO_TXT
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   PUNTO_SUMINISTRO_ID  varchar(30)                    null,
+   NODO_IEC_ID          numeric(15)                    null,
+   TIPO_EMPALME_ID      numeric(2)                     null,
+   SUBESTACION_PRIMARIA_ID numeric(10)                    null,
+   COMUNA_ID            numeric(7)                     null,
+   NODO_ESQUEMATICO_ID  numeric(15)                    null,
+   NUMERO_FASES         numeric(1)                     null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: PUNTO_DERIVACION                                      */
+/*==============================================================*/
+create table PUNTO_DERIVACION
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PUNTO_DERIVACION_ID  numeric(10)                    not null  check ("PUNTO_DERIVACION_ID" IS NOT NULL),
+   NODO_ESQUEMATICO_ID  numeric(15)                    null      check (NODO_ESQUEMATICO_ID is null or ("NODO_ESQUEMATICO_ID" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: PUNTO_DERIVACION_INCIDENCIA                           */
+/*==============================================================*/
+create table PUNTO_DERIVACION_INCIDENCIA
+(
+   EMPRESA_ID                       numeric(3)      not null,
+   PERIODO_STAR                     varchar(6)      not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID                    numeric(10)     not null,
+   PUNTO_DERIVACION_INCIDENCIA_ID   numeric(10)     not null,
+   NODO_INCIDENCIA_ID               numeric(15)     null,
+   PEEM_ID                          numeric(10)     null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: PUNTO_FALLA                                           */
+/*==============================================================*/
+create table PUNTO_FALLA
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null  check ("INCIDENCIA_ID" IS NOT NULL),
+   PUNTO_FALLA_ID       numeric(10)                    not null  check ("PUNTO_FALLA_ID" IS NOT NULL),
+   NODO_INCIDENCIA_ID   numeric(15)                    null      check (NODO_INCIDENCIA_ID is null or ("NODO_INCIDENCIA_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   CALLE                varchar(60)                    null      check (CALLE is null or ("CALLE" IS NOT NULL)),
+   NUMERO               varchar(60)                    null      check (NUMERO is null or ("NUMERO" IS NOT NULL)),
+   POBLACION            varchar(150)                   null      check (POBLACION is null or ("POBLACION" IS NOT NULL)),
+   CIUDAD               varchar(60)                    null      check (CIUDAD is null or ("CIUDAD" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: PUNTO_SUMINISTRO                                      */
+/*==============================================================*/
+create table PUNTO_SUMINISTRO
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   PUNTO_SUMINISTRO_ID  varchar(30)                    not null      check ("PUNTO_SUMINISTRO_ID" IS NOT NULL),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: PUNTO_SUMINISTRO_INCIDENCIA                           */
+/*==============================================================*/
+create table PUNTO_SUMINISTRO_INCIDENCIA
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null,
+   PUNTO_SUMINISTRO_ID  varchar(30)                    not null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: P_BAJADA_RED                                          */
+/*==============================================================*/
+create table P_BAJADA_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_BOVEDA_RED                                          */
+/*==============================================================*/
+create table P_BOVEDA_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   NATURALEZA           char(2)                        null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_CAMARA_RED                                          */
+/*==============================================================*/
+create table P_CAMARA_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric                        null,
+   NATURALEZA           varchar(2)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_CANALIZACION_RED                                    */
+/*==============================================================*/
+create table P_CANALIZACION_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric                        null,
+   NATURALEZA           varchar(2)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_EMPALME_RED                                         */
+/*==============================================================*/
+create table P_EMPALME_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_TENSION_ID      numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   ITEM                 numeric                        null,
+   NATURALEZA           char(2)                        null,
+   SUBITEM              numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_EQUIPO_RED                                          */
+/*==============================================================*/
+create table P_EQUIPO_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   ES_EQUIPO_SUBESTACION numeric(1)                     null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_EQUIPO_SED_RED                                      */
+/*==============================================================*/
+create table P_EQUIPO_SED_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   ES_EQUIPO_SUBESTACION numeric(1)                     null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_ESTRUCTURA_BT_RED                                   */
+/*==============================================================*/
+create table P_ESTRUCTURA_BT_RED
+(
+   EMPRESA_ID           numeric(3)                     null,
+   ID                   numeric(10)                    null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric                        null,
+   NATURALEZA           char(2)                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_ESTRUCTURA_MT_RED                                   */
+/*==============================================================*/
+create table P_ESTRUCTURA_MT_RED
+(
+   EMPRESA_ID           numeric(3)                     null,
+   ID                   numeric(10)                    null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric                        null,
+   NATURALEZA           char(2)                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_ESTRUCTURA_SED_RED                                  */
+/*==============================================================*/
+create table P_ESTRUCTURA_SED_RED
+(
+   EMPRESA_ID           numeric(3)                     null,
+   ID                   numeric(10)                    null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric                        null,
+   NATURALEZA           char(2)                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_MEDIDOR_RED                                         */
+/*==============================================================*/
+create table P_MEDIDOR_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   TIPO_TENSION_ID      numeric                        null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_POSTE_RED                                           */
+/*==============================================================*/
+create table P_POSTE_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric                        null,
+   NATURALEZA           varchar(2)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_TOMA_TIERRA_RED                                     */
+/*==============================================================*/
+create table P_TOMA_TIERRA_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   TIPO_TENSION_ID      numeric(2)                     null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_TRAMO_BT_RED                                        */
+/*==============================================================*/
+create table P_TRAMO_BT_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric(2)                     null,
+   NATURALEZA           char(2)                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_TRAMO_MT_RED                                        */
+/*==============================================================*/
+create table P_TRAMO_MT_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   SUBITEM              numeric                        null,
+   ITEM                 numeric(2)                     null,
+   NATURALEZA           char(2)                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: P_TRANSFORMADOR_RED                                   */
+/*==============================================================*/
+create table P_TRANSFORMADOR_RED
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   ID                   numeric(10)                    not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    not null,
+   X                    numeric(15,3)                  null,
+   Y                    numeric(15,3)                  null,
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   CONECTADO            numeric                        null,
+   TIPO_PROPIEDAD_ID    numeric(2)                     null,
+   CODIGO_VNR           varchar(20)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: QLK_INC_PTO_CONSUMO_COMUNA                            */
+/*==============================================================*/
+create table QLK_INC_PTO_CONSUMO_COMUNA
+(
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    null,
+   INTERRUPCION_ID      varchar(18)                    null,
+   BLOQUE_REPOSICION_ID numeric(10)                    null,
+   COMUNA_ID            numeric                        null,
+   CANTIDAD             numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: REGION_COMUNA_PROVINCIA                               */
+/*==============================================================*/
+create table REGION_COMUNA_PROVINCIA
+(
+   REGION_ID            numeric(6)                     null,
+   NOMBRE_REGION        varchar(100)                   null,
+   COMUNA_ID            numeric(6)                     null,
+   NOMBRE_COMUNA        varchar(100)                   null,
+   PROVINCIA_ID         numeric(6)                     null,
+   NOMBRE_PROVINCIA     varchar(100)                   null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: ROW_COUNT                                             */
+/*==============================================================*/
+create table ROW_COUNT
+(
+   NROWS                numeric                        null
+);
+
+/*==============================================================*/
+/* Table: SENTIDO_ENERGIA                                       */
+/*==============================================================*/
+create table SENTIDO_ENERGIA
+(
+   SENTIDO_ENERGIA_ID   numeric(10)                    not null      check ("SENTIDO_ENERGIA_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: SISTEMA_COORDENADAS                                   */
+/*==============================================================*/
+create table SISTEMA_COORDENADAS
+(
+   ID                   numeric(3)                     null,
+   NOMBRE               varchar(60)                    null,
+   DATUM_ID             numeric(2)                     null,
+   ZONA_UTM             numeric(2)                     null,
+   SDO_SRID             numeric                        null,
+   DEFAULT_PROJECTION   numeric(1)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: SISTEMA_ELECTRICO                                     */
+/*==============================================================*/
+create table SISTEMA_ELECTRICO
+(
+   SISTEMA_ELECTRICO_ID numeric(10)                    not null      check ("SISTEMA_ELECTRICO_ID" IS NOT NULL),
+   EMPRESA_ID           numeric(3)                     null          check (EMPRESA_ID is null or ("EMPRESA_ID" IS NOT NULL)),
+   NOMBRE               varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: SUBESTACION_DISTRIBUCION                              */
+/*==============================================================*/
+create table SUBESTACION_DISTRIBUCION
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   SUBESTACION_DISTRIBUCION_ID numeric(10)                    not null      check ("SUBESTACION_DISTRIBUCION_ID" IS NOT NULL),
+   TIPO_DISPOSICION_ID  numeric(2)                     null      check (TIPO_DISPOSICION_ID is null or ("TIPO_DISPOSICION_ID" IS NOT NULL)),
+   PLACA_IDENTIFICACION varchar(250)                   null      check (PLACA_IDENTIFICACION is null or ("PLACA_IDENTIFICACION" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: SUBESTACION_INCIDENCIA                                */
+/*==============================================================*/
+create table SUBESTACION_INCIDENCIA
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null,
+   SUBESTACION_INCIDENCIA_ID numeric(10)                    not null,
+   PLACA_IDENTIFICACION varchar(100)                   null,
+   CALLE                varchar(60)                    null,
+   NUMERO               varchar(60)                    null,
+   POBLACION            varchar(150)                   null,
+   CIUDAD               varchar(60)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: SUBESTACION_PRIMARIA_DISTRIBUC                        */
+/*==============================================================*/
+create table SUBESTACION_PRIMARIA_DISTRIBUC
+(
+   EMPRESA_ID           numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   SUBESTACION_PRIMARIA_ID numeric(10)                    not null      check ("SUBESTACION_PRIMARIA_ID" IS NOT NULL),
+   NODO_IEC_ID          numeric(15)                    null,
+   NOMBRE               varchar(100)                   null      check (NOMBRE is null or ("NOMBRE" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: TBL_INT_RESUMEN                                       */
+/*==============================================================*/
+create table TBL_INT_RESUMEN
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TIPO_RURALIDAD_ID    numeric(2)                     not null,
+   TIPO_RURALIDAD       varchar(60)                    null,
+   INTERRUPCION_ID      varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID numeric(10)                    not null,
+   FH_INICIO_INTERRUPCION timestamp                      null,
+   ALIMENTADOR_ID       numeric(10)                    not null,
+   NOMBRE_ALIMENTADOR   varchar(60)                    null,
+   FH_TERMINO_BLOQUE    timestamp                      null,
+   CANTIDAD_TRAFOS      numeric                        null,
+   KVA_AFECTADOS        numeric                        null,
+   CLIENTES_AFECTADOS   numeric                        null,
+   BLOQUE_VARIOS_ALIM   numeric                        null,
+   CAUSA                varchar(100)                   null,
+   SUBCAUSA             varchar(100)                   null,
+   CALIFICACION         varchar(60)                    null,
+   MES_ANHO             varchar(8)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: TEMP_1_110128_1                                       */
+/*==============================================================*/
+create table TEMP_1_110128_1
+(
+   IDENTIFICADOR        numeric                        null,
+   EMPRESA_ID           numeric(3)                     null,
+   PERIODO_STAR         varchar(6)                     null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   NODO_ID              numeric(15)                    null,
+   TIPO_CONEXION_NODO_ID numeric(2)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: TEMP_HIJOS_ACTUALES                                   */
+/*==============================================================*/
+create table TEMP_HIJOS_ACTUALES
+(
+   IDENTIFICADOR        numeric                        null,
+   EMPRESA_ID           numeric(3)                     null,
+   NODO_PADRE_ID        numeric(15)                    null,
+   NODO_HIJO_ID         numeric(15)                    null,
+   TIPO_CONEXION_NODO_ID numeric(2)                     null,
+   NIVEL                numeric(10)                    null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   ARBOL_ID             numeric(5)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: TEMP_NUEVOS_HIJOS                                     */
+/*==============================================================*/
+create table TEMP_NUEVOS_HIJOS
+(
+   IDENTIFICADOR        numeric                        null,
+   EMPRESA_ID           numeric(3)                     not null,
+   NODO_PADRE_ID        numeric(15)                    not null,
+   NODO_HIJO_ID         numeric(15)                    not null,
+   TIPO_CONEXION_NODO_ID numeric(2)                     null,
+   NIVEL                numeric(10)                    null,
+   ALIMENTADOR_ID       numeric(10)                    not null,
+   ARBOL_ID             numeric(5)                     null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TEMP_PADRES_ACTUALES                                  */
+/*==============================================================*/
+create table TEMP_PADRES_ACTUALES
+(
+   IDENTIFICADOR        numeric                        null,
+   EMPRESA_ID           numeric(3)                     null,
+   NODO_PADRE_ID        numeric(15)                    null,
+   NODO_HIJO_ID         numeric(15)                    null,
+   TIPO_CONEXION_NODO_ID numeric(2)                     null,
+   NIVEL                numeric(10)                    null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   ARBOL_ID             numeric(5)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: TEMP_PADRES_PROCESADOS                                */
+/*==============================================================*/
+create table TEMP_PADRES_PROCESADOS
+(
+   IDENTIFICADOR        numeric                        null,
+   EMPRESA_ID           numeric(3)                     null,
+   NODO_PADRE_ID        numeric(15)                    null,
+   NODO_HIJO_ID         numeric(15)                    null,
+   TIPO_CONEXION_NODO_ID numeric(2)                     null,
+   NIVEL                numeric(10)                    null,
+   ALIMENTADOR_ID       numeric(10)                    null,
+   ARBOL_ID             numeric(5)                     null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: TIEMPO_INT_PTO_CONSUMO                                */
+/*==============================================================*/
+create table TIEMPO_INT_PTO_CONSUMO
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PUNTO_CONSUMO_ID     numeric(30)                    not null,
+   COMUNA_ID            numeric(7)                     null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   TIEMPO_TOTAL_INT_HORAS numeric                        null,
+   CANTIDAD_INTERRUPCIONES numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: TIPO_AVISO                                            */
+/*==============================================================*/
+create table TIPO_AVISO
+(
+   TIPO_AVISO_ID        numeric(2)                     not null      check ("TIPO_AVISO_ID" IS NOT NULL),
+   DESCRIPCION          varchar(100)                   null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_CONEXION_NODO                                    */
+/*==============================================================*/
+create table TIPO_CONEXION_NODO
+(
+   TIPO_CONEXION_NODO_ID numeric(2)                     not null      check ("TIPO_CONEXION_NODO_ID" IS NOT NULL),
+   DESCRIPCION           varchar(60)                    null,
+   tiene_errores         tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_DISPOSICION                                      */
+/*==============================================================*/
+create table TIPO_DISPOSICION
+(
+   TIPO_DISPOSICION_ID  numeric(2)                     not null      check ("TIPO_DISPOSICION_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_DISPOSICION_TRAMO                                */
+/*==============================================================*/
+create table TIPO_DISPOSICION_TRAMO
+(
+   TIPO_DISPOSICION_TRAMO_ID    numeric(2)                     not null      check ("TIPO_DISPOSICION_TRAMO_ID" IS NOT NULL),
+   DESCRIPCION                  varchar(60)                    null,
+   tiene_errores                tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_EFECTO_EVENTO                                    */
+/*==============================================================*/
+create table TIPO_EFECTO_EVENTO
+(
+   TIPO_EFECTO_EVENTO_ID numeric(2)                     not null      check ("TIPO_EFECTO_EVENTO_ID" IS NOT NULL),
+   DESCRIPCION           varchar(60)                    null      check (DESCRIPCION is null or ("DESCRIPCION" IS NOT NULL)),
+   tiene_errores         tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_EMPALME                                          */
+/*==============================================================*/
+create table TIPO_EMPALME
+(
+   TIPO_EMPALME_ID      numeric(2)                     not null      check ("TIPO_EMPALME_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_EMPRESA                                          */
+/*==============================================================*/
+create table TIPO_EMPRESA
+(
+   TIPO_EMPRESA_ID      numeric(3)                     not null      check ("TIPO_EMPRESA_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_EQUIPO                                           */
+/*==============================================================*/
+create table TIPO_EQUIPO
+(
+   TIPO_EQUIPO_ID       numeric(2)                     not null      check ("TIPO_EQUIPO_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_EVENTO_RED                                       */
+/*==============================================================*/
+create table TIPO_EVENTO_RED
+(
+   TIPO_EVENTO_ID       numeric(2)                     not null      check ("TIPO_EVENTO_ID" IS NOT NULL),
+   DESCRIPCION          varchar(100)                   null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_FUENTE_ENERGIA                                   */
+/*==============================================================*/
+create table TIPO_FUENTE_ENERGIA
+(
+   TIPO_FUENTE_ENERGIA_ID numeric(2)                     not null      check ("TIPO_FUENTE_ENERGIA_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_INSTALACION                                      */
+/*==============================================================*/
+create table TIPO_INSTALACION
+(
+   TIPO_INSTALACION_ID  numeric(2)                     not null      check ("TIPO_INSTALACION_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_INSTALACION_ESQUEMATICO                          */
+/*==============================================================*/
+create table TIPO_INSTALACION_ESQUEMATICO
+(
+   TIPO_INSTALACION_ESQ_ID numeric(2)                     not null      check ("TIPO_INSTALACION_ESQ_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_INSTALACION_INCIDENCIA                           */
+/*==============================================================*/
+create table TIPO_INSTALACION_INCIDENCIA
+(
+   TIPO_INSTALACION_INCIDENCIA_ID   numeric(2)                     not null      check ("TIPO_INSTALACION_INCIDENCIA_ID" IS NOT NULL),
+   DESCRIPCION                      varchar(60)                    null,
+   tiene_errores                    tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_NODO                                             */
+/*==============================================================*/
+create table TIPO_NODO
+(
+   TIPO_NODO_ID         numeric(2)                     not null      check ("TIPO_NODO_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_ORIGEN_INTERRUPCION                              */
+/*==============================================================*/
+create table TIPO_ORIGEN_INTERRUPCION
+(
+   TIPO_ORIGEN_INTERRUPCION_ID  numeric(2)                     not null      check ("TIPO_ORIGEN_INTERRUPCION_ID" IS NOT NULL),
+   DESCRIPCION                  varchar(101)                   null,
+   tiene_errores                tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_PROPIEDAD                                        */
+/*==============================================================*/
+create table TIPO_PROPIEDAD
+(
+   TIPO_PROPIEDAD_ID    numeric(2)                     not null      check ("TIPO_PROPIEDAD_ID" IS NOT NULL),
+   DESCRICPION          varchar(100)                   null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_RURALIDAD                                        */
+/*==============================================================*/
+create table TIPO_RURALIDAD
+(
+   TIPO_RURALIDAD_ID    numeric(2)                     not null      check ("TIPO_RURALIDAD_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_SERVICIO_EQUIPO                                  */
+/*==============================================================*/
+create table TIPO_SERVICIO_EQUIPO
+(
+   TIPO_SERVICIO_EQUIPO_ID numeric(2)                  not null    check ("TIPO_SERVICIO_EQUIPO_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_TECNOLOGIA                                       */
+/*==============================================================*/
+create table TIPO_TECNOLOGIA
+(
+   TIPO_TECNOLOGIA_ID   numeric(2)                     not null      check ("TIPO_TECNOLOGIA_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_TENSION                                          */
+/*==============================================================*/
+create table TIPO_TENSION
+(
+   TIPO_TENSION_ID      numeric(2)                     not null      check ("TIPO_TENSION_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIPO_TOMA_TIERRA                                      */
+/*==============================================================*/
+create table TIPO_TOMA_TIERRA
+(
+   TIPO_TOMA_TIERRA_ID  numeric(2)                     not null      check ("TIPO_TOMA_TIERRA_ID" IS NOT NULL),
+   DESCRIPCION          varchar(60)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TIRANTE                                               */
+/*==============================================================*/
+create table TIRANTE
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TIRANTE_ID           numeric(10)                    not null  check ("TIRANTE_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TOMA_TIERRA                                           */
+/*==============================================================*/
+create table TOMA_TIERRA
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TOMA_TIERRA_ID       numeric(10)                    not null  check ("TOMA_TIERRA_ID" IS NOT NULL),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_TENSION_ID      numeric(2)                     null      check (TIPO_TENSION_ID is null or ("TIPO_TENSION_ID" IS NOT NULL)),
+   TIPO_TOMA_TIERRA_ID  numeric(2)                     null      check (TIPO_TOMA_TIERRA_ID is null or ("TIPO_TOMA_TIERRA_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TRAMO_BT                                              */
+/*==============================================================*/
+create table TRAMO_BT
+(
+   EMPRESA_ID                   numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR                 varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TRAMO_BT_ID                  numeric(10)                    not null  check ("TRAMO_BT_ID" IS NOT NULL),
+   TIPO_DISPOSICION_TRAMO_ID    numeric(2)                     null      check (TIPO_DISPOSICION_TRAMO_ID is null or ("TIPO_DISPOSICION_TRAMO_ID" IS NOT NULL)),
+   COMUNA_ID                    numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID            numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION            numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED                numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR            varchar(30)                    null,
+   FECHA_INSTALACION            timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR                   varchar(20)                    null,
+   LARGO_RED                    numeric(10)                    null      check (LARGO_RED is null or ("LARGO_RED" IS NOT NULL)),
+   NUMERO_FASES                 numeric(10)                    null      check (NUMERO_FASES is null or ("NUMERO_FASES" IS NOT NULL)),
+   NOMBRE_FASES                 varchar(5)                     null,
+   PEEM_ID                      numeric(10)                    null,
+   GIS_ID                       numeric(15)                    null,
+   tiene_errores                tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TRAMO_MT                                              */
+/*==============================================================*/
+create table TRAMO_MT
+(
+   EMPRESA_ID                   numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR                 varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TRAMO_MT_ID                  numeric(10)                    not null  check ("TRAMO_MT_ID" IS NOT NULL),
+   TIPO_DISPOSICION_TRAMO_ID    numeric(2)                     null      check (TIPO_DISPOSICION_TRAMO_ID is null or ("TIPO_DISPOSICION_TRAMO_ID" IS NOT NULL)),
+   COMUNA_ID                    numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID            numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION            numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED                numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR            varchar(30)                    null,
+   FECHA_INSTALACION            timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR                   varchar(20)                    null,
+   LARGO_RED                    numeric(10)                    null      check (LARGO_RED is null or ("LARGO_RED" IS NOT NULL)),
+   NUMERO_FASES                 numeric(10)                    null      check (NUMERO_FASES is null or ("NUMERO_FASES" IS NOT NULL)),
+   NOMBRE_FASES                 varchar(5)                     null,
+   PEEM_ID                      numeric(10)                    null,
+   GIS_ID                       numeric(15)                    null,
+   tiene_errores                tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TRANSFORMADOR                                         */
+/*==============================================================*/
+create table TRANSFORMADOR
+(
+   EMPRESA_ID           numeric(3)                     not null  check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR         varchar(6)                     not null  check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TRANSFORMADOR_ID     numeric(10)                    not null  check ("TRANSFORMADOR_ID" IS NOT NULL),
+   NODO_ESQUEMATICO_ID  numeric(15)                    null      check (NODO_ESQUEMATICO_ID is null or ("NODO_ESQUEMATICO_ID" IS NOT NULL)),
+   COMUNA_ID            numeric(7)                     null      check (COMUNA_ID is null or ("COMUNA_ID" IS NOT NULL)),
+   NODO_IEC_ID          numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   TIPO_RURALIDAD_ID    numeric(2)                     null      check (TIPO_RURALIDAD_ID is null or ("TIPO_RURALIDAD_ID" IS NOT NULL)),
+   TIPO_PROPIEDAD_ID    numeric(2)                     null      check (TIPO_PROPIEDAD_ID is null or ("TIPO_PROPIEDAD_ID" IS NOT NULL)),
+   EN_ZONA_CONCESION    numeric(1)                     null      check (EN_ZONA_CONCESION is null or ("EN_ZONA_CONCESION" IS NOT NULL)),
+   CONECTADA_RED        numeric(1)                     null      check (CONECTADA_RED is null or ("CONECTADA_RED" IS NOT NULL)),
+   IDENTIFICADOR_VNR    varchar(30)                    null,
+   FECHA_INSTALACION    timestamp                      null      check (FECHA_INSTALACION is null or ("FECHA_INSTALACION" IS NOT NULL)),
+   CODIGO_VNR           varchar(20)                    null,
+   KVA                  numeric(12,2)                  null      check (KVA is null or ("KVA" IS NOT NULL)),
+   PEEM_ID              numeric(10)                    null,
+   GIS_ID               numeric(15)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+
+/*==============================================================*/
+/* Table: TRANSFORMADOR_INTERRUPCION                            */
+/*==============================================================*/
+create table TRANSFORMADOR_INTERRUPCION
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null,
+   TRANSFORMADOR_ID     numeric(10)                    not null,
+   INTERRUPCION_ID      varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID numeric(10)                    not null,
+   TIEMPO_INTERRUMPIDO  numeric(10)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: TRANSFORMADOR_TOPOLOGIA                               */
+/*==============================================================*/
+create table TRANSFORMADOR_TOPOLOGIA
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID        numeric(10)                    not null,
+   TRANSFORMADOR_ID     numeric(10)                    not null,
+   NODO_INCIDENCIA_ID   numeric(15)                    null,
+   TIPO_RURALIDAD_ID    numeric(2)                     null,
+   SUBESTACION_INCIDENCIA_ID numeric(10)                    null,
+   COMUNA_ID            numeric(7)                     null,
+   ACTIVO_INICIAL       numeric(1)                     null,
+   ACTIVO_FINAL         numeric(1)                     null,
+   ENERGIZADO_INICIAL   numeric(1)                     null,
+   ENERGIZADO_FINAL     numeric(1)                     null,
+   KVA_NOMINAL          numeric(8,2)                   null,
+   FECHA_INSTALACION    timestamp                      null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: T_CONSOLIDADO_INTERRUPCIONES                          */
+/*==============================================================*/
+create table T_CONSOLIDADO_INTERRUPCIONES
+(
+   EMPRESA_ID                       numeric(3)                     not null,
+   PERIODO_STAR                     varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID                  varchar(18)                    not null,
+   CALIFICACION_INTERRUPCION_ID     numeric(2)                     null,
+   TIPO_ORIGEN_INTERRUPCION_ID      numeric(2)                     null,
+   SISTEMA_ELECTRICO_ID             numeric(10)                    null,
+   CAUSA_ID                         numeric(5)                     null,
+   BLOQUE_REPOSICION_ID             numeric(10)                    not null,
+   DURACION                         numeric(10)                    null,
+   FH_TERMINO_BLOQUE                timestamp                      null,
+   FH_INICIO_INTERRUPCION           timestamp                      null,
+   INCIDENCIA_ID                    numeric(10)                    null,
+   DESCRIPCION                      varchar(100)                   null,
+   ALIMENTADOR_ID                   numeric(10)                    not null,
+   TIPO_RURALIDAD_ID                numeric(2)                     null,
+   CANTIDAD_AFECTADOS               numeric                        null,
+   TIEMPO_AFECTADOS                 numeric                        null,
+   CANTIDAD_TRAFOS                  numeric                        null,
+   TIEMPO                           numeric                        null,
+   POTENCIA_AFECTADA                numeric                        null,
+   BLOQUE_VARIOS_ALIM               numeric                        null,
+   tiene_errores                    tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: T_CONSOLIDADO_INTERRUP_CGJ                            */
+/*==============================================================*/
+create table T_CONSOLIDADO_INTERRUP_CGJ
+(
+   PERIODO_STAR             varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   EMPRESA_ID               numeric(3)                     not null,
+   SIGLA                    varchar(30)                    null,
+   NOMBRE_REGION            varchar(100)                   null,
+   INTERRUPCION_ID          varchar(18)                    not null,
+   CALIFICACION             varchar(60)                    null,
+   CAUSA                    varchar(100)                   null,
+   ALIMENTADOR_ID           numeric(10)                    not null,
+   NOMBRE_ALIMENTADOR       varchar(60)                    null,
+   FH_INICIO_INTERRUPCION   timestamp                      null,
+   FH_TERMINO_BLOQUE        timestamp                      null,
+   CANTIDAD_AFECTADOS       numeric                        null,
+   TIEMPO_AFECTADOS         numeric                        null,
+   CANTIDAD_TRAFOS          numeric                        null,
+   POTENCIA_AFECTADA        numeric                        null,
+   KVA_INSTALADOS_R1        numeric                        null,
+   KVA_INSTALADOS_R2        numeric                        null,
+   KVA_INSTALADOS_U         numeric                        null,
+   CLIENTES_BT1             numeric                        null,
+   CLIENTES_OTROS_BT        numeric                        null,
+   CLIENTES_AT              numeric                        null,
+   CLIENTES_LIBRES          numeric                        null,
+   TIEMPO_INTERRUPCION_HH   numeric                        null,
+   CANTIDAD_INTERRUPCIONES  numeric                        null,
+   tiene_errores            tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: T_CONSOLIDADO_INTERRUP_CGJ_01                         */
+/*==============================================================*/
+create table T_CONSOLIDADO_INTERRUP_CGJ_01
+(
+   PERIODO_STAR                 varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   EMPRESA_ID                   numeric(3)                     not null,
+   SIGLA                        varchar(30)                    null,
+   ALIMENTADOR_ID               numeric(10)                    not null,
+   NOMBRE_REGION                varchar(100)                   null,
+   CALIFICACION_INTERRUPCION    varchar(60)                    null,
+   CAUSA                        varchar(100)                   null,
+   CANTIDAD_PTOS_CONSUMOS       numeric                        null,
+   TIEMPO                       numeric                        null,
+   CANTIDAD_TRAFOS              numeric                        null,
+   CANTIDAD_INTERRPCIONES       numeric                        null,
+   KVAS                         numeric                        null,
+   tiene_errores                tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: T_CONSOLIDADO_INTERRUP_CGJ_02                         */
+/*==============================================================*/
+create table T_CONSOLIDADO_INTERRUP_CGJ_02
+(
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   SIGLA                varchar(30)                    null,
+   EMPRESA_ID           numeric(3)                     not null,
+   ALIMENTADOR_ID       numeric(10)                    not null,
+   NOMBRE_ALIMENTADOR   varchar(60)                    null,
+   NOMBRE_REGION        varchar(100)                   null,
+   CALIFICACION_INTERRUPCION varchar(60)                    null,
+   CAUSA                varchar(100)                   null,
+   CLIENTES_AFECTADOS   numeric                        null,
+   TIEMPO               numeric                        null,
+   TRAFOS               numeric                        null,
+   CANTIDAD_INTERRUPCIONES numeric                        null,
+   KVAS                 numeric                        null,
+   CLIENTES_BT1         numeric                        null,
+   CLIENTES_OTROS_BT    numeric                        null,
+   CLIENTES_AT          numeric                        null,
+   CLIENTES_LIBRES      numeric                        null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: T_CONSUMOS_AFECTADOS                                  */
+/*==============================================================*/
+create table T_CONSUMOS_AFECTADOS
+(
+   EMPRESA_ID               numeric(3)                     not null,
+   INCIDENCIA_ID            numeric(10)                    null,
+   INTERRUPCION_ID          varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID     numeric(10)                    not null,
+   CANTIDAD_AFECTADOS       numeric                        null,
+   TOTAL_TIEMPO_AFECTADOS   numeric                        null,
+   tiene_errores            tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: T_INFO_BASE_INTERRUPCIONES                            */
+/*==============================================================*/
+create table T_INFO_BASE_INTERRUPCIONES
+(
+   EMPRESA_ID                   numeric(3)                     not null,
+   PERIODO_STAR                 varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INTERRUPCION_ID              varchar(18)                    not null,
+   CALIFICACION_INTERRUPCION_ID numeric(2)                     null,
+   TIPO_ORIGEN_INTERRUPCION_ID  numeric(2)                     null,
+   SISTEMA_ELECTRICO_ID         numeric(10)                    null,
+   CAUSA_ID                     numeric(5)                     null,
+   BLOQUE_REPOSICION_ID         numeric(10)                    not null,
+   DURACION                     numeric(10)                    null,
+   FH_TERMINO_BLOQUE            timestamp                      null,
+   FH_INICIO_INTERRUPCION       timestamp                      null,
+   INCIDENCIA_ID                numeric(10)                    null,
+   CAUSA                        varchar(100)                   null,
+   tiene_errores                tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: T_POTENCIA_AFECTADA                                   */
+/*==============================================================*/
+create table T_POTENCIA_AFECTADA
+(
+   EMPRESA_ID                   numeric(3)                     not null,
+   PERIODO_STAR                 varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   INCIDENCIA_ID                numeric(10)                    not null,
+   INTERRUPCION_ID              varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID         numeric(10)                    not null,
+   ALIMENTADOR_INCIDENCIA_ID    numeric(10)                    null,
+   TIPO_RURALIDAD_ID            numeric(2)                     null,
+   CANTIDAD_TRAFOS              numeric                        null,
+   TIEMPO                       numeric                        null,
+   POTENCIA_AFECTADA            numeric                        null,
+   tiene_errores                tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: T_VW_INTERRUPCION_RESUMEN                             */
+/*==============================================================*/
+create table T_VW_INTERRUPCION_RESUMEN
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TIPO_RURALIDAD_ID    numeric(2)                     not null,
+   TIPO_RURALIDAD       varchar(60)                    null,
+   INTERRUPCION_ID      varchar(18)                    not null,
+   BLOQUE_REPOSICION_ID numeric(10)                    not null,
+   FH_INICIO_INTERRUPCION timestamp                      null,
+   ALIMENTADOR_ID       numeric(10)                    not null,
+   NOMBRE_ALIMENTADOR   varchar(60)                    null,
+   FH_TERMINO_BLOQUE    timestamp                      null,
+   DURACION             numeric                        null,
+   CANTIDAD_TRAFOS      numeric                        null,
+   KVA_AFECTADOS        numeric                        null,
+   CLIENTES_AFECTADOS   numeric                        null,
+   BLOQUE_VARIOS_ALIM   numeric                        null,
+   CAUSA                varchar(100)                   null,
+   SUBCAUSA             varchar(100)                   null,
+   CALIFICACION         varchar(60)                    null,
+   MES_ANHO             varchar(8)                     null,
+   tiene_errores                tinyint                        not null default 0
+);
+
+/*==============================================================*/
+/* Table: VERTICE_CANALIZACION                                  */
+/*==============================================================*/
+create table VERTICE_CANALIZACION
+(
+   EMPRESA_ID               numeric(3)                     not null      check ("EMPRESA_ID" IS NOT NULL),
+   PERIODO_STAR             varchar(6)                     not null      check ("PERIODO_STAR" IS NOT NULL),
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   CANALIZACION_ID          numeric(10)                    not null      check ("CANALIZACION_ID" IS NOT NULL),
+   VERTICE_CANALIZACION_ID  numeric(10)                    not null      check ("VERTICE_CANALIZACION_ID" IS NOT NULL),
+   NODO_IEC_ID              numeric(15)                    null      check (NODO_IEC_ID is null or ("NODO_IEC_ID" IS NOT NULL)),
+   PEEM_ID                  numeric(10)                    null,
+   tiene_errores            tinyint                        not null default 0
+);
+
+
+/*==============================================================*/
+/* Table: VERTICE_EMPALME                                       */
+/*==============================================================*/
+create table VERTICE_EMPALME
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   EMPALME_ID           numeric(10)                    not null,
+   VERTICE_EMPALME_ID   numeric(10)                    not null,
+   NODO_IEC_ID          numeric(15)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: VERTICE_TRAMO_BT                                      */
+/*==============================================================*/
+create table VERTICE_TRAMO_BT
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TRAMO_BT_ID          numeric(10)                    not null,
+   VERTICE_TRAMO_BT_ID  numeric(10)                    not null,
+   NODO_IEC_ID          numeric(15)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+/*==============================================================*/
+/* Table: VERTICE_TRAMO_MT                                      */
+/*==============================================================*/
+create table VERTICE_TRAMO_MT
+(
+   EMPRESA_ID           numeric(3)                     not null,
+   PERIODO_STAR         varchar(6)                     not null,
+   PERIODO_STAR_ID      integer                        not null check ("PERIODO_STAR_ID" IS NOT NULL),
+   TRAMO_MT_ID          numeric(10)                    not null,
+   VERTICE_TRAMO_MT_ID  numeric(10)                    not null,
+   NODO_IEC_ID          numeric(15)                    null,
+   PEEM_ID              numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+
+);
+
+
+create table ZONA_UTM
+(
+   ZONA_UTM             numeric(2)                     not null      check ("ZONA_UTM" IS NOT NULL)
+
+);
+
+
+
+/*==============================================================*/
+/* Table: VNR_CODIFICACION                                      */
+/*==============================================================*/
+create table VNR_CODIFICACION
+(
+   TIPO_INSTALACION     varchar(30)                    null,
+   CARACTER             numeric(3)                     null,
+   LARGO                numeric(2)                     null,
+   ITEM                 varchar(30)                    null,
+   CODIGO               varchar(4)                     null,
+   OPCION_CODIGO        varchar(50)                    null,
+   ID                   numeric(10)                    null,
+   tiene_errores        tinyint                        not null default 0
+);
+
+
+create table resumen_carga
+(
+    empresa_id          int,
+    periodo_star_id     int,
+    table_name          varchar(30),
+    registros_enviados  int,
+    registros_error     int,
+    registros_ok        int
+);

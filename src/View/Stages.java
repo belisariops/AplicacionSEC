@@ -44,7 +44,9 @@ public class Stages {
         SQLConnection connection = new SQLConnection();
         primaryStage.setScene(new Scene(root, 800, 600));
         //Stages stages = Stages.getInstance();
+        primaryStage.setResizable(true);
         primaryStage.show();
+
     }
 
     private Stages() {
