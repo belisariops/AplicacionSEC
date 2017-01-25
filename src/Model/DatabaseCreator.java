@@ -7,20 +7,29 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by bpanay on 25-01-2017.
+ * Clase que crea las tablas, con las respectivas constraints.
+ * @author Belisario Panay
  */
 public class DatabaseCreator implements Runnable {
     SQLConnection connection;
 
+
+    /**
+     * El constructor guarda la conexion a la base de datos.
+     * @param connection
+     */
     public DatabaseCreator(SQLConnection connection) {
         this.connection = connection;
     }
 
+    /**
+     *Se lee de un archivo de texto plano, el cual se pasa a String para poder hacer la query en la base de datos.
+     */
     @Override
     public void run() {
         StringBuilder builder = new StringBuilder();
         String line;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/TablasCompleto.sql"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/Tablas.txt"))) {
             while ((line = bufferedReader.readLine()) != null) {
                 builder.append(line);
 
@@ -40,11 +49,12 @@ public class DatabaseCreator implements Runnable {
         String[] s = builder.toString().split(";");
         for (int j=0;j<s.length;j++) {
             try {
-                connection.executeQuery(s[j]);
+                connection.executeCreationQuery(s[j]);
             }
             catch (SQLException e) {
                 System.out.println(s[j]);
             }
         }
+
     }
 }

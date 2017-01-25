@@ -4,13 +4,29 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
- * Created by juakotorres on 24-01-2017.
+ * @author Joaquin Torres
  */
 public class DataBaseModel {
+    private SQLConnection connection;
 
     public DataBaseModel(){
+         /*Se crea la conexion con la base de datos*/
+        try {
+            connection = new SQLConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        DatabaseCreator creator = new DatabaseCreator(connection);
+        creator.run();
+
+    }
+
+    public void checkErrors() {
+        List<Error> errors = new Checker(connection).getErrors();
 
     }
 

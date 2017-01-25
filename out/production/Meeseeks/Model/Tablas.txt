@@ -1231,7 +1231,7 @@ create table MVW_COMUNA_PUNTO_CONSUMO
    CLIENTES             numeric                        null,
    tiene_errores        tinyint                        not null default 0
 );
-comment on table MVW_COMUNA_PUNTO_CONSUMO is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_COMUNA_PUNTO_CONSUMO';
+
 
 /*==============================================================*/
 /* Table: MVW_DM_BASE_SAIDI_PCONSUMO                            */
@@ -1256,7 +1256,7 @@ create table MVW_DM_BASE_SAIDI_PCONSUMO
    ALIMENTADOR              varchar(60)                    null,
    tiene_errores            tinyint                        not null default 0
 );
-comment on table MVW_DM_BASE_SAIDI_PCONSUMO is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_DM_BASE_SAIDI_PCONSUMO';
+
 
 /*==============================================================*/
 /* Table: MVW_PUNTO_CONSUMO_HRS_INTERR                          */
@@ -1274,7 +1274,7 @@ create table MVW_PUNTO_CONSUMO_HRS_INTERR
    SUBCAUSA             varchar(100)                   null,
    tiene_errores        tinyint                        not null default 0
 );
-comment on table MVW_PUNTO_CONSUMO_HRS_INTERR is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_PUNTO_CONSUMO_HRS_INTERR';
+
 
 /*==============================================================*/
 /* Table: MVW_REGION_COMUNA_EMPRESA                             */
@@ -1288,7 +1288,7 @@ create table MVW_REGION_COMUNA_EMPRESA
    CANTIDAD             numeric                        null,
    tiene_errores        tinyint                        not null default 0
 );
-comment on table MVW_REGION_COMUNA_EMPRESA is 'snapshot table for snapshot SEC_INTERRUPCIONES2013.MVW_REGION_COMUNA_EMPRESA';
+
 
 /*==============================================================*/
 /* Table: NODO_CONECTADO                                        */
