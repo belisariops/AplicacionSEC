@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+
 /**
  * @author Joaquin Torres
  */
@@ -14,6 +15,7 @@ public class DataBaseModel {
     private SQLConnection connection;
 
     public DataBaseModel(){
+
          /*Se crea la conexion con la base de datos*/
         try {
             connection = new SQLConnection();
@@ -44,6 +46,4 @@ public class DataBaseModel {
             System.out.println( everything);
         }
     }
-
-
 }

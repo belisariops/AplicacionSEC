@@ -1,8 +1,6 @@
 package sample;
 
 import Model.DataBaseModel;
-import Model.DatabaseCreator;
-import Model.SQLConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,10 +35,26 @@ public class Main extends Application {
         Controller myController = fxmlLoader.getController();
         myController.initModel(myModel,primaryStage,fxmlLoader);
 
-        primaryStage.setScene(new Scene(root, 800, 600));
+
+
+        Scene scene = new Scene(root, 800, 600);
+
+        primaryStage.setScene(scene);
+
         //Stages stages = Stages.getInstance();
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
         primaryStage.show();
+
+        /*
+         * Script para probar encriptación de datos.
+         *
+        DataCryptor crypting = new DataCryptor("SEC_INTERRUPCIONES2016");
+        String encrypt = crypting.encrypt("ALIMENTADOR;PROVIDENCIA;1342");
+        String dencrypt = crypting.decrypt(encrypt);
+
+        System.out.println( encrypt);
+        System.out.println( dencrypt);
+        */
 
 
 

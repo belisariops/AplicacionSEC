@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -7,24 +10,28 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="480.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane fx:id="site" prefHeight="600.0" prefWidth="800.0" stylesheets="@../TextTests/StyleSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <ImageView fitHeight="70.0" fitWidth="813.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+      <Pane fx:id="formulario" layoutX="164.0" layoutY="149.0" prefHeight="190.0" prefWidth="501.0">
+         <children>
+            <Button fx:id="myButton" layoutX="309.0" layoutY="130.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="22.0" prefWidth="133.0" text="Elija archivo" />
+            <ComboBox fx:id="myComboBox" layoutX="300.0" layoutY="43.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" promptText="            Empresas" />
+            <Label fx:id="textoSeleccione" layoutX="40.0" layoutY="41.0" text="Seleccione la empresa: ">
+               <font>
+                  <Font name="Bodoni MT" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="textoArchivo" layoutX="99.0" layoutY="129.0" text="Archivos: ">
+               <font>
+                  <Font name="Bodoni MT" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fx:id="secTile" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/Banner.JPG" />
          </image>
       </ImageView>
-      <Text layoutX="242.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa:">
-         <font>
-            <Font name="Corbel" size="20.0" />
-         </font>
-      </Text>
-      <TextField layoutX="335.0" layoutY="147.0" promptText="Nombre Empresa" />
-      <Text layoutX="249.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos:">
-         <font>
-            <Font name="Corbel" size="20.0" />
-         </font>
-      </Text>
-      <Button fx:id="myButton" layoutX="345.0" layoutY="264.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="25.0" prefWidth="125.0" text="Buscar archivo" />
    </children>
-</AnchorPane>
+</Pane>
