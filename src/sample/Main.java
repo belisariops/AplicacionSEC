@@ -1,13 +1,13 @@
 package sample;
 
 import Model.DataBaseModel;
-import Model.DataCryptor;
 import Model.SQLConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -28,9 +28,14 @@ public class Main extends Application {
         new Thread(new SQLConnection()).start();
         //SQLConnection connection = new SQLConnection();
         //connection.closeConnection();
-        primaryStage.setScene(new Scene(root, 800, 600));
+
+
+
+        Scene scene = new Scene(root, 800, 600);
+
+        primaryStage.setScene(scene);
         //Stages stages = Stages.getInstance();
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
         primaryStage.show();
 
         /*
