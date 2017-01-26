@@ -1,0 +1,2429 @@
+-- Table initializing
+print 'Table initializing'
+
+create table #resumen_error
+(
+   empresa_id int,
+   periodo_star_id int,
+   table_name  varchar(30),
+   registros_error int
+);
+
+commit;
+
+create table #resumen_ok
+(
+   empresa_id int,
+   periodo_star_id int,
+   table_name  varchar(30),
+   registros_ok int
+);
+
+commit;
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+-- Check TIPO_AVISO
+print 'Check TIPO_AVISO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_AVISO', count(*), 0, 0
+from TIPO_AVISO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_AVISO', count(*)
+from TIPO_AVISO a, errores b
+where b.table_name = TIPO_AVISO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_AVISO', count(*)
+from TIPO_AVISO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check COMUNA
+print 'Check COMUNA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'COMUNA', count(*), 0, 0
+from COMUNA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'COMUNA', count(*)
+from COMUNA a, errores b
+where b.table_name = COMUNA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'COMUNA', count(*)
+from COMUNA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_PROPIEDAD
+print 'Check TIPO_PROPIEDAD'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_PROPIEDAD', count(*), 0, 0
+from TIPO_PROPIEDAD a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_PROPIEDAD', count(*)
+from TIPO_PROPIEDAD a, errores b
+where b.table_name = TIPO_PROPIEDAD
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_PROPIEDAD', count(*)
+from TIPO_PROPIEDAD a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_TENSION
+print 'Check TIPO_TENSION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_TENSION', count(*), 0, 0
+from TIPO_TENSION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_TENSION', count(*)
+from TIPO_TENSION a, errores b
+where b.table_name = TIPO_TENSION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_TENSION', count(*)
+from TIPO_TENSION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check CALIFICACION_INTERRUPCION
+print 'Check CALIFICACION_INTERRUPCION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CALIFICACION_INTERRUPCION', count(*), 0, 0
+from CALIFICACION_INTERRUPCION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'CALIFICACION_INTERRUPCION', count(*)
+from CALIFICACION_INTERRUPCION a, errores b
+where b.table_name = CALIFICACION_INTERRUPCION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CALIFICACION_INTERRUPCION', count(*)
+from CALIFICACION_INTERRUPCION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_CONEXION_NODO
+print 'Check TIPO_CONEXION_NODO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_CONEXION_NODO', count(*), 0, 0
+from TIPO_CONEXION_NODO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_CONEXION_NODO', count(*)
+from TIPO_CONEXION_NODO a, errores b
+where b.table_name = TIPO_CONEXION_NODO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_CONEXION_NODO', count(*)
+from TIPO_CONEXION_NODO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check GRUPO_ECONOMICO
+print 'Check GRUPO_ECONOMICO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'GRUPO_ECONOMICO', count(*), 0, 0
+from GRUPO_ECONOMICO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'GRUPO_ECONOMICO', count(*)
+from GRUPO_ECONOMICO a, errores b
+where b.table_name = GRUPO_ECONOMICO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'GRUPO_ECONOMICO', count(*)
+from GRUPO_ECONOMICO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_EQUIPO
+print 'Check TIPO_EQUIPO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EQUIPO', count(*), 0, 0
+from TIPO_EQUIPO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EQUIPO', count(*)
+from TIPO_EQUIPO a, errores b
+where b.table_name = TIPO_EQUIPO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EQUIPO', count(*)
+from TIPO_EQUIPO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_SERVICIO_EQUIPO
+print 'Check TIPO_SERVICIO_EQUIPO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_SERVICIO_EQUIPO', count(*), 0, 0
+from TIPO_SERVICIO_EQUIPO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_SERVICIO_EQUIPO', count(*)
+from TIPO_SERVICIO_EQUIPO a, errores b
+where b.table_name = TIPO_SERVICIO_EQUIPO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_SERVICIO_EQUIPO', count(*)
+from TIPO_SERVICIO_EQUIPO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_EFECTO_EVENTO
+print 'Check TIPO_EFECTO_EVENTO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EFECTO_EVENTO', count(*), 0, 0
+from TIPO_EFECTO_EVENTO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EFECTO_EVENTO', count(*)
+from TIPO_EFECTO_EVENTO a, errores b
+where b.table_name = TIPO_EFECTO_EVENTO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EFECTO_EVENTO', count(*)
+from TIPO_EFECTO_EVENTO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_EVENTO_RED
+print 'Check TIPO_EVENTO_RED'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EVENTO_RED', count(*), 0, 0
+from TIPO_EVENTO_RED a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EVENTO_RED', count(*)
+from TIPO_EVENTO_RED a, errores b
+where b.table_name = TIPO_EVENTO_RED
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EVENTO_RED', count(*)
+from TIPO_EVENTO_RED a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_FUENTE_ENERGIA
+print 'Check TIPO_FUENTE_ENERGIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_FUENTE_ENERGIA', count(*), 0, 0
+from TIPO_FUENTE_ENERGIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_FUENTE_ENERGIA', count(*)
+from TIPO_FUENTE_ENERGIA a, errores b
+where b.table_name = TIPO_FUENTE_ENERGIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_FUENTE_ENERGIA', count(*)
+from TIPO_FUENTE_ENERGIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_ORIGEN_INTERRUPCION
+print 'Check TIPO_ORIGEN_INTERRUPCION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_ORIGEN_INTERRUPCION', count(*), 0, 0
+from TIPO_ORIGEN_INTERRUPCION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_ORIGEN_INTERRUPCION', count(*)
+from TIPO_ORIGEN_INTERRUPCION a, errores b
+where b.table_name = TIPO_ORIGEN_INTERRUPCION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_ORIGEN_INTERRUPCION', count(*)
+from TIPO_ORIGEN_INTERRUPCION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check DATUM
+print 'Check DATUM'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'DATUM', count(*), 0, 0
+from DATUM a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'DATUM', count(*)
+from DATUM a, errores b
+where b.table_name = DATUM
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'DATUM', count(*)
+from DATUM a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_INSTALACION
+print 'Check TIPO_INSTALACION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_INSTALACION', count(*), 0, 0
+from TIPO_INSTALACION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_INSTALACION', count(*)
+from TIPO_INSTALACION a, errores b
+where b.table_name = TIPO_INSTALACION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_INSTALACION', count(*)
+from TIPO_INSTALACION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_NODO
+print 'Check TIPO_NODO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_NODO', count(*), 0, 0
+from TIPO_NODO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_NODO', count(*)
+from TIPO_NODO a, errores b
+where b.table_name = TIPO_NODO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_NODO', count(*)
+from TIPO_NODO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ZONA_UTM
+print 'Check ZONA_UTM'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ZONA_UTM', count(*), 0, 0
+from ZONA_UTM a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ZONA_UTM', count(*)
+from ZONA_UTM a, errores b
+where b.table_name = ZONA_UTM
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ZONA_UTM', count(*)
+from ZONA_UTM a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check SENTIDO_ENERGIA
+print 'Check SENTIDO_ENERGIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SENTIDO_ENERGIA', count(*), 0, 0
+from SENTIDO_ENERGIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'SENTIDO_ENERGIA', count(*)
+from SENTIDO_ENERGIA a, errores b
+where b.table_name = SENTIDO_ENERGIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SENTIDO_ENERGIA', count(*)
+from SENTIDO_ENERGIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_INSTALACION_INCIDENCIA
+print 'Check TIPO_INSTALACION_INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_INSTALACION_INCIDENCIA', count(*), 0, 0
+from TIPO_INSTALACION_INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_INSTALACION_INCIDENCIA', count(*)
+from TIPO_INSTALACION_INCIDENCIA a, errores b
+where b.table_name = TIPO_INSTALACION_INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_INSTALACION_INCIDENCIA', count(*)
+from TIPO_INSTALACION_INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NUMERO_FASES
+print 'Check NUMERO_FASES'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NUMERO_FASES', count(*), 0, 0
+from NUMERO_FASES a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NUMERO_FASES', count(*)
+from NUMERO_FASES a, errores b
+where b.table_name = NUMERO_FASES
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NUMERO_FASES', count(*)
+from NUMERO_FASES a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_EMPALME
+print 'Check TIPO_EMPALME'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EMPALME', count(*), 0, 0
+from TIPO_EMPALME a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EMPALME', count(*)
+from TIPO_EMPALME a, errores b
+where b.table_name = TIPO_EMPALME
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_EMPALME', count(*)
+from TIPO_EMPALME a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_RURALIDAD
+print 'Check TIPO_RURALIDAD'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_RURALIDAD', count(*), 0, 0
+from TIPO_RURALIDAD a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_RURALIDAD', count(*)
+from TIPO_RURALIDAD a, errores b
+where b.table_name = TIPO_RURALIDAD
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_RURALIDAD', count(*)
+from TIPO_RURALIDAD a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_DISPOSICION
+print 'Check TIPO_DISPOSICION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_DISPOSICION', count(*), 0, 0
+from TIPO_DISPOSICION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_DISPOSICION', count(*)
+from TIPO_DISPOSICION a, errores b
+where b.table_name = TIPO_DISPOSICION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_DISPOSICION', count(*)
+from TIPO_DISPOSICION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_TOMA_TIERRA
+print 'Check TIPO_TOMA_TIERRA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_TOMA_TIERRA', count(*), 0, 0
+from TIPO_TOMA_TIERRA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_TOMA_TIERRA', count(*)
+from TIPO_TOMA_TIERRA a, errores b
+where b.table_name = TIPO_TOMA_TIERRA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_TOMA_TIERRA', count(*)
+from TIPO_TOMA_TIERRA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIPO_DISPOSICION_TRAMO
+print 'Check TIPO_DISPOSICION_TRAMO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_DISPOSICION_TRAMO', count(*), 0, 0
+from TIPO_DISPOSICION_TRAMO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIPO_DISPOSICION_TRAMO', count(*)
+from TIPO_DISPOSICION_TRAMO a, errores b
+where b.table_name = TIPO_DISPOSICION_TRAMO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIPO_DISPOSICION_TRAMO', count(*)
+from TIPO_DISPOSICION_TRAMO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ALIMENTADOR
+print 'Check ALIMENTADOR'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR', count(*), 0, 0
+from ALIMENTADOR a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR', count(*)
+from ALIMENTADOR a, errores b
+where b.table_name = ALIMENTADOR
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR', count(*)
+from ALIMENTADOR a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ALIMENTADOR_AFECTADO
+print 'Check ALIMENTADOR_AFECTADO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_AFECTADO', count(*), 0, 0
+from ALIMENTADOR_AFECTADO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_AFECTADO', count(*)
+from ALIMENTADOR_AFECTADO a, errores b
+where b.table_name = ALIMENTADOR_AFECTADO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_AFECTADO', count(*)
+from ALIMENTADOR_AFECTADO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ALIMENTADOR_INCIDENCIA
+print 'Check ALIMENTADOR_INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_INCIDENCIA', count(*), 0, 0
+from ALIMENTADOR_INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_INCIDENCIA', count(*)
+from ALIMENTADOR_INCIDENCIA a, errores b
+where b.table_name = ALIMENTADOR_INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_INCIDENCIA', count(*)
+from ALIMENTADOR_INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ALIMENTADOR_REPOSICION
+print 'Check ALIMENTADOR_REPOSICION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_REPOSICION', count(*), 0, 0
+from ALIMENTADOR_REPOSICION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_REPOSICION', count(*)
+from ALIMENTADOR_REPOSICION a, errores b
+where b.table_name = ALIMENTADOR_REPOSICION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_REPOSICION', count(*)
+from ALIMENTADOR_REPOSICION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check AVISO
+print 'Check AVISO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'AVISO', count(*), 0, 0
+from AVISO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'AVISO', count(*)
+from AVISO a, errores b
+where b.table_name = AVISO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'AVISO', count(*)
+from AVISO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check BAJADA
+print 'Check BAJADA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'BAJADA', count(*), 0, 0
+from BAJADA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'BAJADA', count(*)
+from BAJADA a, errores b
+where b.table_name = BAJADA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'BAJADA', count(*)
+from BAJADA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check BLOQUE_REPOSICION
+print 'Check BLOQUE_REPOSICION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'BLOQUE_REPOSICION', count(*), 0, 0
+from BLOQUE_REPOSICION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'BLOQUE_REPOSICION', count(*)
+from BLOQUE_REPOSICION a, errores b
+where b.table_name = BLOQUE_REPOSICION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'BLOQUE_REPOSICION', count(*)
+from BLOQUE_REPOSICION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check BOVEDA
+print 'Check BOVEDA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'BOVEDA', count(*), 0, 0
+from BOVEDA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'BOVEDA', count(*)
+from BOVEDA a, errores b
+where b.table_name = BOVEDA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'BOVEDA', count(*)
+from BOVEDA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check CAMARA
+print 'Check CAMARA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CAMARA', count(*), 0, 0
+from CAMARA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'CAMARA', count(*)
+from CAMARA a, errores b
+where b.table_name = CAMARA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CAMARA', count(*)
+from CAMARA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check CANALIZACION
+print 'Check CANALIZACION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CANALIZACION', count(*), 0, 0
+from CANALIZACION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'CANALIZACION', count(*)
+from CANALIZACION a, errores b
+where b.table_name = CANALIZACION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CANALIZACION', count(*)
+from CANALIZACION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check CAUSA
+print 'Check CAUSA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CAUSA', count(*), 0, 0
+from CAUSA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'CAUSA', count(*)
+from CAUSA a, errores b
+where b.table_name = CAUSA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CAUSA', count(*)
+from CAUSA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check CONEXION_NODO_IEC
+print 'Check CONEXION_NODO_IEC'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CONEXION_NODO_IEC', count(*), 0, 0
+from CONEXION_NODO_IEC a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'CONEXION_NODO_IEC', count(*)
+from CONEXION_NODO_IEC a, errores b
+where b.table_name = CONEXION_NODO_IEC
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CONEXION_NODO_IEC', count(*)
+from CONEXION_NODO_IEC a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check CONEXION_NODO_INCIDENCIA
+print 'Check CONEXION_NODO_INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CONEXION_NODO_INCIDENCIA', count(*), 0, 0
+from CONEXION_NODO_INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'CONEXION_NODO_INCIDENCIA', count(*)
+from CONEXION_NODO_INCIDENCIA a, errores b
+where b.table_name = CONEXION_NODO_INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'CONEXION_NODO_INCIDENCIA', count(*)
+from CONEXION_NODO_INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check DESCRIPCION_EVENTO
+print 'Check DESCRIPCION_EVENTO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'DESCRIPCION_EVENTO', count(*), 0, 0
+from DESCRIPCION_EVENTO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'DESCRIPCION_EVENTO', count(*)
+from DESCRIPCION_EVENTO a, errores b
+where b.table_name = DESCRIPCION_EVENTO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'DESCRIPCION_EVENTO', count(*)
+from DESCRIPCION_EVENTO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check EMPALME
+print 'Check EMPALME'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EMPALME', count(*), 0, 0
+from EMPALME a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'EMPALME', count(*)
+from EMPALME a, errores b
+where b.table_name = EMPALME
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EMPALME', count(*)
+from EMPALME a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check EMPRESA
+print 'Check EMPRESA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EMPRESA', count(*), 0, 0
+from EMPRESA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'EMPRESA', count(*)
+from EMPRESA a, errores b
+where b.table_name = EMPRESA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EMPRESA', count(*)
+from EMPRESA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ENMALLE
+print 'Check ENMALLE'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ENMALLE', count(*), 0, 0
+from ENMALLE a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ENMALLE', count(*)
+from ENMALLE a, errores b
+where b.table_name = ENMALLE
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ENMALLE', count(*)
+from ENMALLE a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check EQUIPO
+print 'Check EQUIPO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EQUIPO', count(*), 0, 0
+from EQUIPO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'EQUIPO', count(*)
+from EQUIPO a, errores b
+where b.table_name = EQUIPO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EQUIPO', count(*)
+from EQUIPO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check EQUIPO_TOPOLOGIA
+print 'Check EQUIPO_TOPOLOGIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EQUIPO_TOPOLOGIA', count(*), 0, 0
+from EQUIPO_TOPOLOGIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'EQUIPO_TOPOLOGIA', count(*)
+from EQUIPO_TOPOLOGIA a, errores b
+where b.table_name = EQUIPO_TOPOLOGIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EQUIPO_TOPOLOGIA', count(*)
+from EQUIPO_TOPOLOGIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ESTRUCTURA_BT
+print 'Check ESTRUCTURA_BT'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_BT', count(*), 0, 0
+from ESTRUCTURA_BT a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_BT', count(*)
+from ESTRUCTURA_BT a, errores b
+where b.table_name = ESTRUCTURA_BT
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_BT', count(*)
+from ESTRUCTURA_BT a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ESTRUCTURA_MT
+print 'Check ESTRUCTURA_MT'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_MT', count(*), 0, 0
+from ESTRUCTURA_MT a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_MT', count(*)
+from ESTRUCTURA_MT a, errores b
+where b.table_name = ESTRUCTURA_MT
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_MT', count(*)
+from ESTRUCTURA_MT a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check ESTRUCTURA_SED
+print 'Check ESTRUCTURA_SED'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_SED', count(*), 0, 0
+from ESTRUCTURA_SED a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_SED', count(*)
+from ESTRUCTURA_SED a, errores b
+where b.table_name = ESTRUCTURA_SED
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'ESTRUCTURA_SED', count(*)
+from ESTRUCTURA_SED a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check EVENTO_RED
+print 'Check EVENTO_RED'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EVENTO_RED', count(*), 0, 0
+from EVENTO_RED a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'EVENTO_RED', count(*)
+from EVENTO_RED a, errores b
+where b.table_name = EVENTO_RED
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'EVENTO_RED', count(*)
+from EVENTO_RED a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check FUENTE_ENERGIA_RED
+print 'Check FUENTE_ENERGIA_RED'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'FUENTE_ENERGIA_RED', count(*), 0, 0
+from FUENTE_ENERGIA_RED a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'FUENTE_ENERGIA_RED', count(*)
+from FUENTE_ENERGIA_RED a, errores b
+where b.table_name = FUENTE_ENERGIA_RED
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'FUENTE_ENERGIA_RED', count(*)
+from FUENTE_ENERGIA_RED a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check INCIDENCIA
+print 'Check INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'INCIDENCIA', count(*), 0, 0
+from INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'INCIDENCIA', count(*)
+from INCIDENCIA a, errores b
+where b.table_name = INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'INCIDENCIA', count(*)
+from INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check INTERRUPCION
+print 'Check INTERRUPCION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'INTERRUPCION', count(*), 0, 0
+from INTERRUPCION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'INTERRUPCION', count(*)
+from INTERRUPCION a, errores b
+where b.table_name = INTERRUPCION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'INTERRUPCION', count(*)
+from INTERRUPCION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check MARCA
+print 'Check MARCA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'MARCA', count(*), 0, 0
+from MARCA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'MARCA', count(*)
+from MARCA a, errores b
+where b.table_name = MARCA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'MARCA', count(*)
+from MARCA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check MEDIDOR
+print 'Check MEDIDOR'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'MEDIDOR', count(*), 0, 0
+from MEDIDOR a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'MEDIDOR', count(*)
+from MEDIDOR a, errores b
+where b.table_name = MEDIDOR
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'MEDIDOR', count(*)
+from MEDIDOR a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NODO_IEC
+print 'Check NODO_IEC'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC', count(*), 0, 0
+from NODO_IEC a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC', count(*)
+from NODO_IEC a, errores b
+where b.table_name = NODO_IEC
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC', count(*)
+from NODO_IEC a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NODO_IEC_CABECERA
+print 'Check NODO_IEC_CABECERA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC_CABECERA', count(*), 0, 0
+from NODO_IEC_CABECERA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC_CABECERA', count(*)
+from NODO_IEC_CABECERA a, errores b
+where b.table_name = NODO_IEC_CABECERA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC_CABECERA', count(*)
+from NODO_IEC_CABECERA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NODO_IEC_EXTERNO
+print 'Check NODO_IEC_EXTERNO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC_EXTERNO', count(*), 0, 0
+from NODO_IEC_EXTERNO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC_EXTERNO', count(*)
+from NODO_IEC_EXTERNO a, errores b
+where b.table_name = NODO_IEC_EXTERNO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_IEC_EXTERNO', count(*)
+from NODO_IEC_EXTERNO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NODO_INCIDENCIA
+print 'Check NODO_INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA', count(*), 0, 0
+from NODO_INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA', count(*)
+from NODO_INCIDENCIA a, errores b
+where b.table_name = NODO_INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA', count(*)
+from NODO_INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NODO_INCIDENCIA_CABECERA
+print 'Check NODO_INCIDENCIA_CABECERA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA_CABECERA', count(*), 0, 0
+from NODO_INCIDENCIA_CABECERA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA_CABECERA', count(*)
+from NODO_INCIDENCIA_CABECERA a, errores b
+where b.table_name = NODO_INCIDENCIA_CABECERA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA_CABECERA', count(*)
+from NODO_INCIDENCIA_CABECERA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NODO_INCIDENCIA_EXTERNO
+print 'Check NODO_INCIDENCIA_EXTERNO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA_EXTERNO', count(*), 0, 0
+from NODO_INCIDENCIA_EXTERNO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA_EXTERNO', count(*)
+from NODO_INCIDENCIA_EXTERNO a, errores b
+where b.table_name = NODO_INCIDENCIA_EXTERNO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_INCIDENCIA_EXTERNO', count(*)
+from NODO_INCIDENCIA_EXTERNO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check NODO_SUBESTACION
+print 'Check NODO_SUBESTACION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_SUBESTACION', count(*), 0, 0
+from NODO_SUBESTACION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'NODO_SUBESTACION', count(*)
+from NODO_SUBESTACION a, errores b
+where b.table_name = NODO_SUBESTACION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'NODO_SUBESTACION', count(*)
+from NODO_SUBESTACION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PERIODO_INFORMACION
+print 'Check PERIODO_INFORMACION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PERIODO_INFORMACION', count(*), 0, 0
+from PERIODO_INFORMACION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PERIODO_INFORMACION', count(*)
+from PERIODO_INFORMACION a, errores b
+where b.table_name = PERIODO_INFORMACION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PERIODO_INFORMACION', count(*)
+from PERIODO_INFORMACION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check POSTE
+print 'Check POSTE'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'POSTE', count(*), 0, 0
+from POSTE a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'POSTE', count(*)
+from POSTE a, errores b
+where b.table_name = POSTE
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'POSTE', count(*)
+from POSTE a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUENTE
+print 'Check PUENTE'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUENTE', count(*), 0, 0
+from PUENTE a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUENTE', count(*)
+from PUENTE a, errores b
+where b.table_name = PUENTE
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUENTE', count(*)
+from PUENTE a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUNTO_CONSUMO
+print 'Check PUNTO_CONSUMO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_CONSUMO', count(*), 0, 0
+from PUNTO_CONSUMO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_CONSUMO', count(*)
+from PUNTO_CONSUMO a, errores b
+where b.table_name = PUNTO_CONSUMO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_CONSUMO', count(*)
+from PUNTO_CONSUMO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUNTO_CONSUMO_TOPOLOGIA
+print 'Check PUNTO_CONSUMO_TOPOLOGIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_CONSUMO_TOPOLOGIA', count(*), 0, 0
+from PUNTO_CONSUMO_TOPOLOGIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_CONSUMO_TOPOLOGIA', count(*)
+from PUNTO_CONSUMO_TOPOLOGIA a, errores b
+where b.table_name = PUNTO_CONSUMO_TOPOLOGIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_CONSUMO_TOPOLOGIA', count(*)
+from PUNTO_CONSUMO_TOPOLOGIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUNTO_DERIVACION
+print 'Check PUNTO_DERIVACION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_DERIVACION', count(*), 0, 0
+from PUNTO_DERIVACION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_DERIVACION', count(*)
+from PUNTO_DERIVACION a, errores b
+where b.table_name = PUNTO_DERIVACION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_DERIVACION', count(*)
+from PUNTO_DERIVACION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUNTO_DERIVACION_INCIDENCIA
+print 'Check PUNTO_DERIVACION_INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_DERIVACION_INCIDENCIA', count(*), 0, 0
+from PUNTO_DERIVACION_INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_DERIVACION_INCIDENCIA', count(*)
+from PUNTO_DERIVACION_INCIDENCIA a, errores b
+where b.table_name = PUNTO_DERIVACION_INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_DERIVACION_INCIDENCIA', count(*)
+from PUNTO_DERIVACION_INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUNTO_FALLA
+print 'Check PUNTO_FALLA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_FALLA', count(*), 0, 0
+from PUNTO_FALLA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_FALLA', count(*)
+from PUNTO_FALLA a, errores b
+where b.table_name = PUNTO_FALLA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_FALLA', count(*)
+from PUNTO_FALLA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUNTO_SUMINISTRO
+print 'Check PUNTO_SUMINISTRO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_SUMINISTRO', count(*), 0, 0
+from PUNTO_SUMINISTRO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_SUMINISTRO', count(*)
+from PUNTO_SUMINISTRO a, errores b
+where b.table_name = PUNTO_SUMINISTRO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_SUMINISTRO', count(*)
+from PUNTO_SUMINISTRO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check PUNTO_SUMINISTRO_INCIDENCIA
+print 'Check PUNTO_SUMINISTRO_INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_SUMINISTRO_INCIDENCIA', count(*), 0, 0
+from PUNTO_SUMINISTRO_INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_SUMINISTRO_INCIDENCIA', count(*)
+from PUNTO_SUMINISTRO_INCIDENCIA a, errores b
+where b.table_name = PUNTO_SUMINISTRO_INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'PUNTO_SUMINISTRO_INCIDENCIA', count(*)
+from PUNTO_SUMINISTRO_INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check SISTEMA_ELECTRICO
+print 'Check SISTEMA_ELECTRICO'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SISTEMA_ELECTRICO', count(*), 0, 0
+from SISTEMA_ELECTRICO a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'SISTEMA_ELECTRICO', count(*)
+from SISTEMA_ELECTRICO a, errores b
+where b.table_name = SISTEMA_ELECTRICO
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SISTEMA_ELECTRICO', count(*)
+from SISTEMA_ELECTRICO a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check SUBESTACION_DISTRIBUCION
+print 'Check SUBESTACION_DISTRIBUCION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_DISTRIBUCION', count(*), 0, 0
+from SUBESTACION_DISTRIBUCION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_DISTRIBUCION', count(*)
+from SUBESTACION_DISTRIBUCION a, errores b
+where b.table_name = SUBESTACION_DISTRIBUCION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_DISTRIBUCION', count(*)
+from SUBESTACION_DISTRIBUCION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check SUBESTACION_INCIDENCIA
+print 'Check SUBESTACION_INCIDENCIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_INCIDENCIA', count(*), 0, 0
+from SUBESTACION_INCIDENCIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_INCIDENCIA', count(*)
+from SUBESTACION_INCIDENCIA a, errores b
+where b.table_name = SUBESTACION_INCIDENCIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_INCIDENCIA', count(*)
+from SUBESTACION_INCIDENCIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check SUBESTACION_PRIMARIA_DISTRIBUC
+print 'Check SUBESTACION_PRIMARIA_DISTRIBUC'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_PRIMARIA_DISTRIBUC', count(*), 0, 0
+from SUBESTACION_PRIMARIA_DISTRIBUC a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_PRIMARIA_DISTRIBUC', count(*)
+from SUBESTACION_PRIMARIA_DISTRIBUC a, errores b
+where b.table_name = SUBESTACION_PRIMARIA_DISTRIBUC
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'SUBESTACION_PRIMARIA_DISTRIBUC', count(*)
+from SUBESTACION_PRIMARIA_DISTRIBUC a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TIRANTE
+print 'Check TIRANTE'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIRANTE', count(*), 0, 0
+from TIRANTE a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TIRANTE', count(*)
+from TIRANTE a, errores b
+where b.table_name = TIRANTE
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TIRANTE', count(*)
+from TIRANTE a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TOMA_TIERRA
+print 'Check TOMA_TIERRA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TOMA_TIERRA', count(*), 0, 0
+from TOMA_TIERRA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TOMA_TIERRA', count(*)
+from TOMA_TIERRA a, errores b
+where b.table_name = TOMA_TIERRA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TOMA_TIERRA', count(*)
+from TOMA_TIERRA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TRAMO_BT
+print 'Check TRAMO_BT'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRAMO_BT', count(*), 0, 0
+from TRAMO_BT a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TRAMO_BT', count(*)
+from TRAMO_BT a, errores b
+where b.table_name = TRAMO_BT
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRAMO_BT', count(*)
+from TRAMO_BT a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TRAMO_MT
+print 'Check TRAMO_MT'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRAMO_MT', count(*), 0, 0
+from TRAMO_MT a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TRAMO_MT', count(*)
+from TRAMO_MT a, errores b
+where b.table_name = TRAMO_MT
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRAMO_MT', count(*)
+from TRAMO_MT a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TRANSFORMADOR
+print 'Check TRANSFORMADOR'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR', count(*), 0, 0
+from TRANSFORMADOR a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR', count(*)
+from TRANSFORMADOR a, errores b
+where b.table_name = TRANSFORMADOR
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR', count(*)
+from TRANSFORMADOR a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TRANSFORMADOR_INTERRUPCION
+print 'Check TRANSFORMADOR_INTERRUPCION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR_INTERRUPCION', count(*), 0, 0
+from TRANSFORMADOR_INTERRUPCION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR_INTERRUPCION', count(*)
+from TRANSFORMADOR_INTERRUPCION a, errores b
+where b.table_name = TRANSFORMADOR_INTERRUPCION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR_INTERRUPCION', count(*)
+from TRANSFORMADOR_INTERRUPCION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check TRANSFORMADOR_TOPOLOGIA
+print 'Check TRANSFORMADOR_TOPOLOGIA'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR_TOPOLOGIA', count(*), 0, 0
+from TRANSFORMADOR_TOPOLOGIA a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR_TOPOLOGIA', count(*)
+from TRANSFORMADOR_TOPOLOGIA a, errores b
+where b.table_name = TRANSFORMADOR_TOPOLOGIA
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'TRANSFORMADOR_TOPOLOGIA', count(*)
+from TRANSFORMADOR_TOPOLOGIA a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check VERTICE_CANALIZACION
+print 'Check VERTICE_CANALIZACION'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_CANALIZACION', count(*), 0, 0
+from VERTICE_CANALIZACION a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_CANALIZACION', count(*)
+from VERTICE_CANALIZACION a, errores b
+where b.table_name = VERTICE_CANALIZACION
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_CANALIZACION', count(*)
+from VERTICE_CANALIZACION a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check VERTICE_EMPALME
+print 'Check VERTICE_EMPALME'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_EMPALME', count(*), 0, 0
+from VERTICE_EMPALME a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_EMPALME', count(*)
+from VERTICE_EMPALME a, errores b
+where b.table_name = VERTICE_EMPALME
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_EMPALME', count(*)
+from VERTICE_EMPALME a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check VERTICE_TRAMO_BT
+print 'Check VERTICE_TRAMO_BT'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_TRAMO_BT', count(*), 0, 0
+from VERTICE_TRAMO_BT a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_TRAMO_BT', count(*)
+from VERTICE_TRAMO_BT a, errores b
+where b.table_name = VERTICE_TRAMO_BT
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_TRAMO_BT', count(*)
+from VERTICE_TRAMO_BT a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Check VERTICE_TRAMO_MT
+print 'Check VERTICE_TRAMO_MT'
+
+insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_TRAMO_MT', count(*), 0, 0
+from VERTICE_TRAMO_MT a
+group by a.empresa_id, a.periodo_star_id; 
+
+commit;
+
+insert into #resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_TRAMO_MT', count(*)
+from VERTICE_TRAMO_MT a, errores b
+where b.table_name = VERTICE_TRAMO_MT
+ and rowid(a) = rowid(b)
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+insert into #resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
+select a.empresa_id, a.periodo_star_id, 'VERTICE_TRAMO_MT', count(*)
+from VERTICE_TRAMO_MT a
+where a.tiene_error = 0
+group by a.empresa_id, a.periodo_star_id;
+
+commit;
+
+---------------------------------------------------------------------------------------
+-- Updating tables
+print 'Updating tables'
+
+update resumen_carga a
+set registros_enviados = b.registros_error
+from #resumen_error b
+where a.empresa_id = b.empresa_id
+   and a.periodo_star_id  = b.periodo_star_id
+   and a.table_name = b.table_name;
+
+commit;
+
+update resumen_carga a
+set registros_ok = b.registros_ok
+from #resumen_error b
+where a.empresa_id = b.empresa_id
+   and a.periodo_star_id  = b.periodo_star_id
+    and a.table_name = b.table_name;
+
+commit;
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+
