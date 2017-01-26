@@ -1,20 +1,25 @@
 package sample;
 
 import Model.DataBaseModel;
+import Model.Error;
 import java.io.File;
 import java.io.IOException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -38,8 +43,13 @@ public class Controller {
     @FXML
     private Label textoArchivo;
     @FXML
+    private Label textoErrores;
+    @FXML
     private ComboBox<String> myComboBox;
+    @FXML
+    private TableView<Error> myView;
 
+    private ObservableList<Error> data;
 
     public void initModel(DataBaseModel model, Stage primaryStage, FXMLLoader fxmlLoader) {
         if (this.model != null) {
@@ -48,18 +58,56 @@ public class Controller {
         this.model = model ;
         this.stage = primaryStage;
         this.fxmlLoader = fxmlLoader;
+
+        data = FXCollections.observableArrayList(
+            new Error(1, "Z", "a@example.com", 'F'),
+            new Error(2, "X", "b@example.com", 'P'),
+            new Error(4, "W", "c@example.com", 'C'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(0, "Y", "d@example.com", 'F'),
+            new Error(10, "V", "e@example.com", 'F')
+        );
+
         secTile.fitWidthProperty().bind(stage.widthProperty());
         secTile.fitHeightProperty().bind(stage.heightProperty());
-        myButton.setMinSize(130, 30);
-        myButton.setMaxSize(130, 30);
+        myButton.setMinSize(133, 22);
+        myButton.setMaxSize(133, 22);
         textoSeleccione.setMinSize(300, 30);
         textoSeleccione.setMaxSize(300, 30);
         textoSeleccione.setFont(new Font("Times new roman", 20));
         textoArchivo.setMinSize(300, 30);
         textoArchivo.setMaxSize(300, 30);
         textoArchivo.setFont(new Font("Times new roman", 20));
-        myComboBox.setMinSize(130, 30);
-        myComboBox.setMaxSize(130, 30);
+        textoErrores.setMinSize(300, 27);
+        textoErrores.setMaxSize(300, 27);
+        textoErrores.setFont(new Font("Times new roman", 20));
+        myComboBox.setMinSize(133, 22);
+        myComboBox.setMaxSize(133, 22);
+        myView.setMinSize(688,188);
+        myView.setMaxSize(688,188);
+
+        TableColumn rowiId = new TableColumn("d_rowid");
+        rowiId.setCellValueFactory(new PropertyValueFactory<Error, Integer>("rowId"));
+        rowiId.setStyle("-fx-alignment: CENTER;");
+        TableColumn tableName = new TableColumn("table_name");
+        tableName.setCellValueFactory(new PropertyValueFactory<Error, String>("tableName"));
+        tableName.setStyle("-fx-alignment: CENTER;");
+        TableColumn constraintName = new TableColumn("constraint_name");
+        constraintName.setCellValueFactory(new PropertyValueFactory<Error, String>("constraintName"));
+        constraintName.setStyle("-fx-alignment: CENTER;");
+        TableColumn type = new TableColumn("type");
+        type.setCellValueFactory(new PropertyValueFactory<Error, Character>("type"));
+        type.setStyle("-fx-alignment: CENTER;");
+
+        myView.setItems(data);
+        myView.getColumns().addAll(rowiId, tableName, constraintName, type);
+        myView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         site.heightProperty().addListener(new ChangeListener<Number>() {
 
@@ -71,11 +119,9 @@ public class Controller {
                 fixButtonWithResize(textoSeleccione, oldValue, newValue, false);
                 fixButtonWithResize(textoArchivo, oldValue, newValue, false);
                 fixComboBoxWithResize(myComboBox, oldValue, newValue, false);
+                fixComboBoxWithResize(myView, oldValue, newValue, false);
+                fixButtonWithResize(textoErrores, oldValue, newValue, false);
 
-
-                //textoArchivo.setFont(new Font("Arial", alpha*textoArchivo.getFont().getSize()));
-                //textoSeleccione.setFont(new Font("Arial", alpha*textoSeleccione.getFont().getSize()));
-                //myButton.relocate(widthPane*0.5, heightPane*0.5);
             }
         });
         site.widthProperty().addListener(new ChangeListener<Number>() {
@@ -90,11 +136,8 @@ public class Controller {
                 fixButtonWithResize(textoSeleccione, oldValue, newValue, true);
                 fixButtonWithResize(textoArchivo, oldValue, newValue, true);
                 fixComboBoxWithResize(myComboBox, oldValue, newValue, true);
-                //myButton.setFont(new Font("Arial", alpha*myButton.getFont().getSize()));
-
-                //textoArchivo.setFont(new Font("Arial", alpha*20));
-                //textoSeleccione.setFont(new Font("Arial", alpha*textoSeleccione.getFont().getSize()));
-                //myButton.relocate(widthPane*0.5, heightPane*0.5);
+                fixButtonWithResize(textoErrores, oldValue, newValue, true);
+                fixComboBoxWithResize(myView, oldValue, newValue, true);
             }
         });
     }
@@ -116,7 +159,7 @@ public class Controller {
         else
             label.relocate(xButton*alpha, yButton);
 
-        label.setFont(new Font("Times New Roman", label.getFont().getSize()*Math.sqrt(alpha)));
+        label.setFont(new Font("Bodoni MT", label.getFont().getSize()*Math.sqrt(alpha)));
     }
 
     private Point2D getPosition(Node node){
@@ -126,15 +169,12 @@ public class Controller {
         return node.localToScene(nodeMinX, nodeMinY);
     }
 
-    private void fixComboBoxWithResize(ComboBox button, Number oldValue, Number newValue, boolean side){
+    private void fixComboBoxWithResize(Control button, Number oldValue, Number newValue, boolean side){
         Point2D myPosition = getPosition(button);
         double xButton = myPosition.getX();
         double yButton = myPosition.getY();
 
-        double alpha = newValue.doubleValue()/oldValue.doubleValue();
-        if (oldValue.doubleValue() == 0){
-            alpha = 1;
-        }
+        double alpha = getAlpha(newValue.doubleValue(), oldValue.doubleValue());
 
         if(side) {
             button.setMinWidth(button.getMaxWidth() * alpha);
@@ -156,35 +196,23 @@ public class Controller {
 
     }
     private void fixButtonWithResize(Labeled button, Number oldValue, Number newValue, boolean side){
-        Point2D myPosition = getPosition(button);
-        double xButton = myPosition.getX();
-        double yButton = myPosition.getY();
+        fixComboBoxWithResize(button, oldValue, newValue, side);
 
         double alpha = newValue.doubleValue()/oldValue.doubleValue();
         if (oldValue.doubleValue() == 0){
             alpha = 1;
         }
 
-        if(side) {
-            button.setMinWidth(button.getMaxWidth() * alpha);
-            button.setMaxWidth(button.getMaxWidth() * alpha);
-            if(alpha > 1) {
-                button.relocate(xButton/ (oldValue.doubleValue()/newValue.doubleValue()), yButton );
-            }
-            else
-                button.relocate(xButton*alpha, yButton);
-        } else {
-            button.setMinHeight(button.getMaxHeight()*alpha);
-            button.setMaxHeight(button.getMaxHeight()*alpha);
-            if(alpha > 1) {
-                button.relocate(xButton, yButton / (oldValue.doubleValue()/newValue.doubleValue()));
-            }
-            else
-                button.relocate(xButton, yButton*alpha);
+        button.setFont(new Font("Bodoni MT", button.getFont().getSize()*Math.sqrt(alpha)));
+    }
+
+    private double getAlpha(double newValue, double oldValue){
+        double alpha = newValue/oldValue;
+        if (oldValue == 0){
+            alpha = 1;
         }
 
-
-        button.setFont(new Font("Times New Roman", button.getFont().getSize()*Math.sqrt(alpha)));
+        return alpha;
     }
 
     @FXML void buttonPressed() {
