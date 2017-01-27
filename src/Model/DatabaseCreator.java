@@ -32,9 +32,6 @@ public class DatabaseCreator implements Runnable {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/Tablas.txt"))) {
             while ((line = bufferedReader.readLine()) != null) {
                 builder.append(line);
-
-
-
             }
         }
         catch (FileNotFoundException e) {
@@ -58,13 +55,4 @@ public class DatabaseCreator implements Runnable {
 
     }
 
-    public void addData(String lineOfData,String tableName) {
-
-            try {
-                connection.executeAddQuery(lineOfData,tableName);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-    }
 }

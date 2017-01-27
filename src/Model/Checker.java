@@ -35,9 +35,6 @@ public class Checker implements  Runnable {
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/CheckScripts/" + fileName+".txt"))) {
       while ((line = bufferedReader.readLine()) != null) {
         builder.append(line);
-
-
-
       }
     }
     catch (FileNotFoundException e) {

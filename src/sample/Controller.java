@@ -1,10 +1,14 @@
 package sample;
 
+import Model.CheckScripts.Empresa;
 import Model.DataBaseModel;
 import Model.Error;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -18,6 +22,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -44,17 +50,30 @@ public class Controller {
     @FXML
     private Button myButton;
     @FXML
+    private Button okButton;
+    @FXML
     private Label textoSeleccione;
     @FXML
     private Label textoArchivo;
     @FXML
     private Label textoErrores;
     @FXML
+    private Label textoTabla;
+    @FXML
+    private Label textoArchivoCargado;
+    @FXML
     private ComboBox<String> myComboBox;
+    @FXML
+    private ComboBox<String> comboBoxTablas;
+    @FXML
+    private ListView listView;
     @FXML
     private TableView<Error> myView;
 
     private ObservableList<Error> data;
+    private List<Label> labels;
+    private List<ComboBox> comboBoxes;
+    private File loadedFile;
 
     public void initModel(DataBaseModel model, Stage primaryStage, FXMLLoader fxmlLoader) {
         if (this.model != null) {
@@ -63,9 +82,23 @@ public class Controller {
         this.model = model ;
         this.stage = primaryStage;
         this.fxmlLoader = fxmlLoader;
+        comboBoxes = new ArrayList<>();
+
 
         // Datos a ingresar a la tabla de errores.
         data = FXCollections.observableArrayList();
+
+        // juntar labels para ordenar
+        labels = new ArrayList<>();
+        labels.add(textoArchivo);
+        labels.add(textoArchivoCargado);
+        labels.add(textoErrores);
+        labels.add(textoSeleccione);
+        labels.add(textoTabla);
+
+        // juntar comboboxes
+        comboBoxes.add(myComboBox);
+        comboBoxes.add(comboBoxTablas);
 
         // Tamaño minimo de la ventana.
         primaryStage.setMinWidth(400);
@@ -74,19 +107,69 @@ public class Controller {
         // Initializar tamaños y valores.
         secTile.fitWidthProperty().bind(stage.widthProperty());
         secTile.fitHeightProperty().bind(stage.heightProperty());
-        myButton.setMinSize(133, 22);
-        myButton.setMaxSize(133, 22);
-        textoSeleccione.setMinSize(300, 30);
-        textoSeleccione.setMaxSize(300, 30);
-        textoSeleccione.setFont(new Font("Times new roman", 20));
-        textoArchivo.setMinSize(300, 30);
-        textoArchivo.setMaxSize(300, 30);
-        textoArchivo.setFont(new Font("Times new roman", 20));
-        textoErrores.setMinSize(300, 27);
-        textoErrores.setMaxSize(300, 27);
-        textoErrores.setFont(new Font("Times new roman", 20));
-        myComboBox.setMinSize(133, 22);
-        myComboBox.setMaxSize(133, 22);
+        myButton.setMinSize(24, 22);
+        myButton.setMaxSize(24, 22);
+        okButton.setMinSize(112, 22);
+        okButton.setMaxSize(112, 22);
+
+        for(Labeled label : labels){
+            label.setMaxSize(300, 30);
+            label.setMinSize(300, 30);
+            label.setFont(new Font("Bodoni MT", 15));
+        }
+
+        textoArchivoCargado.setFont(new Font("Bodoni MT", 11));
+        textoArchivoCargado.setMinSize(150, 30);
+        textoArchivoCargado.setMaxSize(150, 30);
+
+        for(ComboBox combo : comboBoxes){
+            combo.setMinSize(181, 22);
+            combo.setMaxSize(181, 22);
+        }
+
+        // Agregar las opciones de tablas.
+        List<String> tables = new ArrayList<>();
+        tables.addAll(model.getTables());
+        // Ordenamos por comodidad al buscar en el combobox.
+        tables.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        ObservableList<String> myTables = FXCollections.observableArrayList();
+
+        for(String tableName : tables){
+            myTables.add(tableName);
+        }
+        comboBoxTablas.setItems(myTables);
+        comboBoxTablas.getSelectionModel().selectFirst();
+
+        // Agregamos las opciones de empresas.
+        List<Empresa> empresas = new ArrayList<>();
+        empresas.addAll(model.getCompanies());
+
+        // Ordenamos por comodidad al buscar en el combobox.
+        empresas.sort(new Comparator<Empresa>() {
+            @Override
+            public int compare(Empresa o1, Empresa o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        ObservableList<String> myCompanies = FXCollections.observableArrayList();
+
+        for(Empresa company : empresas){
+            myCompanies.add(company.getName());
+        }
+        myComboBox.setItems(myCompanies);
+        myComboBox.getSelectionModel().selectFirst();
+        new AutoCompleteComboBoxListener<>(myComboBox);
+        new AutoCompleteComboBoxListener<>(comboBoxTablas);
+
+        listView.setMinSize(388,169);
+        listView.setMaxSize(388,169);
+        listView.setDisable(true);
+
         myView.setMinSize(688,188);
         myView.setMaxSize(688,188);
 
@@ -107,7 +190,7 @@ public class Controller {
         myView.setItems(data);
         myView.getColumns().addAll(rowiId, tableName, constraintName, type);
 
-        // Para que automaticamente use todo el ancho de la tabla
+        // Para que automaticamente use el ancho de la tabla
         myView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         /*
@@ -120,13 +203,18 @@ public class Controller {
             public void changed(ObservableValue<? extends Number> arg0,
                 Number oldValue, Number newValue) {
 
+                for(int i = 0; i < labels.size(); i++){
+                    fixLabeledWithResize(labels.get(i), oldValue, newValue, false);
+                }
+
+                for(int i = 0; i < comboBoxes.size(); i++){
+                    fixControlWithResize(comboBoxes.get(i), oldValue, newValue, false);
+                }
 
                 fixLabeledWithResize(myButton, oldValue, newValue, false);
-                fixLabeledWithResize(textoSeleccione, oldValue, newValue, false);
-                fixLabeledWithResize(textoArchivo, oldValue, newValue, false);
-                fixControlWithResize(myComboBox, oldValue, newValue, false);
+                fixLabeledWithResize(okButton, oldValue, newValue, false);
                 fixControlWithResize(myView, oldValue, newValue, false);
-                fixLabeledWithResize(textoErrores, oldValue, newValue, false);
+                fixControlWithResize(listView, oldValue, newValue, false);
             }
         });
 
@@ -139,12 +227,18 @@ public class Controller {
             public void changed(ObservableValue<? extends Number> arg0,
                 Number oldValue, Number newValue) {
 
+                for(int i = 0; i < labels.size(); i++){
+                    fixLabeledWithResize(labels.get(i), oldValue, newValue, true);
+                }
+
+                for(int i = 0; i < comboBoxes.size(); i++){
+                    fixControlWithResize(comboBoxes.get(i), oldValue, newValue, true);
+                }
+
                 fixLabeledWithResize(myButton, oldValue, newValue, true);
-                fixLabeledWithResize(textoSeleccione, oldValue, newValue, true);
-                fixLabeledWithResize(textoArchivo, oldValue, newValue, true);
-                fixControlWithResize(myComboBox, oldValue, newValue, true);
-                fixLabeledWithResize(textoErrores, oldValue, newValue, true);
+                fixLabeledWithResize(okButton, oldValue, newValue, true);
                 fixControlWithResize(myView, oldValue, newValue, true);
+                fixControlWithResize(listView, oldValue, newValue, true);
             }
         });
     }
@@ -237,16 +331,35 @@ public class Controller {
         FileChooser fileChooser  = new FileChooser();
         fileChooser.setTitle("Seleccionar archivo");
         File file = fileChooser.showOpenDialog(stage);
-        if (file != null) {
-            try {
-                model.loadData(file);
-            } catch (IOException exc) {
 
-            }
+        if (file != null) {
+            textoArchivoCargado.setText(file.getName());
+            loadedFile = file;
         }
     }
 
+    /**
+     * Carga archivo a la base de datos.
+     */
+    @FXML void okPressed() {
+        String empresa = myComboBox.getValue();
+        String nombreTabla = comboBoxTablas.getValue();
+        if(empresa == null | nombreTabla == null){
+            return;
+        }
+        Thread one = new Thread() {
+            public void run() {
+                System.out.println(nombreTabla);
+                try {
+                    model.loadData(loadedFile, nombreTabla);
+                } catch (IOException e) {
+                    System.out.println("algo salió mal en la lectura del archivo.");
+                } finally {
+                    data.addAll(model.getErrors());
+                }
+            }
+        };
+        one.run();
 
-
-
+    }
 }
