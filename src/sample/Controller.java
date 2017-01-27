@@ -33,6 +33,10 @@ public class Controller {
     private Stage stage;
     private FXMLLoader fxmlLoader;
 
+    /* Objetos de la ventana
+     * Para agregar más objetos abrir archivo main.fxml con SceneBuilder
+     * y agregar una variable más que sea la adecuada para el objeto creado en pantalla.
+     */
     @FXML
     private Pane site;
     @FXML
@@ -60,11 +64,14 @@ public class Controller {
         this.stage = primaryStage;
         this.fxmlLoader = fxmlLoader;
 
+        // Datos a ingresar a la tabla de errores.
         data = FXCollections.observableArrayList();
 
+        // Tamaño minimo de la ventana.
         primaryStage.setMinWidth(400);
         primaryStage.setMinHeight(300);
 
+        // Initializar tamaños y valores.
         secTile.fitWidthProperty().bind(stage.widthProperty());
         secTile.fitHeightProperty().bind(stage.heightProperty());
         myButton.setMinSize(133, 22);
@@ -83,6 +90,7 @@ public class Controller {
         myView.setMinSize(688,188);
         myView.setMaxSize(688,188);
 
+        // Agregar columnas de errores a la tabla.
         TableColumn rowiId = new TableColumn("d_rowid");
         rowiId.setCellValueFactory(new PropertyValueFactory<Error, Integer>("rowId"));
         rowiId.setStyle("-fx-alignment: CENTER;");
@@ -98,8 +106,14 @@ public class Controller {
 
         myView.setItems(data);
         myView.getColumns().addAll(rowiId, tableName, constraintName, type);
+
+        // Para que automaticamente use todo el ancho de la tabla
         myView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        /*
+         * Aqui agregamos un listener a todos los objetos para que se redimensionen al crecer la ventana.
+         * Este es para el alto de los objetos.
+         */
         site.heightProperty().addListener(new ChangeListener<Number>() {
 
             @Override
@@ -107,57 +121,39 @@ public class Controller {
                 Number oldValue, Number newValue) {
 
 
-                fixButtonWithResize(myButton, oldValue, newValue, false);
-                fixButtonWithResize(textoSeleccione, oldValue, newValue, false);
-                fixButtonWithResize(textoArchivo, oldValue, newValue, false);
-                fixComboBoxWithResize(myComboBox, oldValue, newValue, false);
-                fixComboBoxWithResize(myView, oldValue, newValue, false);
-                fixButtonWithResize(textoErrores, oldValue, newValue, false);
+                fixLabeledWithResize(myButton, oldValue, newValue, false);
+                fixLabeledWithResize(textoSeleccione, oldValue, newValue, false);
+                fixLabeledWithResize(textoArchivo, oldValue, newValue, false);
+                fixControlWithResize(myComboBox, oldValue, newValue, false);
+                fixControlWithResize(myView, oldValue, newValue, false);
+                fixLabeledWithResize(textoErrores, oldValue, newValue, false);
             }
         });
+
+        /*
+         * Aqui agregamos un listener a todos los objetos para que se redimensionen al crecer la ventana.
+         * Este es para el ancho de los objetos.
+         */
         site.widthProperty().addListener(new ChangeListener<Number>() {
-
-
-
             @Override
             public void changed(ObservableValue<? extends Number> arg0,
                 Number oldValue, Number newValue) {
 
-
-                fixButtonWithResize(myButton, oldValue, newValue, true);
-                fixButtonWithResize(textoSeleccione, oldValue, newValue, true);
-                fixButtonWithResize(textoArchivo, oldValue, newValue, true);
-                fixComboBoxWithResize(myComboBox, oldValue, newValue, true);
-                fixButtonWithResize(textoErrores, oldValue, newValue, true);
-                fixComboBoxWithResize(myView, oldValue, newValue, true);
+                fixLabeledWithResize(myButton, oldValue, newValue, true);
+                fixLabeledWithResize(textoSeleccione, oldValue, newValue, true);
+                fixLabeledWithResize(textoArchivo, oldValue, newValue, true);
+                fixControlWithResize(myComboBox, oldValue, newValue, true);
+                fixLabeledWithResize(textoErrores, oldValue, newValue, true);
+                fixControlWithResize(myView, oldValue, newValue, true);
             }
         });
     }
 
-    public void addData(List<Error> newData){
-        data.addAll(newData);
-    }
-
-    private void fixLabelWithResize(Label label, Number oldValue, Number newValue){
-        Point2D myPosition = getPosition(label);
-        double xButton = myPosition.getX();
-        double yButton = myPosition.getY();
-
-        double alpha = newValue.doubleValue()/oldValue.doubleValue();
-        if (oldValue.doubleValue() == 0){
-            alpha = 1;
-        }
-
-
-        if(alpha > 1) {
-            label.relocate(xButton/ (oldValue.doubleValue()/newValue.doubleValue()), yButton );
-        }
-        else
-            label.relocate(xButton*alpha, yButton);
-
-        label.setFont(new Font("Bodoni MT", label.getFont().getSize()*Math.sqrt(alpha)));
-    }
-
+    /**
+     * Dado el nodo en la ventana, retorna la posición de este nodo.
+     * @param node Nodo en la ventana.
+     * @return Retorna un objeto Point2D con las coordenadas en la ventana.
+     */
     private Point2D getPosition(Node node){
         double nodeMinY = node.getLayoutBounds().getMinY();
         double nodeMinX = node.getLayoutBounds().getMinX();
@@ -165,43 +161,66 @@ public class Controller {
         return node.localToScene(nodeMinX, nodeMinY);
     }
 
-    private void fixComboBoxWithResize(Control button, Number oldValue, Number newValue, boolean side){
-        Point2D myPosition = getPosition(button);
+    /**
+     * Método para redimensionar objetos de tipo control (ComboBox).
+     * @param control objeto a redimensionar.
+     * @param oldValue tamaño de la antigua ventana.
+     * @param newValue tamaño de la nueva ventana.
+     * @param side Verdadero si es para ancho, falso para alturas.
+     */
+    private void fixControlWithResize(Control control, Number oldValue, Number newValue, boolean side){
+        Point2D myPosition = getPosition(control);
         double xButton = myPosition.getX();
         double yButton = myPosition.getY();
 
         double alpha = getAlpha(newValue.doubleValue(), oldValue.doubleValue());
 
         if(side) {
-            button.setMinWidth(button.getMaxWidth() * alpha);
-            button.setMaxWidth(button.getMaxWidth() * alpha);
+            control.setMinWidth(control.getMaxWidth() * alpha);
+            control.setMaxWidth(control.getMaxWidth() * alpha);
             if(alpha > 1) {
-                button.relocate(xButton/ (oldValue.doubleValue()/newValue.doubleValue()), yButton );
+                control.relocate(xButton/ (oldValue.doubleValue()/newValue.doubleValue()), yButton );
             }
             else
-                button.relocate(xButton*alpha, yButton);
+                control.relocate(xButton*alpha, yButton);
         } else {
-            button.setMinHeight(button.getMaxHeight()*alpha);
-            button.setMaxHeight(button.getMaxHeight()*alpha);
+            control.setMinHeight(control.getMaxHeight()*alpha);
+            control.setMaxHeight(control.getMaxHeight()*alpha);
             if(alpha > 1) {
-                button.relocate(xButton, yButton / (oldValue.doubleValue()/newValue.doubleValue()));
+                control.relocate(xButton, yButton / (oldValue.doubleValue()/newValue.doubleValue()));
             }
             else
-                button.relocate(xButton, yButton*alpha);
+                control.relocate(xButton, yButton*alpha);
         }
 
     }
-    private void fixButtonWithResize(Labeled button, Number oldValue, Number newValue, boolean side){
-        fixComboBoxWithResize(button, oldValue, newValue, side);
+
+    /**
+     * Esto sirve para setear las redimensiones de los objetos en pantalla, en este caso los de tipo Labeled.
+     *
+     * @param label Objeto que se debe redimensionar.
+     * @param oldValue tamaño de la ventana antigua.
+     * @param newValue tamaño de la nueva ventana.
+     * @param side Verdadero si es para ancho, falso para alturas.
+     */
+    private void fixLabeledWithResize(Labeled label, Number oldValue, Number newValue, boolean side){
+        fixControlWithResize(label, oldValue, newValue, side);
 
         double alpha = newValue.doubleValue()/oldValue.doubleValue();
         if (oldValue.doubleValue() == 0){
             alpha = 1;
         }
 
-        button.setFont(new Font("Bodoni MT", button.getFont().getSize()*Math.sqrt(alpha)));
+        label.setFont(new Font("Bodoni MT", label.getFont().getSize()*Math.sqrt(alpha)));
     }
 
+    /**
+     * Calcula la proporcion entre el tamaño de la ventana antigua
+     *  vs el tamaño de la ventana nueva.
+     * @param newValue tamaño de la nueva ventana.
+     * @param oldValue tamaño de la antigua ventana.
+     * @return Retorna la proporción de reajuste de la ventana.
+     */
     private double getAlpha(double newValue, double oldValue){
         double alpha = newValue/oldValue;
         if (oldValue == 0){
@@ -211,6 +230,9 @@ public class Controller {
         return alpha;
     }
 
+    /**
+     * Maneja las acciones del boton de cargado de archivos.
+     */
     @FXML void buttonPressed() {
         FileChooser fileChooser  = new FileChooser();
         fileChooser.setTitle("Seleccionar archivo");
