@@ -57,4 +57,14 @@ public class DatabaseCreator implements Runnable {
         }
 
     }
+
+    public void addData(String lineOfData,String tableName) {
+
+            try {
+                connection.executeAddQuery(lineOfData,tableName);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+    }
 }

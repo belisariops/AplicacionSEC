@@ -14,7 +14,12 @@ import java.util.List;
 public class DataBaseModel {
     private SQLConnection connection;
     private Checker checker;
+    DatabaseCreator creator;
+    StringBuilder data;
 
+    /**
+     * Se setea la coneccion y se crea la base de datos vacia.
+     */
     public DataBaseModel(){
 
          /*Se crea la conexion con la base de datos*/
@@ -23,31 +28,40 @@ public class DataBaseModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        DatabaseCreator creator = new DatabaseCreator(connection);
+        creator = new DatabaseCreator(connection);
         creator.run();
-        checker = new Checker(connection);
 
 
 
     }
 
-    public void checkErrors(StringBuilder data) {
+    /**
+     * Primero se agregan los datos a la BD, luego se realizan las query para poblar errores y
+     * finalmente se devuelven los errores.
+     * @return filas de la tabla de errores
+     */
+    public List<Error> getErrors() {
+        //creator.addData(data);
         Checker checker = new Checker(connection);
-        List<Error> errors = new Checker(connection).getErrors();
+        return checker.getErrors();
 
     }
 
+    /**
+     * Se lee el archivo linea a linea, (esto falta)cada vez que se lea una linea se agregara a la base de datos.
+     * @param file
+     * @throws IOException
+     */
     public void loadData(File file) throws IOException{
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
-            StringBuilder sb = new StringBuilder();
+            data = new StringBuilder();
             String line = br.readLine();
 
             while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
+                data.append(line);
+                data.append(System.lineSeparator());
                 line = br.readLine();
             }
-            checkErrors(sb);
 
         }
     }
