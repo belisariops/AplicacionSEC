@@ -31,7 +31,8 @@ public class DataBaseModel {
 
     }
 
-    public void checkErrors() {
+    public void checkErrors(StringBuilder data) {
+        Checker checker = new Checker(connection);
         List<Error> errors = new Checker(connection).getErrors();
 
     }
@@ -46,8 +47,8 @@ public class DataBaseModel {
                 sb.append(System.lineSeparator());
                 line = br.readLine();
             }
-            String everything = sb.toString();
-            System.out.println( everything);
+            checkErrors(sb);
+
         }
     }
 }
