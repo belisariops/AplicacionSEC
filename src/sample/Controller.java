@@ -63,14 +63,6 @@ public class Controller {
             new Error(1, "Z", "a@example.com", 'F'),
             new Error(2, "X", "b@example.com", 'P'),
             new Error(4, "W", "c@example.com", 'C'),
-            new Error(0, "Y", "d@example.com", 'F'),
-            new Error(0, "Y", "d@example.com", 'F'),
-            new Error(0, "Y", "d@example.com", 'F'),
-            new Error(0, "Y", "d@example.com", 'F'),
-            new Error(0, "Y", "d@example.com", 'F'),
-            new Error(0, "Y", "d@example.com", 'F'),
-            new Error(0, "Y", "d@example.com", 'F'),
-            new Error(0, "Y", "d@example.com", 'F'),
             new Error(10, "V", "e@example.com", 'F')
         );
 
@@ -121,7 +113,6 @@ public class Controller {
                 fixComboBoxWithResize(myComboBox, oldValue, newValue, false);
                 fixComboBoxWithResize(myView, oldValue, newValue, false);
                 fixButtonWithResize(textoErrores, oldValue, newValue, false);
-
             }
         });
         site.widthProperty().addListener(new ChangeListener<Number>() {
