@@ -106,6 +106,7 @@ public class Controller {
             public void changed(ObservableValue<? extends Number> arg0,
                 Number oldValue, Number newValue) {
 
+
                 fixButtonWithResize(myButton, oldValue, newValue, false);
                 fixButtonWithResize(textoSeleccione, oldValue, newValue, false);
                 fixButtonWithResize(textoArchivo, oldValue, newValue, false);
@@ -121,6 +122,7 @@ public class Controller {
             @Override
             public void changed(ObservableValue<? extends Number> arg0,
                 Number oldValue, Number newValue) {
+
 
                 fixButtonWithResize(myButton, oldValue, newValue, true);
                 fixButtonWithResize(textoSeleccione, oldValue, newValue, true);
@@ -145,6 +147,7 @@ public class Controller {
         if (oldValue.doubleValue() == 0){
             alpha = 1;
         }
+
 
         if(alpha > 1) {
             label.relocate(xButton/ (oldValue.doubleValue()/newValue.doubleValue()), yButton );

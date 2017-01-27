@@ -1,1368 +1,902 @@
--- Primary key n°1
-print 'Primary key n°1'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ALIMENTADOR', 'PK_ALIMENTADOR', 'P'
-from ALIMENTADOR a, ALIMENTADOR b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°2
-print 'Primary key n°2'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ALIMENTADOR_AFECTADO', 'PK_ALIMENTADOR_AFECTADO', 'P'
-from ALIMENTADOR_AFECTADO a, ALIMENTADOR_AFECTADO b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°3
-print 'Primary key n°3'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ALIMENTADOR_INCIDENCIA', 'PK_ALIMENTADOR_INCIDENCIA', 'P'
-from ALIMENTADOR_INCIDENCIA a, ALIMENTADOR_INCIDENCIA b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°4
-print 'Primary key n°4'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ALIMENTADOR_REPOSICION', 'PK_ALIMENTADOR_REPOSICION', 'P'
-from ALIMENTADOR_REPOSICION a, ALIMENTADOR_REPOSICION b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
-
--- Primary key n°5
-print 'Primary key n°5'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ALIMENTADOR_UNICO_ID', 'PK_ALIMENTADOR_UNICO_ID', 'P'
-from ALIMENTADOR_UNICO_ID a, ALIMENTADOR_UNICO_ID b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NOMBRE = b.NOMBRE
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.UNIQUE_ID = b.UNIQUE_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+  select distinct b.rowid, 'ALIMENTADOR', 'PK_ALIMENTADOR', 'P'
+  from ALIMENTADOR  as a, ALIMENTADOR as b
+  where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+     and a.EMPRESA_ID = b.EMPRESA_ID
+     and a.PERIODO_STAR = b.PERIODO_STAR
+     and b.rowid > a.rowid;
 
----------------------------------------
-
--- Primary key n°6
-print 'Primary key n°6'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'AVISO', 'PK_AVISO', 'P'
-from AVISO a, AVISO b
-where a.AVISO_ID = b.AVISO_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+  select distinct b.rowid, 'ALIMENTADOR_AFECTADO', 'PK_ALIMENTADOR_AFECTADO', 'P'
+  from ALIMENTADOR_AFECTADO as a, ALIMENTADOR_AFECTADO as b
+  where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+     and a.EMPRESA_ID = b.EMPRESA_ID
+     and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+     and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+     and a.PERIODO_STAR = b.PERIODO_STAR
+     and b.rowid > a.rowid;
 
--- Primary key n°7
-print 'Primary key n°7'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'BAJADA', 'PK_BAJADA', 'P'
-from BAJADA a, BAJADA b
-where a.BAJADA_ID = b.BAJADA_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ALIMENTADOR_INCIDENCIA', 'PK_ALIMENTADOR_INCIDENCIA', 'P'
+ from ALIMENTADOR_INCIDENCIA as a, ALIMENTADOR_INCIDENCIA as b
+ where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°8
-print 'Primary key n°8'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'BLOQUE_REPOSICION', 'PK_BLOQUE_REPOSICION', 'P'
-from BLOQUE_REPOSICION a, BLOQUE_REPOSICION b
-where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ALIMENTADOR_REPOSICION', 'PK_ALIMENTADOR_REPOSICION', 'P'
+ from ALIMENTADOR_REPOSICION as a, ALIMENTADOR_REPOSICION as b
+ where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+    and a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°9
-print 'Primary key n°9'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ALIMENTADOR_UNICO_ID', 'PK_ALIMENTADOR_UNICO_ID', 'P'
+ from ALIMENTADOR_UNICO_ID as a, ALIMENTADOR_UNICO_ID as b
+ where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NOMBRE = b.NOMBRE
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.UNIQUE_ID = b.UNIQUE_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'BOVEDA', 'PK_BOVEDA', 'P'
-from BOVEDA a, BOVEDA b
-where a.BOVEDA_ID = b.BOVEDA_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'AVISO', 'PK_AVISO', 'P'
+ from AVISO as a, AVISO as b
+ where a.AVISO_ID = b.AVISO_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
--- Primary key n°10
-print 'Primary key n°10'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'CALIFICACION_INTERRUPCION', 'PK_CALIFICACION_INTERRUPCION', 'P'
-from CALIFICACION_INTERRUPCION a, CALIFICACION_INTERRUPCION b
-where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'BAJADA', 'PK_BAJADA', 'P'
+ from BAJADA as a, BAJADA as b
+ where a.BAJADA_ID = b.BAJADA_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°11
-print 'Primary key n°11'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'CAMARA', 'PK_CAMARA', 'P'
-from CAMARA a, CAMARA b
-where a.CAMARA_ID = b.CAMARA_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'BLOQUE_REPOSICION', 'PK_BLOQUE_REPOSICION', 'P'
+ from BLOQUE_REPOSICION as a, BLOQUE_REPOSICION as b
+ where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°12
-print 'Primary key n°12'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'BOVEDA', 'PK_BOVEDA', 'P'
+ from BOVEDA as a, BOVEDA as b
+ where a.BOVEDA_ID = b.BOVEDA_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'CANALIZACION', 'PK_CANALIZACION', 'P'
-from CANALIZACION a, CANALIZACION b
-where a.CANALIZACION_ID = b.CANALIZACION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'CALIFICACION_INTERRUPCION', 'PK_CALIFICACION_INTERRUPCION', 'P'
+ from CALIFICACION_INTERRUPCION as a, CALIFICACION_INTERRUPCION as b
+ where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°13
-print 'Primary key n°13'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'CAUSA', 'PK_CAUSA', 'P'
-from CAUSA a, CAUSA b
-where a.CAUSA_ID = b.CAUSA_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'CAMARA', 'PK_CAMARA', 'P'
+ from CAMARA as a, CAMARA as b
+ where a.CAMARA_ID = b.CAMARA_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°14
-print 'Primary key n°14'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'COLMENA_250M_CHILE_LIMITE_COMU', 'COLMENA_250M_CHILE_LIMITE_C_PK', 'P'
-from COLMENA_250M_CHILE_LIMITE_COMU a, COLMENA_250M_CHILE_LIMITE_COMU b
-where a.OBJECTID = b.OBJECTID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'CANALIZACION', 'PK_CANALIZACION', 'P'
+ from CANALIZACION as a, CANALIZACION as b
+ where a.CANALIZACION_ID = b.CANALIZACION_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°15
-print 'Primary key n°15'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'CAUSA', 'PK_CAUSA', 'P'
+ from CAUSA as a, CAUSA as b
+ where a.CAUSA_ID = b.CAUSA_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'COMUNA', 'PK_COMUNA', 'P'
-from COMUNA a, COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'COLMENA_250M_CHILE_LIMITE_COMU', 'COLMENA_250M_CHILE_LIMITE_C_PK', 'P'
+ from COLMENA_250M_CHILE_LIMITE_COMU as a, COLMENA_250M_CHILE_LIMITE_COMU as b
+ where a.OBJECTID = b.OBJECTID
+    and b.rowid > a.rowid;
 
--- Primary key n°16
-print 'Primary key n°16'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'CONEXION_NODO_IEC', 'PK_CONEXION_NODO_IEC', 'P'
-from CONEXION_NODO_IEC a, CONEXION_NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID_1 = b.NODO_IEC_ID_1
-   and a.NODO_IEC_ID_2 = b.NODO_IEC_ID_2
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'COMUNA', 'PK_COMUNA', 'P'
+ from COMUNA as a, COMUNA as b
+ where a.COMUNA_ID = b.COMUNA_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°17
-print 'Primary key n°17'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'CONEXION_NODO_INCIDENCIA', 'PK_CONEXION_NODO_INCIDENCIA', 'P'
-from CONEXION_NODO_INCIDENCIA a, CONEXION_NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID_1 = b.NODO_INCIDENCIA_ID_1
-   and a.NODO_INCIDENCIA_ID_2 = b.NODO_INCIDENCIA_ID_2
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'CONEXION_NODO_IEC', 'PK_CONEXION_NODO_IEC', 'P'
+ from CONEXION_NODO_IEC as a, CONEXION_NODO_IEC as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_IEC_ID_1 = b.NODO_IEC_ID_1
+    and a.NODO_IEC_ID_2 = b.NODO_IEC_ID_2
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°18
-print 'Primary key n°18'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'CONEXION_NODO_INCIDENCIA', 'PK_CONEXION_NODO_INCIDENCIA', 'P'
+ from CONEXION_NODO_INCIDENCIA as a, CONEXION_NODO_INCIDENCIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.NODO_INCIDENCIA_ID_1 = b.NODO_INCIDENCIA_ID_1
+    and a.NODO_INCIDENCIA_ID_2 = b.NODO_INCIDENCIA_ID_2
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'DATUM', 'PK_DATUM', 'P'
-from DATUM a, DATUM b
-where a.DATUM_ID = b.DATUM_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'DATUM', 'PK_DATUM', 'P'
+ from DATUM as a, DATUM as b
+ where a.DATUM_ID = b.DATUM_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°19
-print 'Primary key n°19'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'DESCRIPCION_EVENTO', 'PK_DESCRIPCION_EVENTO', 'P'
-from DESCRIPCION_EVENTO a, DESCRIPCION_EVENTO b
-where a.DESCRIPCION_EVENTO_ID = b.DESCRIPCION_EVENTO_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EVENTORED_ID = b.EVENTORED_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'DESCRIPCION_EVENTO', 'PK_DESCRIPCION_EVENTO', 'P'
+ from DESCRIPCION_EVENTO as a, DESCRIPCION_EVENTO as b
+ where a.DESCRIPCION_EVENTO_ID = b.DESCRIPCION_EVENTO_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.EVENTORED_ID = b.EVENTORED_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°20
-print 'Primary key n°20'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'EMPALME', 'PK_EMPALME', 'P'
-from EMPALME a, EMPALME b
-where a.EMPALME_ID = b.EMPALME_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'EMPALME', 'PK_EMPALME', 'P'
+ from EMPALME as a, EMPALME as b
+ where a.EMPALME_ID = b.EMPALME_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°21
-print 'Primary key n°21'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'EMPRESA', 'PK_EMPRESA', 'P'
+ from EMPRESA as a, EMPRESA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'EMPRESA', 'PK_EMPRESA', 'P'
-from EMPRESA a, EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ENMALLE', 'PK_ENMALLE', 'P'
+ from ENMALLE as a, ENMALLE as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.ENMALLE_ID = b.ENMALLE_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
--- Primary key n°22
-print 'Primary key n°22'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ENMALLE', 'PK_ENMALLE', 'P'
-from ENMALLE a, ENMALLE b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.ENMALLE_ID = b.ENMALLE_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'EQUIPO', 'PK_EQUIPO', 'P'
+ from EQUIPO as a, EQUIPO as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.EQUIPO_ID = b.EQUIPO_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°23
-print 'Primary key n°23'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'EQUIPO', 'PK_EQUIPO', 'P'
-from EQUIPO a, EQUIPO b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EQUIPO_ID = b.EQUIPO_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'EQUIPO_TOPOLOGIA', 'PK_EQUIPO_TOPOLOGIA', 'P'
+ from EQUIPO_TOPOLOGIA as a, EQUIPO_TOPOLOGIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.EQUIPO_ID = b.EQUIPO_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°24
-print 'Primary key n°24'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ESTRUCTURA_BT', 'PK_ESTRUCTURA_BT', 'P'
+ from ESTRUCTURA_BT as a, ESTRUCTURA_BT as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.ESTRUCTURA_BT_ID = b.ESTRUCTURA_BT_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'EQUIPO_TOPOLOGIA', 'PK_EQUIPO_TOPOLOGIA', 'P'
-from EQUIPO_TOPOLOGIA a, EQUIPO_TOPOLOGIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EQUIPO_ID = b.EQUIPO_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ESTRUCTURA_MT', 'PK_ESTRUCTURA_MT', 'P'
+ from ESTRUCTURA_MT as a, ESTRUCTURA_MT as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.ESTRUCTURA_MT_ID = b.ESTRUCTURA_MT_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
--- Primary key n°25
-print 'Primary key n°25'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ESTRUCTURA_BT', 'PK_ESTRUCTURA_BT', 'P'
-from ESTRUCTURA_BT a, ESTRUCTURA_BT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.ESTRUCTURA_BT_ID = b.ESTRUCTURA_BT_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ESTRUCTURA_SED', 'PK_ESTRUCTURA_SED', 'P'
+ from ESTRUCTURA_SED as a, ESTRUCTURA_SED as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.ESTRUCTURA_SED_ID = b.ESTRUCTURA_SED_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°26
-print 'Primary key n°26'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ESTRUCTURA_MT', 'PK_ESTRUCTURA_MT', 'P'
-from ESTRUCTURA_MT a, ESTRUCTURA_MT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.ESTRUCTURA_MT_ID = b.ESTRUCTURA_MT_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'EVENTO_RED', 'PK_EVENTO_RED', 'P'
+ from EVENTO_RED as a, EVENTO_RED as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.EVENTORED_ID = b.EVENTORED_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°27
-print 'Primary key n°27'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'FUENTE_ENERGIA_RED', 'PK_FUENTE_ENERGIA_RED', 'P'
+ from FUENTE_ENERGIA_RED as a, FUENTE_ENERGIA_RED as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.FUENTE_ENERGIA_RED_ID = b.FUENTE_ENERGIA_RED_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ESTRUCTURA_SED', 'PK_ESTRUCTURA_SED', 'P'
-from ESTRUCTURA_SED a, ESTRUCTURA_SED b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.ESTRUCTURA_SED_ID = b.ESTRUCTURA_SED_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'GRUPO_ECONOMICO', 'PK_GRUPO_ECONOMICO', 'P'
+ from GRUPO_ECONOMICO as a, GRUPO_ECONOMICO as b
+ where a.GRUPO_ECONOMICO_ID = b.GRUPO_ECONOMICO_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°28
-print 'Primary key n°28'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'EVENTO_RED', 'PK_EVENTO_RED', 'P'
-from EVENTO_RED a, EVENTO_RED b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EVENTORED_ID = b.EVENTORED_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'INCIDENCIA', 'PK_INCIDENCIA', 'P'
+ from INCIDENCIA as a, INCIDENCIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°29
-print 'Primary key n°29'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'FUENTE_ENERGIA_RED', 'PK_FUENTE_ENERGIA_RED', 'P'
-from FUENTE_ENERGIA_RED a, FUENTE_ENERGIA_RED b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.FUENTE_ENERGIA_RED_ID = b.FUENTE_ENERGIA_RED_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'INCIDENCIA_NODOS_QUEUE', 'INCIDENCIA_NODOS_QUEUE_PK', 'P'
+ from INCIDENCIA_NODOS_QUEUE as a, INCIDENCIA_NODOS_QUEUE as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°30
-print 'Primary key n°30'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'INTERRUPCION', 'PK_INTERRUPCION', 'P'
+ from INTERRUPCION as a, INTERRUPCION as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'GRUPO_ECONOMICO', 'PK_GRUPO_ECONOMICO', 'P'
-from GRUPO_ECONOMICO a, GRUPO_ECONOMICO b
-where a.GRUPO_ECONOMICO_ID = b.GRUPO_ECONOMICO_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'INTERRUPCION_PUNTO_CONSUMO', 'PK_INTERRUPCION_PUNTO_CONSUMO', 'P'
+ from INTERRUPCION_PUNTO_CONSUMO as a, INTERRUPCION_PUNTO_CONSUMO as b
+ where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+    and a.PUNTO_CONSUMO_ID = b.PUNTO_CONSUMO_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°31
-print 'Primary key n°31'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'INCIDENCIA', 'PK_INCIDENCIA', 'P'
-from INCIDENCIA a, INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'MARCA', 'PK_MARCA', 'P'
+ from MARCA as a, MARCA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.MARCA_ID = b.MARCA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°32
-print 'Primary key n°32'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'INCIDENCIA_NODOS_QUEUE', 'INCIDENCIA_NODOS_QUEUE_PK', 'P'
-from INCIDENCIA_NODOS_QUEUE a, INCIDENCIA_NODOS_QUEUE b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'MEDIDOR', 'PK_MEDIDOR', 'P'
+ from MEDIDOR as a, MEDIDOR as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.MEDIDOR_ID = b.MEDIDOR_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°33
-print 'Primary key n°33'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_IEC', 'PK_NODO_IEC', 'P'
+ from NODO_IEC as a, NODO_IEC as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_IEC_ID = b.NODO_IEC_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'INTERRUPCION', 'PK_INTERRUPCION', 'P'
-from INTERRUPCION a, INTERRUPCION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_IEC_CABECERA', 'PK_NODO_IEC_CABECERA', 'P'
+ from NODO_IEC_CABECERA as a, NODO_IEC_CABECERA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_IEC_ID = b.NODO_IEC_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
--- Primary key n°34
-print 'Primary key n°34'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'INTERRUPCION_PUNTO_CONSUMO', 'PK_INTERRUPCION_PUNTO_CONSUMO', 'P'
-from INTERRUPCION_PUNTO_CONSUMO a, INTERRUPCION_PUNTO_CONSUMO b
-where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PUNTO_CONSUMO_ID = b.PUNTO_CONSUMO_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_IEC_CMC_PROCESADO2', 'NODO_IEC_CMC_PROCESADO2_PK', 'P'
+ from NODO_IEC_CMC_PROCESADO2 as a, NODO_IEC_CMC_PROCESADO2 as b
+ where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_IEC_ID = b.NODO_IEC_ID
+    and a.NODO_PADRE = b.NODO_PADRE
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°35
-print 'Primary key n°35'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'MARCA', 'PK_MARCA', 'P'
-from MARCA a, MARCA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.MARCA_ID = b.MARCA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_IEC_CONECTADO_RWO', 'NODO_IEC_CONECTADO_RWO_PK', 'P'
+ from NODO_IEC_CONECTADO_RWO as a, NODO_IEC_CONECTADO_RWO as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_IEC_ID = b.NODO_IEC_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°36
-print 'Primary key n°36'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_IEC_EXTERNO', 'PK_NODO_IEC_EXTERNO', 'P'
+ from NODO_IEC_EXTERNO as a, NODO_IEC_EXTERNO as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_IEC_ID = b.NODO_IEC_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'MEDIDOR', 'PK_MEDIDOR', 'P'
-from MEDIDOR a, MEDIDOR b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.MEDIDOR_ID = b.MEDIDOR_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_INCIDENCIA', 'PK_NODO_INCIDENCIA', 'P'
+ from NODO_INCIDENCIA as a, NODO_INCIDENCIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
--- Primary key n°37
-print 'Primary key n°37'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_IEC', 'PK_NODO_IEC', 'P'
-from NODO_IEC a, NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_INCIDENCIA_CABECERA', 'PK_NODO_INCIDENCIA_CABECERA', 'P'
+ from NODO_INCIDENCIA_CABECERA as a, NODO_INCIDENCIA_CABECERA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°38
-print 'Primary key n°38'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_IEC_CABECERA', 'PK_NODO_IEC_CABECERA', 'P'
-from NODO_IEC_CABECERA a, NODO_IEC_CABECERA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_INCIDENCIA_EXTERNO', 'PK_NODO_INCIDENCIA_EXTERNO', 'P'
+ from NODO_INCIDENCIA_EXTERNO as a, NODO_INCIDENCIA_EXTERNO as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°39
-print 'Primary key n°39'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NODO_SUBESTACION', 'PK_NODO_SUBESTACION', 'P'
+ from NODO_SUBESTACION as a, NODO_SUBESTACION as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_IEC_ID = b.NODO_IEC_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_IEC_CMC_PROCESADO2', 'NODO_IEC_CMC_PROCESADO2_PK', 'P'
-from NODO_IEC_CMC_PROCESADO2 a, NODO_IEC_CMC_PROCESADO2 b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.NODO_PADRE = b.NODO_PADRE
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'NUMERO_FASES', 'PK_NUMERO_FASES', 'P'
+ from NUMERO_FASES as a, NUMERO_FASES as b
+ where a.NUMERO_FASES = b.NUMERO_FASES
+    and b.rowid > a.rowid;
 
--- Primary key n°40
-print 'Primary key n°40'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_IEC_CONECTADO_RWO', 'NODO_IEC_CONECTADO_RWO_PK', 'P'
-from NODO_IEC_CONECTADO_RWO a, NODO_IEC_CONECTADO_RWO b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PERIODO_INFORMACION', 'PK_PERIODO_INFORMACION', 'P'
+ from PERIODO_INFORMACION as a, PERIODO_INFORMACION as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°41
-print 'Primary key n°41'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_IEC_EXTERNO', 'PK_NODO_IEC_EXTERNO', 'P'
-from NODO_IEC_EXTERNO a, NODO_IEC_EXTERNO b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'POSTE', 'PK_POSTE', 'P'
+ from POSTE as a, POSTE as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.POSTE_ID = b.POSTE_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°42
-print 'Primary key n°42'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PUNTO_CONSUMO', 'PK_PUNTO_CONSUMO', 'P'
+ from PUNTO_CONSUMO as a, PUNTO_CONSUMO as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.PUNTO_CONSUMO_ID = b.PUNTO_CONSUMO_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_INCIDENCIA', 'PK_NODO_INCIDENCIA', 'P'
-from NODO_INCIDENCIA a, NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'PK_PUNTO_CONSUMO_TOPOLOGIA', 'P'
+ from PUNTO_CONSUMO_TOPOLOGIA as a, PUNTO_CONSUMO_TOPOLOGIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.PUNTO_CONSUMO_ID = b.PUNTO_CONSUMO_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°43
-print 'Primary key n°43'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_INCIDENCIA_CABECERA', 'PK_NODO_INCIDENCIA_CABECERA', 'P'
-from NODO_INCIDENCIA_CABECERA a, NODO_INCIDENCIA_CABECERA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PUNTO_DERIVACION', 'PK_PUNTO_DERIVACION', 'P'
+ from PUNTO_DERIVACION as a, PUNTO_DERIVACION as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.PUNTO_DERIVACION_ID = b.PUNTO_DERIVACION_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°44
-print 'Primary key n°44'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_INCIDENCIA_EXTERNO', 'PK_NODO_INCIDENCIA_EXTERNO', 'P'
-from NODO_INCIDENCIA_EXTERNO a, NODO_INCIDENCIA_EXTERNO b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PUNTO_DERIVACION_INCIDENCIA', 'PK_PUNTO_DERIVACION_INCIDENCIA', 'P'
+ from PUNTO_DERIVACION_INCIDENCIA as a, PUNTO_DERIVACION_INCIDENCIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.PUNTO_DERIVACION_INCIDENCIA_ID = b.PUNTO_DERIVACION_INCIDENCIA_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°45
-print 'Primary key n°45'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PUNTO_FALLA', 'PK_PUNTO_FALLA', 'P'
+ from PUNTO_FALLA as a, PUNTO_FALLA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.PUNTO_FALLA_ID = b.PUNTO_FALLA_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NODO_SUBESTACION', 'PK_NODO_SUBESTACION', 'P'
-from NODO_SUBESTACION a, NODO_SUBESTACION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PUNTO_SUMINISTRO', 'PK_PUNTO_SUMINISTRO', 'P'
+ from PUNTO_SUMINISTRO as a, PUNTO_SUMINISTRO as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°46
-print 'Primary key n°46'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'NUMERO_FASES', 'PK_NUMERO_FASES', 'P'
-from NUMERO_FASES a, NUMERO_FASES b
-where a.NUMERO_FASES = b.NUMERO_FASES
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'PUNTO_SUMINISTRO_INCIDENCIA', 'PK_PUNTO_SUMINISTRO_INCIDENCIA', 'P'
+ from PUNTO_SUMINISTRO_INCIDENCIA as a, PUNTO_SUMINISTRO_INCIDENCIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°47
-print 'Primary key n°47'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PERIODO_INFORMACION', 'PK_PERIODO_INFORMACION', 'P'
-from PERIODO_INFORMACION a, PERIODO_INFORMACION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'SENTIDO_ENERGIA', 'PK_SENTIDO_ENERGIA', 'P'
+ from SENTIDO_ENERGIA as a, SENTIDO_ENERGIA as b
+ where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°48
-print 'Primary key n°48'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'SISTEMA_ELECTRICO', 'PK_SISTEMA_ELECTRICO', 'P'
+ from SISTEMA_ELECTRICO as a, SISTEMA_ELECTRICO as b
+ where a.SISTEMA_ELECTRICO_ID = b.SISTEMA_ELECTRICO_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'POSTE', 'PK_POSTE', 'P'
-from POSTE a, POSTE b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.POSTE_ID = b.POSTE_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'SUBESTACION_DISTRIBUCION', 'PK_SUBESTACION_DISTRIBUCION', 'P'
+ from SUBESTACION_DISTRIBUCION as a, SUBESTACION_DISTRIBUCION as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.SUBESTACION_DISTRIBUCION_ID = b.SUBESTACION_DISTRIBUCION_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°49
-print 'Primary key n°49'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PUNTO_CONSUMO', 'PK_PUNTO_CONSUMO', 'P'
-from PUNTO_CONSUMO a, PUNTO_CONSUMO b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_CONSUMO_ID = b.PUNTO_CONSUMO_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'SUBESTACION_INCIDENCIA', 'PK_SUBESTACION_INCIDENCIA', 'P'
+ from SUBESTACION_INCIDENCIA as a, SUBESTACION_INCIDENCIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.SUBESTACION_INCIDENCIA_ID = b.SUBESTACION_INCIDENCIA_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°50
-print 'Primary key n°50'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PUNTO_CONSUMO_TOPOLOGIA', 'PK_PUNTO_CONSUMO_TOPOLOGIA', 'P'
-from PUNTO_CONSUMO_TOPOLOGIA a, PUNTO_CONSUMO_TOPOLOGIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_CONSUMO_ID = b.PUNTO_CONSUMO_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'SUBESTACION_PRIMARIA_DISTRIBUC', 'PK_SUBESTACION_PRIMARIA_DISTRI', 'P'
+ from SUBESTACION_PRIMARIA_DISTRIBUC as a, SUBESTACION_PRIMARIA_DISTRIBUC as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.SUBESTACION_PRIMARIA_ID = b.SUBESTACION_PRIMARIA_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°51
-print 'Primary key n°51'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TEMP_NUEVOS_HIJOS', 'TEMP_NUEVOS_HIJOS_PK', 'P'
+ from TEMP_NUEVOS_HIJOS as a, TEMP_NUEVOS_HIJOS as b
+ where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.NODO_HIJO_ID = b.NODO_HIJO_ID
+    and a.NODO_PADRE_ID = b.NODO_PADRE_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PUNTO_DERIVACION', 'PK_PUNTO_DERIVACION', 'P'
-from PUNTO_DERIVACION a, PUNTO_DERIVACION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_DERIVACION_ID = b.PUNTO_DERIVACION_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_AVISO', 'PK_TIPO_AVISO', 'P'
+ from TIPO_AVISO as a, TIPO_AVISO as b
+ where a.TIPO_AVISO_ID = b.TIPO_AVISO_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°52
-print 'Primary key n°52'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PUNTO_DERIVACION_INCIDENCIA', 'PK_PUNTO_DERIVACION_INCIDENCIA', 'P'
-from PUNTO_DERIVACION_INCIDENCIA a, PUNTO_DERIVACION_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_DERIVACION_INCIDENCIA_ID = b.PUNTO_DERIVACION_INCIDENCIA_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_CONEXION_NODO', 'PK_TIPO_CONEXION_NODO', 'P'
+ from TIPO_CONEXION_NODO as a, TIPO_CONEXION_NODO as b
+ where a.TIPO_CONEXION_NODO_ID = b.TIPO_CONEXION_NODO_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°53
-print 'Primary key n°53'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PUNTO_FALLA', 'PK_PUNTO_FALLA', 'P'
-from PUNTO_FALLA a, PUNTO_FALLA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_FALLA_ID = b.PUNTO_FALLA_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_DISPOSICION', 'PK_TIPO_DISPOSICION', 'P'
+ from TIPO_DISPOSICION as a, TIPO_DISPOSICION as b
+ where a.TIPO_DISPOSICION_ID = b.TIPO_DISPOSICION_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°54
-print 'Primary key n°54'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_DISPOSICION_TRAMO', 'PK_TIPO_DISPOSICION_TRAMO', 'P'
+ from TIPO_DISPOSICION_TRAMO as a, TIPO_DISPOSICION_TRAMO as b
+ where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PUNTO_SUMINISTRO', 'PK_PUNTO_SUMINISTRO', 'P'
-from PUNTO_SUMINISTRO a, PUNTO_SUMINISTRO b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_EFECTO_EVENTO', 'PK_TIPO_EFECTO_EVENTO', 'P'
+ from TIPO_EFECTO_EVENTO as a, TIPO_EFECTO_EVENTO as b
+ where a.TIPO_EFECTO_EVENTO_ID = b.TIPO_EFECTO_EVENTO_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°55
-print 'Primary key n°55'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'PUNTO_SUMINISTRO_INCIDENCIA', 'PK_PUNTO_SUMINISTRO_INCIDENCIA', 'P'
-from PUNTO_SUMINISTRO_INCIDENCIA a, PUNTO_SUMINISTRO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_EMPALME', 'PK_TIPO_EMPALME', 'P'
+ from TIPO_EMPALME as a, TIPO_EMPALME as b
+ where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°56
-print 'Primary key n°56'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'SENTIDO_ENERGIA', 'PK_SENTIDO_ENERGIA', 'P'
-from SENTIDO_ENERGIA a, SENTIDO_ENERGIA b
-where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_EMPRESA', 'SYS_C00284287', 'P'
+ from TIPO_EMPRESA as a, TIPO_EMPRESA as b
+ where a.TIPO_EMPRESA_ID = b.TIPO_EMPRESA_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°57
-print 'Primary key n°57'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_EQUIPO', 'PK_TIPO_EQUIPO', 'P'
+ from TIPO_EQUIPO as a, TIPO_EQUIPO as b
+ where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'SISTEMA_ELECTRICO', 'PK_SISTEMA_ELECTRICO', 'P'
-from SISTEMA_ELECTRICO a, SISTEMA_ELECTRICO b
-where a.SISTEMA_ELECTRICO_ID = b.SISTEMA_ELECTRICO_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_EVENTO_RED', 'PK_TIPO_EVENTO_RED', 'P'
+ from TIPO_EVENTO_RED as a, TIPO_EVENTO_RED as b
+ where a.TIPO_EVENTO_ID = b.TIPO_EVENTO_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°58
-print 'Primary key n°58'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'SUBESTACION_DISTRIBUCION', 'PK_SUBESTACION_DISTRIBUCION', 'P'
-from SUBESTACION_DISTRIBUCION a, SUBESTACION_DISTRIBUCION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.SUBESTACION_DISTRIBUCION_ID = b.SUBESTACION_DISTRIBUCION_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_FUENTE_ENERGIA', 'PK_TIPO_FUENTE_ENERGIA', 'P'
+ from TIPO_FUENTE_ENERGIA as a, TIPO_FUENTE_ENERGIA as b
+ where a.TIPO_FUENTE_ENERGIA_ID = b.TIPO_FUENTE_ENERGIA_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°59
-print 'Primary key n°59'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'SUBESTACION_INCIDENCIA', 'PK_SUBESTACION_INCIDENCIA', 'P'
-from SUBESTACION_INCIDENCIA a, SUBESTACION_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.SUBESTACION_INCIDENCIA_ID = b.SUBESTACION_INCIDENCIA_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_INSTALACION', 'PK_TIPO_INSTALACION', 'P'
+ from TIPO_INSTALACION as a, TIPO_INSTALACION as b
+ where a.TIPO_INSTALACION_ID = b.TIPO_INSTALACION_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°60
-print 'Primary key n°60'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_INSTALACION_ESQUEMATICO', 'PK_TIPO_INSTALACION_ESQUEMATIC', 'P'
+ from TIPO_INSTALACION_ESQUEMATICO as a, TIPO_INSTALACION_ESQUEMATICO as b
+ where a.TIPO_INSTALACION_ESQ_ID = b.TIPO_INSTALACION_ESQ_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'SUBESTACION_PRIMARIA_DISTRIBUC', 'PK_SUBESTACION_PRIMARIA_DISTRI', 'P'
-from SUBESTACION_PRIMARIA_DISTRIBUC a, SUBESTACION_PRIMARIA_DISTRIBUC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.SUBESTACION_PRIMARIA_ID = b.SUBESTACION_PRIMARIA_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_INSTALACION_INCIDENCIA', 'PK_TIPO_INSTALACION_INCIDENCIA', 'P'
+ from TIPO_INSTALACION_INCIDENCIA as a, TIPO_INSTALACION_INCIDENCIA as b
+ where a.TIPO_INSTALACION_INCIDENCIA_ID = b.TIPO_INSTALACION_INCIDENCIA_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°61
-print 'Primary key n°61'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TEMP_NUEVOS_HIJOS', 'TEMP_NUEVOS_HIJOS_PK', 'P'
-from TEMP_NUEVOS_HIJOS a, TEMP_NUEVOS_HIJOS b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_HIJO_ID = b.NODO_HIJO_ID
-   and a.NODO_PADRE_ID = b.NODO_PADRE_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_NODO', 'PK_TIPO_NODO', 'P'
+ from TIPO_NODO as a, TIPO_NODO as b
+ where a.TIPO_NODO_ID = b.TIPO_NODO_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°62
-print 'Primary key n°62'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_AVISO', 'PK_TIPO_AVISO', 'P'
-from TIPO_AVISO a, TIPO_AVISO b
-where a.TIPO_AVISO_ID = b.TIPO_AVISO_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_ORIGEN_INTERRUPCION', 'PK_TIPO_ORIGEN_INTERRUPCION', 'P'
+ from TIPO_ORIGEN_INTERRUPCION as a, TIPO_ORIGEN_INTERRUPCION as b
+ where a.TIPO_ORIGEN_INTERRUPCION_ID = b.TIPO_ORIGEN_INTERRUPCION_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°63
-print 'Primary key n°63'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_PROPIEDAD', 'PK_TIPO_PROPIEDAD', 'P'
+ from TIPO_PROPIEDAD as a, TIPO_PROPIEDAD as b
+ where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_CONEXION_NODO', 'PK_TIPO_CONEXION_NODO', 'P'
-from TIPO_CONEXION_NODO a, TIPO_CONEXION_NODO b
-where a.TIPO_CONEXION_NODO_ID = b.TIPO_CONEXION_NODO_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_RURALIDAD', 'PK_TIPO_RURALIDAD', 'P'
+ from TIPO_RURALIDAD as a, TIPO_RURALIDAD as b
+ where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°64
-print 'Primary key n°64'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_DISPOSICION', 'PK_TIPO_DISPOSICION', 'P'
-from TIPO_DISPOSICION a, TIPO_DISPOSICION b
-where a.TIPO_DISPOSICION_ID = b.TIPO_DISPOSICION_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_SERVICIO_EQUIPO', 'PK_TIPO_SERVICIO_EQUIPO', 'P'
+ from TIPO_SERVICIO_EQUIPO as a, TIPO_SERVICIO_EQUIPO as b
+ where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°65
-print 'Primary key n°65'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_DISPOSICION_TRAMO', 'PK_TIPO_DISPOSICION_TRAMO', 'P'
-from TIPO_DISPOSICION_TRAMO a, TIPO_DISPOSICION_TRAMO b
-where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_TECNOLOGIA', 'PK_TIPO_TECNOLOGIA', 'P'
+ from TIPO_TECNOLOGIA as a, TIPO_TECNOLOGIA as b
+ where a.TIPO_TECNOLOGIA_ID = b.TIPO_TECNOLOGIA_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°66
-print 'Primary key n°66'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_TENSION', 'PK_TIPO_TENSION', 'P'
+ from TIPO_TENSION as a, TIPO_TENSION as b
+ where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_EFECTO_EVENTO', 'PK_TIPO_EFECTO_EVENTO', 'P'
-from TIPO_EFECTO_EVENTO a, TIPO_EFECTO_EVENTO b
-where a.TIPO_EFECTO_EVENTO_ID = b.TIPO_EFECTO_EVENTO_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIPO_TOMA_TIERRA', 'PK_TIPO_TOMA_TIERRA', 'P'
+ from TIPO_TOMA_TIERRA as a, TIPO_TOMA_TIERRA as b
+ where a.TIPO_TOMA_TIERRA_ID = b.TIPO_TOMA_TIERRA_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°67
-print 'Primary key n°67'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_EMPALME', 'PK_TIPO_EMPALME', 'P'
-from TIPO_EMPALME a, TIPO_EMPALME b
-where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TIRANTE', 'PK_TIRANTE', 'P'
+ from TIRANTE as a, TIRANTE as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TIRANTE_ID = b.TIRANTE_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°68
-print 'Primary key n°68'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_EMPRESA', 'SYS_C00284287', 'P'
-from TIPO_EMPRESA a, TIPO_EMPRESA b
-where a.TIPO_EMPRESA_ID = b.TIPO_EMPRESA_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TOMA_TIERRA', 'PK_TOMA_TIERRA', 'P'
+ from TOMA_TIERRA as a, TOMA_TIERRA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TOMA_TIERRA_ID = b.TOMA_TIERRA_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°69
-print 'Primary key n°69'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TRAMO_BT', 'PK_TRAMO_BT', 'P'
+ from TRAMO_BT as a, TRAMO_BT as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TRAMO_BT_ID = b.TRAMO_BT_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_EQUIPO', 'PK_TIPO_EQUIPO', 'P'
-from TIPO_EQUIPO a, TIPO_EQUIPO b
-where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TRAMO_MT', 'PK_TRAMO_MT', 'P'
+ from TRAMO_MT as a, TRAMO_MT as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TRAMO_MT_ID = b.TRAMO_MT_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°70
-print 'Primary key n°70'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_EVENTO_RED', 'PK_TIPO_EVENTO_RED', 'P'
-from TIPO_EVENTO_RED a, TIPO_EVENTO_RED b
-where a.TIPO_EVENTO_ID = b.TIPO_EVENTO_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TRANSFORMADOR', 'PK_TRANSFORMADOR', 'P'
+ from TRANSFORMADOR as a, TRANSFORMADOR as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°71
-print 'Primary key n°71'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_FUENTE_ENERGIA', 'PK_TIPO_FUENTE_ENERGIA', 'P'
-from TIPO_FUENTE_ENERGIA a, TIPO_FUENTE_ENERGIA b
-where a.TIPO_FUENTE_ENERGIA_ID = b.TIPO_FUENTE_ENERGIA_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TRANSFORMADOR_INTERRUPCION', 'PK_TRANSFORMADOR_INTERRUPCION', 'P'
+ from TRANSFORMADOR_INTERRUPCION as a, TRANSFORMADOR_INTERRUPCION as b
+ where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°72
-print 'Primary key n°72'
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'PK_TRANSFORMADOR_TOPOLOGIA', 'P'
+ from TRANSFORMADOR_TOPOLOGIA as a, TRANSFORMADOR_TOPOLOGIA as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
+    and b.rowid > a.rowid;
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_INSTALACION', 'PK_TIPO_INSTALACION', 'P'
-from TIPO_INSTALACION a, TIPO_INSTALACION b
-where a.TIPO_INSTALACION_ID = b.TIPO_INSTALACION_ID
-   and rowid(b) > rowid(a);
 
-commit;
 
----------------------------------------
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'VERTICE_EMPALME', 'PK_VERTICE_EMPALME', 'P'
+ from VERTICE_EMPALME as a, VERTICE_EMPALME as b
+ where a.EMPALME_ID = b.EMPALME_ID
+    and a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.VERTICE_EMPALME_ID = b.VERTICE_EMPALME_ID
+    and b.rowid > a.rowid;
 
--- Primary key n°73
-print 'Primary key n°73'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_INSTALACION_ESQUEMATICO', 'PK_TIPO_INSTALACION_ESQUEMATIC', 'P'
-from TIPO_INSTALACION_ESQUEMATICO a, TIPO_INSTALACION_ESQUEMATICO b
-where a.TIPO_INSTALACION_ESQ_ID = b.TIPO_INSTALACION_ESQ_ID
-   and rowid(b) > rowid(a);
 
-commit;
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'VERTICE_TRAMO_BT', 'PK_VERTICE_TRAMO_BT', 'P'
+ from VERTICE_TRAMO_BT as a, VERTICE_TRAMO_BT as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TRAMO_BT_ID = b.TRAMO_BT_ID
+    and a.VERTICE_TRAMO_BT_ID = b.VERTICE_TRAMO_BT_ID
+    and b.rowid > a.rowid;
 
----------------------------------------
 
--- Primary key n°74
-print 'Primary key n°74'
 
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_INSTALACION_INCIDENCIA', 'PK_TIPO_INSTALACION_INCIDENCIA', 'P'
-from TIPO_INSTALACION_INCIDENCIA a, TIPO_INSTALACION_INCIDENCIA b
-where a.TIPO_INSTALACION_INCIDENCIA_ID = b.TIPO_INSTALACION_INCIDENCIA_ID
-   and rowid(b) > rowid(a);
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'VERTICE_TRAMO_MT', 'PK_VERTICE_TRAMO_MT', 'P'
+ from VERTICE_TRAMO_MT as a, VERTICE_TRAMO_MT as b
+ where a.EMPRESA_ID = b.EMPRESA_ID
+    and a.PERIODO_STAR = b.PERIODO_STAR
+    and a.TRAMO_MT_ID = b.TRAMO_MT_ID
+    and a.VERTICE_TRAMO_MT_ID = b.VERTICE_TRAMO_MT_ID
+    and b.rowid > a.rowid;
 
-commit;
 
----------------------------------------
 
--- Primary key n°75
-print 'Primary key n°75'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_NODO', 'PK_TIPO_NODO', 'P'
-from TIPO_NODO a, TIPO_NODO b
-where a.TIPO_NODO_ID = b.TIPO_NODO_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°76
-print 'Primary key n°76'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_ORIGEN_INTERRUPCION', 'PK_TIPO_ORIGEN_INTERRUPCION', 'P'
-from TIPO_ORIGEN_INTERRUPCION a, TIPO_ORIGEN_INTERRUPCION b
-where a.TIPO_ORIGEN_INTERRUPCION_ID = b.TIPO_ORIGEN_INTERRUPCION_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°77
-print 'Primary key n°77'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_PROPIEDAD', 'PK_TIPO_PROPIEDAD', 'P'
-from TIPO_PROPIEDAD a, TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°78
-print 'Primary key n°78'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_RURALIDAD', 'PK_TIPO_RURALIDAD', 'P'
-from TIPO_RURALIDAD a, TIPO_RURALIDAD b
-where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°79
-print 'Primary key n°79'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_SERVICIO_EQUIPO', 'PK_TIPO_SERVICIO_EQUIPO', 'P'
-from TIPO_SERVICIO_EQUIPO a, TIPO_SERVICIO_EQUIPO b
-where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°80
-print 'Primary key n°80'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_TECNOLOGIA', 'PK_TIPO_TECNOLOGIA', 'P'
-from TIPO_TECNOLOGIA a, TIPO_TECNOLOGIA b
-where a.TIPO_TECNOLOGIA_ID = b.TIPO_TECNOLOGIA_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°81
-print 'Primary key n°81'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_TENSION', 'PK_TIPO_TENSION', 'P'
-from TIPO_TENSION a, TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°82
-print 'Primary key n°82'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIPO_TOMA_TIERRA', 'PK_TIPO_TOMA_TIERRA', 'P'
-from TIPO_TOMA_TIERRA a, TIPO_TOMA_TIERRA b
-where a.TIPO_TOMA_TIERRA_ID = b.TIPO_TOMA_TIERRA_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°83
-print 'Primary key n°83'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TIRANTE', 'PK_TIRANTE', 'P'
-from TIRANTE a, TIRANTE b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TIRANTE_ID = b.TIRANTE_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°84
-print 'Primary key n°84'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TOMA_TIERRA', 'PK_TOMA_TIERRA', 'P'
-from TOMA_TIERRA a, TOMA_TIERRA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TOMA_TIERRA_ID = b.TOMA_TIERRA_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°85
-print 'Primary key n°85'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TRAMO_BT', 'PK_TRAMO_BT', 'P'
-from TRAMO_BT a, TRAMO_BT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRAMO_BT_ID = b.TRAMO_BT_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°86
-print 'Primary key n°86'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TRAMO_MT', 'PK_TRAMO_MT', 'P'
-from TRAMO_MT a, TRAMO_MT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRAMO_MT_ID = b.TRAMO_MT_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°87
-print 'Primary key n°87'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TRANSFORMADOR', 'PK_TRANSFORMADOR', 'P'
-from TRANSFORMADOR a, TRANSFORMADOR b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°88
-print 'Primary key n°88'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TRANSFORMADOR_INTERRUPCION', 'PK_TRANSFORMADOR_INTERRUPCION', 'P'
-from TRANSFORMADOR_INTERRUPCION a, TRANSFORMADOR_INTERRUPCION b
-where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°89
-print 'Primary key n°89'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'TRANSFORMADOR_TOPOLOGIA', 'PK_TRANSFORMADOR_TOPOLOGIA', 'P'
-from TRANSFORMADOR_TOPOLOGIA a, TRANSFORMADOR_TOPOLOGIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°90
-print 'Primary key n°90'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'VERTICE_EMPALME', 'PK_VERTICE_EMPALME', 'P'
-from VERTICE_EMPALME a, VERTICE_EMPALME b
-where a.EMPALME_ID = b.EMPALME_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.VERTICE_EMPALME_ID = b.VERTICE_EMPALME_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°91
-print 'Primary key n°91'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'VERTICE_TRAMO_BT', 'PK_VERTICE_TRAMO_BT', 'P'
-from VERTICE_TRAMO_BT a, VERTICE_TRAMO_BT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRAMO_BT_ID = b.TRAMO_BT_ID
-   and a.VERTICE_TRAMO_BT_ID = b.VERTICE_TRAMO_BT_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°92
-print 'Primary key n°92'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'VERTICE_TRAMO_MT', 'PK_VERTICE_TRAMO_MT', 'P'
-from VERTICE_TRAMO_MT a, VERTICE_TRAMO_MT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRAMO_MT_ID = b.TRAMO_MT_ID
-   and a.VERTICE_TRAMO_MT_ID = b.VERTICE_TRAMO_MT_ID
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
--- Primary key n°93
-print 'Primary key n°93'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select distinct rowid(b), 'ZONA_UTM', 'PK_ZONA_UTM', 'P'
-from ZONA_UTM a, ZONA_UTM b
-where a.ZONA_UTM = b.ZONA_UTM
-   and rowid(b) > rowid(a);
-
-commit;
-
----------------------------------------
-
-
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select distinct b.rowid, 'ZONA_UTM', 'PK_ZONA_UTM', 'P'
+ from ZONA_UTM as a, ZONA_UTM as b
+ where a.ZONA_UTM = b.ZONA_UTM
+    and b.rowid > a.rowid;

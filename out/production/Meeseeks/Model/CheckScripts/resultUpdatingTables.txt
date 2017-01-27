@@ -1,1446 +1,937 @@
 
--- Updating table EMPRESA
-print 'Updating table EMPRESA'
 
-update EMPRESA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'EMPRESA'
-);
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table ALIMENTADOR
-print 'Updating table ALIMENTADOR'
-
-update ALIMENTADOR a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ALIMENTADOR'
+update EMPRESA
+  set  tiene_errores = 1
+  where exists
+  (
+     select 1
+     from   errores b
+     where  b.d_rowid = EMPRESA.rowid
+        and b.table_name = 'EMPRESA'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table ALIMENTADOR_INCIDENCIA
-print 'Updating table ALIMENTADOR_INCIDENCIA'
 
-update ALIMENTADOR_INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ALIMENTADOR_INCIDENCIA'
+update ALIMENTADOR
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ALIMENTADOR.rowid
+       and b.table_name = 'ALIMENTADOR'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table ALIMENTADOR_AFECTADO
-print 'Updating table ALIMENTADOR_AFECTADO'
-
-update ALIMENTADOR_AFECTADO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ALIMENTADOR_AFECTADO'
+update ALIMENTADOR_INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ALIMENTADOR_INCIDENCIA.rowid
+       and b.table_name = 'ALIMENTADOR_INCIDENCIA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table INTERRUPCION
-print 'Updating table INTERRUPCION'
-
-update INTERRUPCION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'INTERRUPCION'
+update ALIMENTADOR_AFECTADO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ALIMENTADOR_AFECTADO.rowid
+       and b.table_name = 'ALIMENTADOR_AFECTADO'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table INCIDENCIA
-print 'Updating table INCIDENCIA'
-
-update INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'INCIDENCIA'
+update INTERRUPCION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = INTERRUPCION.rowid
+       and b.table_name = 'INTERRUPCION'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table ALIMENTADOR_REPOSICION
-print 'Updating table ALIMENTADOR_REPOSICION'
-
-update ALIMENTADOR_REPOSICION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ALIMENTADOR_REPOSICION'
+update INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = INCIDENCIA.rowid
+       and b.table_name = 'INCIDENCIA'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table BLOQUE_REPOSICION
-print 'Updating table BLOQUE_REPOSICION'
 
-update BLOQUE_REPOSICION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'BLOQUE_REPOSICION'
+update ALIMENTADOR_REPOSICION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ALIMENTADOR_REPOSICION.rowid
+       and b.table_name = 'ALIMENTADOR_REPOSICION'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table AVISO
-print 'Updating table AVISO'
-
-update AVISO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'AVISO'
+update BLOQUE_REPOSICION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = BLOQUE_REPOSICION.rowid
+       and b.table_name = 'BLOQUE_REPOSICION'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_AVISO
-print 'Updating table TIPO_AVISO'
-
-update TIPO_AVISO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_AVISO'
+update AVISO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = AVISO.rowid
+       and b.table_name = 'AVISO'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table COMUNA
-print 'Updating table COMUNA'
 
-update COMUNA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'COMUNA'
+update TIPO_AVISO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_AVISO.rowid
+       and b.table_name = 'TIPO_AVISO'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table BAJADA
-print 'Updating table BAJADA'
-
-update BAJADA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'BAJADA'
+update COMUNA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = COMUNA.rowid
+       and b.table_name = 'COMUNA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table NODO_IEC
-print 'Updating table NODO_IEC'
-
-update NODO_IEC a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NODO_IEC'
+update BAJADA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = BAJADA.rowid
+       and b.table_name = 'BAJADA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_PROPIEDAD
-print 'Updating table TIPO_PROPIEDAD'
-
-update TIPO_PROPIEDAD a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_PROPIEDAD'
+update NODO_IEC
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NODO_IEC.rowid
+       and b.table_name = 'NODO_IEC'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table EVENTO_RED
-print 'Updating table EVENTO_RED'
-
-update EVENTO_RED a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'EVENTO_RED'
+update TIPO_PROPIEDAD
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_PROPIEDAD.rowid
+       and b.table_name = 'TIPO_PROPIEDAD'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table BOVEDA
-print 'Updating table BOVEDA'
 
-update BOVEDA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'BOVEDA'
+update EVENTO_RED
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = EVENTO_RED.rowid
+       and b.table_name = 'EVENTO_RED'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table CAMARA
-print 'Updating table CAMARA'
-
-update CAMARA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'CAMARA'
+update BOVEDA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = BOVEDA.rowid
+       and b.table_name = 'BOVEDA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table TIPO_TENSION
-print 'Updating table TIPO_TENSION'
-
-update TIPO_TENSION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_TENSION'
+update CAMARA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = CAMARA.rowid
+       and b.table_name = 'CAMARA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table CANALIZACION
-print 'Updating table CANALIZACION'
-
-update CANALIZACION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'CANALIZACION'
+update TIPO_TENSION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_TENSION.rowid
+       and b.table_name = 'TIPO_TENSION'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table CALIFICACION_INTERRUPCION
-print 'Updating table CALIFICACION_INTERRUPCION'
 
-update CALIFICACION_INTERRUPCION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'CALIFICACION_INTERRUPCION'
+update CANALIZACION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = CANALIZACION.rowid
+       and b.table_name = 'CANALIZACION'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table CAUSA
-print 'Updating table CAUSA'
-
-update CAUSA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'CAUSA'
+update CALIFICACION_INTERRUPCION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = CALIFICACION_INTERRUPCION.rowid
+       and b.table_name = 'CALIFICACION_INTERRUPCION'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table CONEXION_NODO_IEC
-print 'Updating table CONEXION_NODO_IEC'
-
-update CONEXION_NODO_IEC a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'CONEXION_NODO_IEC'
+update CAUSA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = CAUSA.rowid
+       and b.table_name = 'CAUSA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_CONEXION_NODO
-print 'Updating table TIPO_CONEXION_NODO'
-
-update TIPO_CONEXION_NODO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_CONEXION_NODO'
+update CONEXION_NODO_IEC
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = CONEXION_NODO_IEC.rowid
+       and b.table_name = 'CONEXION_NODO_IEC'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table NODO_INCIDENCIA
-print 'Updating table NODO_INCIDENCIA'
 
-update NODO_INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NODO_INCIDENCIA'
+update TIPO_CONEXION_NODO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_CONEXION_NODO.rowid
+       and b.table_name = 'TIPO_CONEXION_NODO'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table CONEXION_NODO_INCIDENCIA
-print 'Updating table CONEXION_NODO_INCIDENCIA'
-
-update CONEXION_NODO_INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'CONEXION_NODO_INCIDENCIA'
+update NODO_INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NODO_INCIDENCIA.rowid
+       and b.table_name = 'NODO_INCIDENCIA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table DESCRIPCION_EVENTO
-print 'Updating table DESCRIPCION_EVENTO'
-
-update DESCRIPCION_EVENTO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'DESCRIPCION_EVENTO'
+update CONEXION_NODO_INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = CONEXION_NODO_INCIDENCIA.rowid
+       and b.table_name = 'CONEXION_NODO_INCIDENCIA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table EMPALME
-print 'Updating table EMPALME'
-
-update EMPALME a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'EMPALME'
+update DESCRIPCION_EVENTO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = DESCRIPCION_EVENTO.rowid
+       and b.table_name = 'DESCRIPCION_EVENTO'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table GRUPO_ECONOMICO
-print 'Updating table GRUPO_ECONOMICO'
-
-update GRUPO_ECONOMICO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'GRUPO_ECONOMICO'
+update EMPALME
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = EMPALME.rowid
+       and b.table_name = 'EMPALME'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table ENMALLE
-print 'Updating table ENMALLE'
 
-update ENMALLE a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ENMALLE'
+update GRUPO_ECONOMICO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = GRUPO_ECONOMICO.rowid
+       and b.table_name = 'GRUPO_ECONOMICO'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table EQUIPO
-print 'Updating table EQUIPO'
-
-update EQUIPO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'EQUIPO'
+update ENMALLE
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ENMALLE.rowid
+       and b.table_name = 'ENMALLE'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_EQUIPO
-print 'Updating table TIPO_EQUIPO'
-
-update TIPO_EQUIPO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_EQUIPO'
+update EQUIPO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = EQUIPO.rowid
+       and b.table_name = 'EQUIPO'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table TIPO_SERVICIO_EQUIPO
-print 'Updating table TIPO_SERVICIO_EQUIPO'
 
-update TIPO_SERVICIO_EQUIPO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_SERVICIO_EQUIPO'
+update TIPO_EQUIPO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_EQUIPO.rowid
+       and b.table_name = 'TIPO_EQUIPO'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table EQUIPO_TOPOLOGIA
-print 'Updating table EQUIPO_TOPOLOGIA'
-
-update EQUIPO_TOPOLOGIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'EQUIPO_TOPOLOGIA'
+update TIPO_SERVICIO_EQUIPO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_SERVICIO_EQUIPO.rowid
+       and b.table_name = 'TIPO_SERVICIO_EQUIPO'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table ESTRUCTURA_BT
-print 'Updating table ESTRUCTURA_BT'
-
-update ESTRUCTURA_BT a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ESTRUCTURA_BT'
+update EQUIPO_TOPOLOGIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = EQUIPO_TOPOLOGIA.rowid
+       and b.table_name = 'EQUIPO_TOPOLOGIA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table ESTRUCTURA_MT
-print 'Updating table ESTRUCTURA_MT'
-
-update ESTRUCTURA_MT a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ESTRUCTURA_MT'
+update ESTRUCTURA_BT
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ESTRUCTURA_BT.rowid
+       and b.table_name = 'ESTRUCTURA_BT'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table ESTRUCTURA_SED
-print 'Updating table ESTRUCTURA_SED'
 
-update ESTRUCTURA_SED a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ESTRUCTURA_SED'
+update ESTRUCTURA_MT
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ESTRUCTURA_MT.rowid
+       and b.table_name = 'ESTRUCTURA_MT'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table TIPO_EFECTO_EVENTO
-print 'Updating table TIPO_EFECTO_EVENTO'
-
-update TIPO_EFECTO_EVENTO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_EFECTO_EVENTO'
+update ESTRUCTURA_SED
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ESTRUCTURA_SED.rowid
+       and b.table_name = 'ESTRUCTURA_SED'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_EVENTO_RED
-print 'Updating table TIPO_EVENTO_RED'
-
-update TIPO_EVENTO_RED a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_EVENTO_RED'
+update TIPO_EFECTO_EVENTO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_EFECTO_EVENTO.rowid
+       and b.table_name = 'TIPO_EFECTO_EVENTO'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table FUENTE_ENERGIA_RED
-print 'Updating table FUENTE_ENERGIA_RED'
-
-update FUENTE_ENERGIA_RED a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'FUENTE_ENERGIA_RED'
+update TIPO_EVENTO_RED
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_EVENTO_RED.rowid
+       and b.table_name = 'TIPO_EVENTO_RED'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table TIPO_FUENTE_ENERGIA
-print 'Updating table TIPO_FUENTE_ENERGIA'
 
-update TIPO_FUENTE_ENERGIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_FUENTE_ENERGIA'
+update FUENTE_ENERGIA_RED
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = FUENTE_ENERGIA_RED.rowid
+       and b.table_name = 'FUENTE_ENERGIA_RED'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table SISTEMA_ELECTRICO
-print 'Updating table SISTEMA_ELECTRICO'
-
-update SISTEMA_ELECTRICO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'SISTEMA_ELECTRICO'
+update TIPO_FUENTE_ENERGIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_FUENTE_ENERGIA.rowid
+       and b.table_name = 'TIPO_FUENTE_ENERGIA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_ORIGEN_INTERRUPCION
-print 'Updating table TIPO_ORIGEN_INTERRUPCION'
-
-update TIPO_ORIGEN_INTERRUPCION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_ORIGEN_INTERRUPCION'
+update SISTEMA_ELECTRICO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = SISTEMA_ELECTRICO.rowid
+       and b.table_name = 'SISTEMA_ELECTRICO'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table MARCA
-print 'Updating table MARCA'
 
-update MARCA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'MARCA'
+update TIPO_ORIGEN_INTERRUPCION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_ORIGEN_INTERRUPCION.rowid
+       and b.table_name = 'TIPO_ORIGEN_INTERRUPCION'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table MEDIDOR
-print 'Updating table MEDIDOR'
-
-update MEDIDOR a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'MEDIDOR'
+update MARCA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = MARCA.rowid
+       and b.table_name = 'MARCA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table DATUM
-print 'Updating table DATUM'
-
-update DATUM a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'DATUM'
+update MEDIDOR
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = MEDIDOR.rowid
+       and b.table_name = 'MEDIDOR'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_INSTALACION
-print 'Updating table TIPO_INSTALACION'
-
-update TIPO_INSTALACION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_INSTALACION'
+update DATUM
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = DATUM.rowid
+       and b.table_name = 'DATUM'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_NODO
-print 'Updating table TIPO_NODO'
-
-update TIPO_NODO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_NODO'
+update TIPO_INSTALACION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_INSTALACION.rowid
+       and b.table_name = 'TIPO_INSTALACION'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table ZONA_UTM
-print 'Updating table ZONA_UTM'
 
-update ZONA_UTM a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'ZONA_UTM'
+update TIPO_NODO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_NODO.rowid
+       and b.table_name = 'TIPO_NODO'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table NODO_IEC_CABECERA
-print 'Updating table NODO_IEC_CABECERA'
-
-update NODO_IEC_CABECERA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NODO_IEC_CABECERA'
+update ZONA_UTM
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = ZONA_UTM.rowid
+       and b.table_name = 'ZONA_UTM'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table NODO_IEC_EXTERNO
-print 'Updating table NODO_IEC_EXTERNO'
-
-update NODO_IEC_EXTERNO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NODO_IEC_EXTERNO'
+update NODO_IEC_CABECERA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NODO_IEC_CABECERA.rowid
+       and b.table_name = 'NODO_IEC_CABECERA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table SENTIDO_ENERGIA
-print 'Updating table SENTIDO_ENERGIA'
-
-update SENTIDO_ENERGIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'SENTIDO_ENERGIA'
+update NODO_IEC_EXTERNO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NODO_IEC_EXTERNO.rowid
+       and b.table_name = 'NODO_IEC_EXTERNO'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table TIPO_INSTALACION_INCIDENCIA
-print 'Updating table TIPO_INSTALACION_INCIDENCIA'
 
-update TIPO_INSTALACION_INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_INSTALACION_INCIDENCIA'
+update SENTIDO_ENERGIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = SENTIDO_ENERGIA.rowid
+       and b.table_name = 'SENTIDO_ENERGIA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table NODO_INCIDENCIA_CABECERA
-print 'Updating table NODO_INCIDENCIA_CABECERA'
-
-update NODO_INCIDENCIA_CABECERA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NODO_INCIDENCIA_CABECERA'
+update TIPO_INSTALACION_INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_INSTALACION_INCIDENCIA.rowid
+       and b.table_name = 'TIPO_INSTALACION_INCIDENCIA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table NODO_INCIDENCIA_EXTERNO
-print 'Updating table NODO_INCIDENCIA_EXTERNO'
-
-update NODO_INCIDENCIA_EXTERNO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NODO_INCIDENCIA_EXTERNO'
+update NODO_INCIDENCIA_CABECERA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NODO_INCIDENCIA_CABECERA.rowid
+       and b.table_name = 'NODO_INCIDENCIA_CABECERA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table NODO_SUBESTACION
-print 'Updating table NODO_SUBESTACION'
-
-update NODO_SUBESTACION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NODO_SUBESTACION'
+update NODO_INCIDENCIA_EXTERNO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NODO_INCIDENCIA_EXTERNO.rowid
+       and b.table_name = 'NODO_INCIDENCIA_EXTERNO'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table SUBESTACION_DISTRIBUCION
-print 'Updating table SUBESTACION_DISTRIBUCION'
 
-update SUBESTACION_DISTRIBUCION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'SUBESTACION_DISTRIBUCION'
+update NODO_SUBESTACION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NODO_SUBESTACION.rowid
+       and b.table_name = 'NODO_SUBESTACION'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table PERIODO_INFORMACION
-print 'Updating table PERIODO_INFORMACION'
-
-update PERIODO_INFORMACION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PERIODO_INFORMACION'
+update SUBESTACION_DISTRIBUCION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = SUBESTACION_DISTRIBUCION.rowid
+       and b.table_name = 'SUBESTACION_DISTRIBUCION'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table POSTE
-print 'Updating table POSTE'
-
-update POSTE a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'POSTE'
+update PERIODO_INFORMACION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PERIODO_INFORMACION.rowid
+       and b.table_name = 'PERIODO_INFORMACION'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table PUENTE
-print 'Updating table PUENTE'
 
-update PUENTE a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUENTE'
+update POSTE
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = POSTE.rowid
+       and b.table_name = 'POSTE'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table PUNTO_CONSUMO
-print 'Updating table PUNTO_CONSUMO'
-
-update PUNTO_CONSUMO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUNTO_CONSUMO'
+update PUENTE
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUENTE.rowid
+       and b.table_name = 'PUENTE'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table PUNTO_SUMINISTRO
-print 'Updating table PUNTO_SUMINISTRO'
-
-update PUNTO_SUMINISTRO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUNTO_SUMINISTRO'
+update PUNTO_CONSUMO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUNTO_CONSUMO.rowid
+       and b.table_name = 'PUNTO_CONSUMO'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table SUBESTACION_PRIMARIA_DISTRIBUC
-print 'Updating table SUBESTACION_PRIMARIA_DISTRIBUC'
-
-update SUBESTACION_PRIMARIA_DISTRIBUC a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'SUBESTACION_PRIMARIA_DISTRIBUC'
+update PUNTO_SUMINISTRO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUNTO_SUMINISTRO.rowid
+       and b.table_name = 'PUNTO_SUMINISTRO'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table NUMERO_FASES
-print 'Updating table NUMERO_FASES'
 
-update NUMERO_FASES a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'NUMERO_FASES'
+update SUBESTACION_PRIMARIA_DISTRIBUC
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = SUBESTACION_PRIMARIA_DISTRIBUC.rowid
+       and b.table_name = 'SUBESTACION_PRIMARIA_DISTRIBUC'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table TIPO_EMPALME
-print 'Updating table TIPO_EMPALME'
-
-update TIPO_EMPALME a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_EMPALME'
+update NUMERO_FASES
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = NUMERO_FASES.rowid
+       and b.table_name = 'NUMERO_FASES'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_RURALIDAD
-print 'Updating table TIPO_RURALIDAD'
-
-update TIPO_RURALIDAD a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_RURALIDAD'
+update TIPO_EMPALME
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_EMPALME.rowid
+       and b.table_name = 'TIPO_EMPALME'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table PUNTO_CONSUMO_TOPOLOGIA
-print 'Updating table PUNTO_CONSUMO_TOPOLOGIA'
-
-update PUNTO_CONSUMO_TOPOLOGIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUNTO_CONSUMO_TOPOLOGIA'
+update TIPO_RURALIDAD
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_RURALIDAD.rowid
+       and b.table_name = 'TIPO_RURALIDAD'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table PUNTO_SUMINISTRO_INCIDENCIA
-print 'Updating table PUNTO_SUMINISTRO_INCIDENCIA'
 
-update PUNTO_SUMINISTRO_INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUNTO_SUMINISTRO_INCIDENCIA'
+update PUNTO_CONSUMO_TOPOLOGIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUNTO_CONSUMO_TOPOLOGIA.rowid
+       and b.table_name = 'PUNTO_CONSUMO_TOPOLOGIA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table TRANSFORMADOR_TOPOLOGIA
-print 'Updating table TRANSFORMADOR_TOPOLOGIA'
-
-update TRANSFORMADOR_TOPOLOGIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TRANSFORMADOR_TOPOLOGIA'
+update PUNTO_SUMINISTRO_INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUNTO_SUMINISTRO_INCIDENCIA.rowid
+       and b.table_name = 'PUNTO_SUMINISTRO_INCIDENCIA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table PUNTO_DERIVACION
-print 'Updating table PUNTO_DERIVACION'
-
-update PUNTO_DERIVACION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUNTO_DERIVACION'
+update TRANSFORMADOR_TOPOLOGIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TRANSFORMADOR_TOPOLOGIA.rowid
+       and b.table_name = 'TRANSFORMADOR_TOPOLOGIA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table PUNTO_DERIVACION_INCIDENCIA
-print 'Updating table PUNTO_DERIVACION_INCIDENCIA'
-
-update PUNTO_DERIVACION_INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUNTO_DERIVACION_INCIDENCIA'
+update PUNTO_DERIVACION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUNTO_DERIVACION.rowid
+       and b.table_name = 'PUNTO_DERIVACION'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table PUNTO_FALLA
-print 'Updating table PUNTO_FALLA'
-
-update PUNTO_FALLA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'PUNTO_FALLA'
+update PUNTO_DERIVACION_INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUNTO_DERIVACION_INCIDENCIA.rowid
+       and b.table_name = 'PUNTO_DERIVACION_INCIDENCIA'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table TIPO_DISPOSICION
-print 'Updating table TIPO_DISPOSICION'
 
-update TIPO_DISPOSICION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_DISPOSICION'
+update PUNTO_FALLA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = PUNTO_FALLA.rowid
+       and b.table_name = 'PUNTO_FALLA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table SUBESTACION_INCIDENCIA
-print 'Updating table SUBESTACION_INCIDENCIA'
-
-update SUBESTACION_INCIDENCIA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'SUBESTACION_INCIDENCIA'
+update TIPO_DISPOSICION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_DISPOSICION.rowid
+       and b.table_name = 'TIPO_DISPOSICION'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIRANTE
-print 'Updating table TIRANTE'
-
-update TIRANTE a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIRANTE'
+update SUBESTACION_INCIDENCIA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = SUBESTACION_INCIDENCIA.rowid
+       and b.table_name = 'SUBESTACION_INCIDENCIA'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table TOMA_TIERRA
-print 'Updating table TOMA_TIERRA'
 
-update TOMA_TIERRA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TOMA_TIERRA'
+update TIRANTE
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIRANTE.rowid
+       and b.table_name = 'TIRANTE'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table TIPO_TOMA_TIERRA
-print 'Updating table TIPO_TOMA_TIERRA'
-
-update TIPO_TOMA_TIERRA a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_TOMA_TIERRA'
+update TOMA_TIERRA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TOMA_TIERRA.rowid
+       and b.table_name = 'TOMA_TIERRA'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table TRAMO_BT
-print 'Updating table TRAMO_BT'
-
-update TRAMO_BT a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TRAMO_BT'
+update TIPO_TOMA_TIERRA
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_TOMA_TIERRA.rowid
+       and b.table_name = 'TIPO_TOMA_TIERRA'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TIPO_DISPOSICION_TRAMO
-print 'Updating table TIPO_DISPOSICION_TRAMO'
-
-update TIPO_DISPOSICION_TRAMO a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TIPO_DISPOSICION_TRAMO'
+update TRAMO_BT
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TRAMO_BT.rowid
+       and b.table_name = 'TRAMO_BT'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table TRAMO_MT
-print 'Updating table TRAMO_MT'
 
-update TRAMO_MT a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TRAMO_MT'
+update TIPO_DISPOSICION_TRAMO
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TIPO_DISPOSICION_TRAMO.rowid
+       and b.table_name = 'TIPO_DISPOSICION_TRAMO'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table TRANSFORMADOR
-print 'Updating table TRANSFORMADOR'
-
-update TRANSFORMADOR a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TRANSFORMADOR'
+update TRAMO_MT
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TRAMO_MT.rowid
+       and b.table_name = 'TRAMO_MT'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table TRANSFORMADOR_INTERRUPCION
-print 'Updating table TRANSFORMADOR_INTERRUPCION'
-
-update TRANSFORMADOR_INTERRUPCION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'TRANSFORMADOR_INTERRUPCION'
+update TRANSFORMADOR
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TRANSFORMADOR.rowid
+       and b.table_name = 'TRANSFORMADOR'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table VERTICE_CANALIZACION
-print 'Updating table VERTICE_CANALIZACION'
-
-update VERTICE_CANALIZACION a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'VERTICE_CANALIZACION'
+update TRANSFORMADOR_INTERRUPCION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = TRANSFORMADOR_INTERRUPCION.rowid
+       and b.table_name = 'TRANSFORMADOR_INTERRUPCION'
 );
-
-commit;
-
--------------------------------------------------------------------
 
--- Updating table VERTICE_EMPALME
-print 'Updating table VERTICE_EMPALME'
 
-update VERTICE_EMPALME a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'VERTICE_EMPALME'
+update VERTICE_CANALIZACION
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = VERTICE_CANALIZACION.rowid
+       and b.table_name = 'VERTICE_CANALIZACION'
 );
 
-commit;
 
--------------------------------------------------------------------
-
--- Updating table VERTICE_TRAMO_BT
-print 'Updating table VERTICE_TRAMO_BT'
-
-update VERTICE_TRAMO_BT a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'VERTICE_TRAMO_BT'
+update VERTICE_EMPALME
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = VERTICE_EMPALME.rowid
+       and b.table_name = 'VERTICE_EMPALME'
 );
-
-commit;
 
--------------------------------------------------------------------
 
--- Updating table VERTICE_TRAMO_MT
-print 'Updating table VERTICE_TRAMO_MT'
-
-update VERTICE_TRAMO_MT a
-set    a.tiene_errores = 1
-where exists
-(
-   select 1
-   from   errores b
-   where  b.d_rowid = rowid(a)
-      and b.table_name = 'VERTICE_TRAMO_MT'
+update VERTICE_TRAMO_BT
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = VERTICE_TRAMO_BT.rowid
+       and b.table_name = 'VERTICE_TRAMO_BT'
 );
 
-commit;
 
--------------------------------------------------------------------
-
+update VERTICE_TRAMO_MT
+ set  tiene_errores = 1
+ where exists
+ (
+    select 1
+    from   errores b
+    where  b.d_rowid = VERTICE_TRAMO_MT.rowid
+       and b.table_name = 'VERTICE_TRAMO_MT'
+);

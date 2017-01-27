@@ -3190,7 +3190,8 @@ create table VERTICE_TRAMO_MT
 
 create table ZONA_UTM
 (
-   ZONA_UTM             numeric(2)                     not null      check ("ZONA_UTM" IS NOT NULL)
+   ZONA_UTM             numeric(2)                     not null      check ("ZONA_UTM" IS NOT NULL),
+   tiene_errores        tinyint                        not null default 0
 
 );
 
