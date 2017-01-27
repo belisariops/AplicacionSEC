@@ -52,7 +52,7 @@ public class Controller {
 
             @Override
             public void changed(ObservableValue<? extends Number> arg0,
-                                 Number oldValue, Number newValue) {
+                Number oldValue, Number newValue) {
                 Bounds boundsInScene = formulario.localToScene(formulario.getBoundsInLocal());
                 int xPane = (int) boundsInScene.getMinX();
                 int yPane = (int) boundsInScene.getMinY();
@@ -78,7 +78,7 @@ public class Controller {
 
             @Override
             public void changed(ObservableValue<? extends Number> arg0,
-                                Number oldValue, Number newValue) {
+                Number oldValue, Number newValue) {
 
                 Bounds boundsInScene = formulario.localToScene(formulario.getBoundsInLocal());
                 int yPane = (int) boundsInScene.getMinY();

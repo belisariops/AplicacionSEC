@@ -1,3273 +1,1913 @@
-
--- Foreign key n°1
-print 'Foreign key n°1'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CAUSA', 'FK_CAUSA_CALIFICA', 'F'
-from CAUSA a
-where not exists
-   (select 1
-   from CALIFICACION_INTERRUPCION b
-   where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°2
-print 'Foreign key n°2'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EMPRESA', 'FK_EMPRESA_ASSOCIATI_GRUPO_EC', 'F'
-from EMPRESA a
-where not exists
-   (select 1
-   from GRUPO_ECONOMICO b
-   where a.GRUPO_ECONOMICO_ID = b.GRUPO_ECONOMICO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°3
-print 'Foreign key n°3'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR', 'FK_EMPRESA_ALIMENTADO1', 'F'
-from ALIMENTADOR a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°4
-print 'Foreign key n°4'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR', 'FK_ALIMENTA_EMPRES1', 'F'
-from ALIMENTADOR a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°5
-print 'Foreign key n°5'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CANALIZACION', 'FK_CANALIZA_COMUNA', 'F'
-from CANALIZACION a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°6
-print 'Foreign key n°6'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CANALIZACION', 'FK_CANALIZA_EMPRESA', 'F'
-from CANALIZACION a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°7
-print 'Foreign key n°7'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CANALIZACION', 'FK_CANALIZA_TIPO_PRO', 'F'
-from CANALIZACION a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°8
-print 'Foreign key n°8'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CANALIZACION', 'FK_CANALIZA_TIPO_TEN', 'F'
-from CANALIZACION a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°9
-print 'Foreign key n°9'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EMPALME', 'FK_EMPALME_COMUNA', 'F'
-from EMPALME a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°10
-print 'Foreign key n°10'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EMPALME', 'FK_EMPALME_EMPRESA', 'F'
-from EMPALME a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°11
-print 'Foreign key n°11'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EMPALME', 'FK_EMPALME_TIPO_PRO', 'F'
-from EMPALME a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°12
-print 'Foreign key n°12'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INCIDENCIA', 'FK_INCIDENC_EMPRESA', 'F'
-from INCIDENCIA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°13
-print 'Foreign key n°13'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PERIODO_INFORMACION', 'FK_PERIODO__EMPRESA', 'F'
-from PERIODO_INFORMACION a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°14
-print 'Foreign key n°14'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_DERIVACION', 'FK_PUNTO_DE_EMPRESA', 'F'
-from PUNTO_DERIVACION a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°15
-print 'Foreign key n°15'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_SUMINISTRO', 'FK_PUNTO_SU_EMPRESA', 'F'
-from PUNTO_SUMINISTRO a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°16
-print 'Foreign key n°16'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'SISTEMA_ELECTRICO', 'FK_SISTEMA__EMPRESA', 'F'
-from SISTEMA_ELECTRICO a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°17
-print 'Foreign key n°17'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'SUBESTACION_DISTRIBUCION', 'FK_SUBESTAC_EMPRES1', 'F'
-from SUBESTACION_DISTRIBUCION a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°18
-print 'Foreign key n°18'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'SUBESTACION_DISTRIBUCION', 'FK_SUBESTAC_TIPO_DIS', 'F'
-from SUBESTACION_DISTRIBUCION a
-where not exists
-   (select 1
-   from TIPO_DISPOSICION b
-   where a.TIPO_DISPOSICION_ID = b.TIPO_DISPOSICION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°19
-print 'Foreign key n°19'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_BT', 'FK_TRAMO_BT_COMUNA', 'F'
-from TRAMO_BT a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°20
-print 'Foreign key n°20'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_BT', 'FK_TRAMO_BT_EMPRESA', 'F'
-from TRAMO_BT a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°21
-print 'Foreign key n°21'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_BT', 'FK_TRAMO_BT_RELATIONS_NUMERO_F', 'F'
-from TRAMO_BT a
-where not exists
-   (select 1
-   from NUMERO_FASES b
-   where a.NUMERO_FASES = b.NUMERO_FASES
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°22
-print 'Foreign key n°22'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_BT', 'FK_TRAMO_BT_TIPO_DIS', 'F'
-from TRAMO_BT a
-where not exists
-   (select 1
-   from TIPO_DISPOSICION_TRAMO b
-   where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°23
-print 'Foreign key n°23'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_BT', 'FK_TRAMO_BT_TIPO_PRO', 'F'
-from TRAMO_BT a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°24
-print 'Foreign key n°24'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_MT', 'FK_TRAMO_MT_COMUNA', 'F'
-from TRAMO_MT a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°25
-print 'Foreign key n°25'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_MT', 'FK_TRAMO_MT_EMPRESA', 'F'
-from TRAMO_MT a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°26
-print 'Foreign key n°26'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_MT', 'FK_TRAMO_MT_RELATIONS_NUMERO_F', 'F'
-from TRAMO_MT a
-where not exists
-   (select 1
-   from NUMERO_FASES b
-   where a.NUMERO_FASES = b.NUMERO_FASES
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°27
-print 'Foreign key n°27'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_MT', 'FK_TRAMO_MT_TIPO_DIS', 'F'
-from TRAMO_MT a
-where not exists
-   (select 1
-   from TIPO_DISPOSICION_TRAMO b
-   where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°28
-print 'Foreign key n°28'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRAMO_MT', 'FK_TRAMO_MT_TIPO_PRO', 'F'
-from TRAMO_MT a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°29
-print 'Foreign key n°29'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR_INCIDENCIA', 'FK_ALIMENTA_INCIDENC', 'F'
-from ALIMENTADOR_INCIDENCIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°30
-print 'Foreign key n°30'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR_INCIDENCIA', 'FK_ALIMENTA_EMPRESA', 'F'
-from ALIMENTADOR_INCIDENCIA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°31
-print 'Foreign key n°31'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC', 'FK_NODO_IEC_ALIMENTA', 'F'
-from NODO_IEC a
-where not exists
-   (select 1
-   from ALIMENTADOR b
-   where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°32
-print 'Foreign key n°32'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC', 'FK_NODO_IEC_DATUM', 'F'
-from NODO_IEC a
-where not exists
-   (select 1
-   from DATUM b
-   where a.DATUM_ID = b.DATUM_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°33
-print 'Foreign key n°33'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC', 'FK_NODO_IEC_EMPRES1', 'F'
-from NODO_IEC a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°34
-print 'Foreign key n°34'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC', 'FK_NODO_IEC_TIPO_INS', 'F'
-from NODO_IEC a
-where not exists
-   (select 1
-   from TIPO_INSTALACION b
-   where a.TIPO_INSTALACION_ID = b.TIPO_INSTALACION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°35
-print 'Foreign key n°35'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC', 'FK_NODO_IEC_TIPO_NOD', 'F'
-from NODO_IEC a
-where not exists
-   (select 1
-   from TIPO_NODO b
-   where a.TIPO_NODO_ID = b.TIPO_NODO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°36
-print 'Foreign key n°36'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC', 'FK_NODO_IEC_REFERENCE_ZONA_UTM', 'F'
-from NODO_IEC a
-where not exists
-   (select 1
-   from ZONA_UTM b
-   where a.ZONA_UTM = b.ZONA_UTM
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°37
-print 'Foreign key n°37'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_SUMINISTRO_INCIDENCIA', 'FK_PUNTO_SU_INCIDENC', 'F'
-from PUNTO_SUMINISTRO_INCIDENCIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°38
-print 'Foreign key n°38'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'SUBESTACION_INCIDENCIA', 'FK_SUBESTAC_INCIDENC', 'F'
-from SUBESTACION_INCIDENCIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°39
-print 'Foreign key n°39'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BAJADA', 'FK_BAJADA_COMUNA', 'F'
-from BAJADA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°40
-print 'Foreign key n°40'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BAJADA', 'FK_BAJADA_NODO_IEC', 'F'
-from BAJADA a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°41
-print 'Foreign key n°41'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BAJADA', 'FK_BAJADA_EMPRESA', 'F'
-from BAJADA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°42
-print 'Foreign key n°42'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BAJADA', 'FK_BAJADA_TIPO_PRO', 'F'
-from BAJADA a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°43
-print 'Foreign key n°43'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BOVEDA', 'FK_BOVEDA_COMUNA', 'F'
-from BOVEDA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°44
-print 'Foreign key n°44'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BOVEDA', 'FK_BOVEDA_EMPRESA', 'F'
-from BOVEDA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°45
-print 'Foreign key n°45'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BOVEDA', 'FK_BOVEDA_NODO_IEC', 'F'
-from BOVEDA a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°46
-print 'Foreign key n°46'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BOVEDA', 'FK_BOVEDA_TIPO_PRO', 'F'
-from BOVEDA a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°47
-print 'Foreign key n°47'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CAMARA', 'FK_CAMARA_COMUNA', 'F'
-from CAMARA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°48
-print 'Foreign key n°48'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CAMARA', 'FK_CAMARA_EMPRESA', 'F'
-from CAMARA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°49
-print 'Foreign key n°49'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CAMARA', 'FK_CAMARA_NODO_IEC', 'F'
-from CAMARA a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°50
-print 'Foreign key n°50'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CAMARA', 'FK_CAMARA_TIPO_PRO', 'F'
-from CAMARA a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°51
-print 'Foreign key n°51'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CAMARA', 'FK_CAMARA_TIPO_TEN', 'F'
-from CAMARA a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°52
-print 'Foreign key n°52'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CONEXION_NODO_IEC', 'FK_NODO_IEC_CONEXION_NOD1', 'F'
-from CONEXION_NODO_IEC a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID_2 = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°53
-print 'Foreign key n°53'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CONEXION_NODO_IEC', 'FK_NODO_IEC_CONEXION_NOD2', 'F'
-from CONEXION_NODO_IEC a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID_1 = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°54
-print 'Foreign key n°54'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CONEXION_NODO_IEC', 'FK_CONEXION_TIPO_CON', 'F'
-from CONEXION_NODO_IEC a
-where not exists
-   (select 1
-   from TIPO_CONEXION_NODO b
-   where a.TIPO_CONEXION_NODO_ID = b.TIPO_CONEXION_NODO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°55
-print 'Foreign key n°55'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ENMALLE', 'FK_ENMALLE_COMUNA', 'F'
-from ENMALLE a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°56
-print 'Foreign key n°56'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ENMALLE', 'FK_ENMALLE_EMPRESA', 'F'
-from ENMALLE a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°57
-print 'Foreign key n°57'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ENMALLE', 'FK_ENMALLE_NODO_IEC', 'F'
-from ENMALLE a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°58
-print 'Foreign key n°58'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ENMALLE', 'FK_ENMALLE_TIPO_PRO', 'F'
-from ENMALLE a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°59
-print 'Foreign key n°59'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ENMALLE', 'FK_ENMALLE_TIPO_TEN', 'F'
-from ENMALLE a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°60
-print 'Foreign key n°60'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO', 'FK_EQUIPO_COMUNA', 'F'
-from EQUIPO a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°61
-print 'Foreign key n°61'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO', 'FK_EQUIPO_NODO_IEC', 'F'
-from EQUIPO a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°62
-print 'Foreign key n°62'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO', 'FK_EQUIPO_EMPRESA', 'F'
-from EQUIPO a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°63
-print 'Foreign key n°63'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO', 'FK_EQUIPO_TIPO_EQU', 'F'
-from EQUIPO a
-where not exists
-   (select 1
-   from TIPO_EQUIPO b
-   where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°64
-print 'Foreign key n°64'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO', 'FK_EQUIPO_TIPO_PRO', 'F'
-from EQUIPO a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°65
-print 'Foreign key n°65'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO', 'FK_EQUIPO_TIPO_SER', 'F'
-from EQUIPO a
-where not exists
-   (select 1
-   from TIPO_SERVICIO_EQUIPO b
-   where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°66
-print 'Foreign key n°66'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO', 'FK_EQUIPO_TIPO_TEN', 'F'
-from EQUIPO a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°67
-print 'Foreign key n°67'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_BT', 'FK_ESTRUCTU_COMUN2', 'F'
-from ESTRUCTURA_BT a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°68
-print 'Foreign key n°68'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_BT', 'FK_ESTRUCTU_NODO_IE3', 'F'
-from ESTRUCTURA_BT a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°69
-print 'Foreign key n°69'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_BT', 'FK_ESTRUCTU_EMPRES1', 'F'
-from ESTRUCTURA_BT a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°70
-print 'Foreign key n°70'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_BT', 'FK_ESTRUCTU_TIPO_PR2', 'F'
-from ESTRUCTURA_BT a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°71
-print 'Foreign key n°71'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_MT', 'FK_ESTRUCTU_COMUN1', 'F'
-from ESTRUCTURA_MT a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°72
-print 'Foreign key n°72'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_MT', 'FK_ESTRUCTU_EMPRES3', 'F'
-from ESTRUCTURA_MT a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°73
-print 'Foreign key n°73'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_MT', 'FK_ESTRUCTU_NODO_IE1', 'F'
-from ESTRUCTURA_MT a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°74
-print 'Foreign key n°74'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_MT', 'FK_ESTRUCTU_TIPO_PR1', 'F'
-from ESTRUCTURA_MT a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°75
-print 'Foreign key n°75'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_SED', 'FK_ESTRUCTU_COMUNA', 'F'
-from ESTRUCTURA_SED a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°76
-print 'Foreign key n°76'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_SED', 'FK_ESTRUCTU_NODO_IE2', 'F'
-from ESTRUCTURA_SED a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°77
-print 'Foreign key n°77'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_SED', 'FK_ESTRUCTU_EMPRES2', 'F'
-from ESTRUCTURA_SED a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°78
-print 'Foreign key n°78'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ESTRUCTURA_SED', 'FK_ESTRUCTU_TIPO_PR3', 'F'
-from ESTRUCTURA_SED a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°79
-print 'Foreign key n°79'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'MARCA', 'FK_MARCA_NODO_IEC', 'F'
-from MARCA a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°80
-print 'Foreign key n°80'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'MARCA', 'FK_MARCA_EMPRESA', 'F'
-from MARCA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°81
-print 'Foreign key n°81'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'MEDIDOR', 'FK_MEDIDOR_COMUNA', 'F'
-from MEDIDOR a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°82
-print 'Foreign key n°82'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'MEDIDOR', 'FK_MEDIDOR_NODO_IEC', 'F'
-from MEDIDOR a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°83
-print 'Foreign key n°83'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'MEDIDOR', 'FK_MEDIDOR_EMPRESA', 'F'
-from MEDIDOR a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°84
-print 'Foreign key n°84'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'MEDIDOR', 'FK_MEDIDOR_TIPO_PRO', 'F'
-from MEDIDOR a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°85
-print 'Foreign key n°85'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC_CABECERA', 'FK_NODO_IEC_NODO_IE1', 'F'
-from NODO_IEC_CABECERA a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°86
-print 'Foreign key n°86'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_EMPRESA', 'F'
-from NODO_IEC_EXTERNO a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°87
-print 'Foreign key n°87'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_NODO_IEC', 'F'
-from NODO_IEC_EXTERNO a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°88
-print 'Foreign key n°88'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_SENTIDO_', 'F'
-from NODO_IEC_EXTERNO a
-where not exists
-   (select 1
-   from SENTIDO_ENERGIA b
-   where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°89
-print 'Foreign key n°89'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA', 'FK_NODO_INC_ALIMENTA', 'F'
-from NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from ALIMENTADOR_INCIDENCIA b
-   where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°90
-print 'Foreign key n°90'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA', 'FK_NODO_INC_DATUM', 'F'
-from NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from DATUM b
-   where a.DATUM_ID = b.DATUM_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°91
-print 'Foreign key n°91'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA', 'FK_NODO_INC_INCIDENC', 'F'
-from NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°92
-print 'Foreign key n°92'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA', 'FK_NODO_INC_EMPRESA', 'F'
-from NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°93
-print 'Foreign key n°93'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA', 'FK_NODO_INC_TIPO_INS', 'F'
-from NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from TIPO_INSTALACION_INCIDENCIA b
-   where a.TIPO_INSTALACION_INCIDENCIA_ID = b.TIPO_INSTALACION_INCIDENCIA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°94
-print 'Foreign key n°94'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA', 'FK_NODO_INC_TIPO_NOD', 'F'
-from NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from TIPO_NODO b
-   where a.TIPO_NODO_ID = b.TIPO_NODO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°95
-print 'Foreign key n°95'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA', 'FK_NODO_INC_REFERENCE_ZONA_UTM', 'F'
-from NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from ZONA_UTM b
-   where a.ZONA_UTM = b.ZONA_UTM
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°96
-print 'Foreign key n°96'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_SUBESTACION', 'FK_NODO_SUB_NODO_IEC', 'F'
-from NODO_SUBESTACION a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°97
-print 'Foreign key n°97'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_SUBESTACION', 'FK_NODO_SUB_SUBESTAC', 'F'
-from NODO_SUBESTACION a
-where not exists
-   (select 1
-   from SUBESTACION_DISTRIBUCION b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.SUBESTACION_DISTRIBUCION_ID = b.SUBESTACION_DISTRIBUCION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°98
-print 'Foreign key n°98'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'POSTE', 'FK_POSTE_COMUNA', 'F'
-from POSTE a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°99
-print 'Foreign key n°99'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'POSTE', 'FK_POSTE_EMPRESA', 'F'
-from POSTE a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°100
-print 'Foreign key n°100'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'POSTE', 'FK_POSTE_NODO_IEC', 'F'
-from POSTE a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°101
-print 'Foreign key n°101'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'POSTE', 'FK_POSTE_TIPO_PRO', 'F'
-from POSTE a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°102
-print 'Foreign key n°102'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'POSTE', 'FK_POSTE_TIPO_TEN', 'F'
-from POSTE a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°103
-print 'Foreign key n°103'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'SUBESTACION_PRIMARIA_DISTRIBUC', 'FK_NODO_IEC', 'F'
-from SUBESTACION_PRIMARIA_DISTRIBUC a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°104
-print 'Foreign key n°104'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'SUBESTACION_PRIMARIA_DISTRIBUC', 'FK_SUBESTAC_EMPRES2', 'F'
-from SUBESTACION_PRIMARIA_DISTRIBUC a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°105
-print 'Foreign key n°105'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TIRANTE', 'FK_TIRANTE_COMUNA', 'F'
-from TIRANTE a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°106
-print 'Foreign key n°106'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TIRANTE', 'FK_TIRANTE_EMPRESA', 'F'
-from TIRANTE a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°107
-print 'Foreign key n°107'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TIRANTE', 'FK_TIRANTE_NODO_IEC', 'F'
-from TIRANTE a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°108
-print 'Foreign key n°108'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TIRANTE', 'FK_TIRANTE_TIPO_PRO', 'F'
-from TIRANTE a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°109
-print 'Foreign key n°109'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TOMA_TIERRA', 'FK_TOMA_TIE_COMUNA', 'F'
-from TOMA_TIERRA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°110
-print 'Foreign key n°110'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TOMA_TIERRA', 'FK_TOMA_TIE_EMPRESA', 'F'
-from TOMA_TIERRA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°111
-print 'Foreign key n°111'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TOMA_TIERRA', 'FK_TOMA_TIE_NODO_IEC', 'F'
-from TOMA_TIERRA a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°112
-print 'Foreign key n°112'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_PRO', 'F'
-from TOMA_TIERRA a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°113
-print 'Foreign key n°113'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_TEN', 'F'
-from TOMA_TIERRA a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°114
-print 'Foreign key n°114'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_TOM', 'F'
-from TOMA_TIERRA a
-where not exists
-   (select 1
-   from TIPO_TOMA_TIERRA b
-   where a.TIPO_TOMA_TIERRA_ID = b.TIPO_TOMA_TIERRA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°115
-print 'Foreign key n°115'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR', 'FK_TRANSFOR_COMUNA', 'F'
-from TRANSFORMADOR a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°116
-print 'Foreign key n°116'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR', 'FK_TRANSFOR_NODO_IEC', 'F'
-from TRANSFORMADOR a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°117
-print 'Foreign key n°117'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR', 'FK_TRANSFOR_EMPRESA', 'F'
-from TRANSFORMADOR a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°118
-print 'Foreign key n°118'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR', 'FK_TRANSFOR_TIPO_PRO', 'F'
-from TRANSFORMADOR a
-where not exists
-   (select 1
-   from TIPO_PROPIEDAD b
-   where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°119
-print 'Foreign key n°119'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR', 'FK_TRANSFOR_TIPO_RUR', 'F'
-from TRANSFORMADOR a
-where not exists
-   (select 1
-   from TIPO_RURALIDAD b
-   where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°120
-print 'Foreign key n°120'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_CANALIZACION', 'FK_VERTICE__CANALIZA', 'F'
-from VERTICE_CANALIZACION a
-where not exists
-   (select 1
-   from CANALIZACION b
-   where a.CANALIZACION_ID = b.CANALIZACION_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°121
-print 'Foreign key n°121'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_CANALIZACION', 'FK_VERTICE__NODO_IE2', 'F'
-from VERTICE_CANALIZACION a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°122
-print 'Foreign key n°122'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_EMPALME', 'FK_VERTICE__EMPALME', 'F'
-from VERTICE_EMPALME a
-where not exists
-   (select 1
-   from EMPALME b
-   where a.EMPALME_ID = b.EMPALME_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°123
-print 'Foreign key n°123'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_EMPALME', 'FK_VERTICE__NODO_IE3', 'F'
-from VERTICE_EMPALME a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°124
-print 'Foreign key n°124'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_TRAMO_BT', 'FK_NODO_IEC_VERTICE_TRAM2', 'F'
-from VERTICE_TRAMO_BT a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°125
-print 'Foreign key n°125'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_TRAMO_BT', 'FK_TRAMO_BT_VERTICE_TRAM1', 'F'
-from VERTICE_TRAMO_BT a
-where not exists
-   (select 1
-   from TRAMO_BT b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.TRAMO_BT_ID = b.TRAMO_BT_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°126
-print 'Foreign key n°126'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_TRAMO_MT', 'FK_VERTICE__TRAMO_MT', 'F'
-from VERTICE_TRAMO_MT a
-where not exists
-   (select 1
-   from TRAMO_MT b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.TRAMO_MT_ID = b.TRAMO_MT_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°127
-print 'Foreign key n°127'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'VERTICE_TRAMO_MT', 'FK_VERTICE__NODO_IE1', 'F'
-from VERTICE_TRAMO_MT a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°128
-print 'Foreign key n°128'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CONEXION_NODO_INCIDENCIA', 'FK_NODO_INCIDENC_CONEXION_NOD2', 'F'
-from CONEXION_NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID_1 = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°129
-print 'Foreign key n°129'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CONEXION_NODO_INCIDENCIA', 'FK_NODO_INCIDENC_CONEXION_NOD1', 'F'
-from CONEXION_NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID_2 = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°130
-print 'Foreign key n°130'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'CONEXION_NODO_INCIDENCIA', 'FK_CONEXION_EMPRESA', 'F'
-from CONEXION_NODO_INCIDENCIA a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°131
-print 'Foreign key n°131'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_COMUNA', 'F'
-from EQUIPO_TOPOLOGIA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°132
-print 'Foreign key n°132'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_NODO_INC', 'F'
-from EQUIPO_TOPOLOGIA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°133
-print 'Foreign key n°133'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_INCIDENC', 'F'
-from EQUIPO_TOPOLOGIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°134
-print 'Foreign key n°134'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_EQU', 'F'
-from EQUIPO_TOPOLOGIA a
-where not exists
-   (select 1
-   from TIPO_EQUIPO b
-   where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°135
-print 'Foreign key n°135'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_SER', 'F'
-from EQUIPO_TOPOLOGIA a
-where not exists
-   (select 1
-   from TIPO_SERVICIO_EQUIPO b
-   where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°136
-print 'Foreign key n°136'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_TEN', 'F'
-from EQUIPO_TOPOLOGIA a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°137
-print 'Foreign key n°137'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EVENTO_RED', 'FK_EVENTO_R_INCIDENC', 'F'
-from EVENTO_RED a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°138
-print 'Foreign key n°138'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EVENTO_RED', 'FK_EVENTO_R_NODO_INC', 'F'
-from EVENTO_RED a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°139
-print 'Foreign key n°139'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EVENTO_RED', 'FK_EVENTO_R_TIPO_EFE', 'F'
-from EVENTO_RED a
-where not exists
-   (select 1
-   from TIPO_EFECTO_EVENTO b
-   where a.TIPO_EFECTO_EVENTO_ID = b.TIPO_EFECTO_EVENTO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°140
-print 'Foreign key n°140'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'EVENTO_RED', 'FK_EVENTO_R_TIPO_EVE', 'F'
-from EVENTO_RED a
-where not exists
-   (select 1
-   from TIPO_EVENTO_RED b
-   where a.TIPO_EVENTO_ID = b.TIPO_EVENTO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°141
-print 'Foreign key n°141'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_NODO_INC', 'F'
-from FUENTE_ENERGIA_RED a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°142
-print 'Foreign key n°142'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_INCIDENC', 'F'
-from FUENTE_ENERGIA_RED a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°143
-print 'Foreign key n°143'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_TIPO_FUE', 'F'
-from FUENTE_ENERGIA_RED a
-where not exists
-   (select 1
-   from TIPO_FUENTE_ENERGIA b
-   where a.TIPO_FUENTE_ENERGIA_ID = b.TIPO_FUENTE_ENERGIA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°144
-print 'Foreign key n°144'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA_CABECERA', 'FK_NODO_INC_NODO_INC', 'F'
-from NODO_INCIDENCIA_CABECERA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°145
-print 'Foreign key n°145'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA_EXTERNO', 'FK_EMPRESA_NODO_INCIDEN1', 'F'
-from NODO_INCIDENCIA_EXTERNO a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°146
-print 'Foreign key n°146'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA_EXTERNO', 'FK_NODO_INCIDENC_NODO_INCIDEN2', 'F'
-from NODO_INCIDENCIA_EXTERNO a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°147
-print 'Foreign key n°147'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'NODO_INCIDENCIA_EXTERNO', 'FK_SENTIDO_ENERG_NODO_INCIDEN1', 'F'
-from NODO_INCIDENCIA_EXTERNO a
-where not exists
-   (select 1
-   from SENTIDO_ENERGIA b
-   where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°148
-print 'Foreign key n°148'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUENTE', 'FK_PUENTE_COMUNA', 'F'
-from PUENTE a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°149
-print 'Foreign key n°149'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUENTE', 'FK_PUENTE_NODO_INC', 'F'
-from PUENTE a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°150
-print 'Foreign key n°150'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUENTE', 'FK_PUENTE_INCIDENC', 'F'
-from PUENTE a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°151
-print 'Foreign key n°151'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO', 'FK_PUNTO_CO_COMUNA', 'F'
-from PUNTO_CONSUMO a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°152
-print 'Foreign key n°152'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO', 'FK_PUNTO_CO_PUNTO_SU', 'F'
-from PUNTO_CONSUMO a
-where not exists
-   (select 1
-   from PUNTO_SUMINISTRO b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°153
-print 'Foreign key n°153'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO', 'FK_PUNTO_CO_SUBESTAC', 'F'
-from PUNTO_CONSUMO a
-where not exists
-   (select 1
-   from SUBESTACION_PRIMARIA_DISTRIBUC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.SUBESTACION_PRIMARIA_ID = b.SUBESTACION_PRIMARIA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°154
-print 'Foreign key n°154'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO', 'FK_PUNTO_CO_NODO_IEC', 'F'
-from PUNTO_CONSUMO a
-where not exists
-   (select 1
-   from NODO_IEC b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.NODO_IEC_ID = b.NODO_IEC_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°155
-print 'Foreign key n°155'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO', 'FK_PUNTO_CO_RELATIONS_NUM_F', 'F'
-from PUNTO_CONSUMO a
-where not exists
-   (select 1
-   from NUMERO_FASES b
-   where a.NUMERO_FASES = b.NUMERO_FASES
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°156
-print 'Foreign key n°156'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO', 'FK_PUNTO_CO_TIPO_EMP', 'F'
-from PUNTO_CONSUMO a
-where not exists
-   (select 1
-   from TIPO_EMPALME b
-   where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°157
-print 'Foreign key n°157'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO', 'FK_PUNTO_CO_TIPO_RUR', 'F'
-from PUNTO_CONSUMO a
-where not exists
-   (select 1
-   from TIPO_RURALIDAD b
-   where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°158
-print 'Foreign key n°158'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_DERIVACION_INCIDENCIA', 'FK_PUNTO_DE_NODO_INC', 'F'
-from PUNTO_DERIVACION_INCIDENCIA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°159
-print 'Foreign key n°159'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_DERIVACION_INCIDENCIA', 'FK_PUNTO_DE_INCIDENC', 'F'
-from PUNTO_DERIVACION_INCIDENCIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°160
-print 'Foreign key n°160'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_FALLA', 'FK_PUNTO_FA_COMUNA', 'F'
-from PUNTO_FALLA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°161
-print 'Foreign key n°161'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_FALLA', 'FK_PUNTO_FA_INCIDENC', 'F'
-from PUNTO_FALLA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°162
-print 'Foreign key n°162'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_FALLA', 'FK_PUNTO_FA_NODO_INC', 'F'
-from PUNTO_FALLA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°163
-print 'Foreign key n°163'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR_TOPOLOGIA', 'FK_COMUNA_TRANSFORMADO1', 'F'
-from TRANSFORMADOR_TOPOLOGIA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°164
-print 'Foreign key n°164'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_NODO_INC', 'F'
-from TRANSFORMADOR_TOPOLOGIA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°165
-print 'Foreign key n°165'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_INCIDENC', 'F'
-from TRANSFORMADOR_TOPOLOGIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°166
-print 'Foreign key n°166'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_SUBESTAC', 'F'
-from TRANSFORMADOR_TOPOLOGIA a
-where not exists
-   (select 1
-   from SUBESTACION_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.SUBESTACION_INCIDENCIA_ID = b.SUBESTACION_INCIDENCIA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°167
-print 'Foreign key n°167'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR_TOPOLOGIA', 'FK_TIPO_RURALIDA_TRANSFORMADO1', 'F'
-from TRANSFORMADOR_TOPOLOGIA a
-where not exists
-   (select 1
-   from TIPO_RURALIDAD b
-   where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°168
-print 'Foreign key n°168'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'DESCRIPCION_EVENTO', 'FK_DESCRIPC_EVENTO_R', 'F'
-from DESCRIPCION_EVENTO a
-where not exists
-   (select 1
-   from EVENTO_RED b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.EVENTORED_ID = b.EVENTORED_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°169
-print 'Foreign key n°169'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INTERRUPCION', 'FK_INTERRUP_CALIFICA', 'F'
-from INTERRUPCION a
-where not exists
-   (select 1
-   from CALIFICACION_INTERRUPCION b
-   where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°170
-print 'Foreign key n°170'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INTERRUPCION', 'FK_INTERRUP_CAUSA', 'F'
-from INTERRUPCION a
-where not exists
-   (select 1
-   from CAUSA b
-   where a.CAUSA_ID = b.CAUSA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°171
-print 'Foreign key n°171'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INTERRUPCION', 'FK_INTERRUP_EVENTO_R', 'F'
-from INTERRUPCION a
-where not exists
-   (select 1
-   from EVENTO_RED b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.EVENTORED_ID = b.EVENTORED_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°172
-print 'Foreign key n°172'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INTERRUPCION', 'FK_INTERRUP_EMPRESA', 'F'
-from INTERRUPCION a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°173
-print 'Foreign key n°173'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INTERRUPCION', 'FK_EMPRESA_INTERRUPCIO1', 'F'
-from INTERRUPCION a
-where not exists
-   (select 1
-   from EMPRESA b
-   where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°174
-print 'Foreign key n°174'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INTERRUPCION', 'FK_INTERRUP_SISTEMA_', 'F'
-from INTERRUPCION a
-where not exists
-   (select 1
-   from SISTEMA_ELECTRICO b
-   where a.SISTEMA_ELECTRICO_ID = b.SISTEMA_ELECTRICO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°175
-print 'Foreign key n°175'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'INTERRUPCION', 'FK_INTERRUP_TIPO_ORI', 'F'
-from INTERRUPCION a
-where not exists
-   (select 1
-   from TIPO_ORIGEN_INTERRUPCION b
-   where a.TIPO_ORIGEN_INTERRUPCION_ID = b.TIPO_ORIGEN_INTERRUPCION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°176
-print 'Foreign key n°176'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_COMUNA_PUNTO_CONSUM1', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from COMUNA b
-   where a.COMUNA_ID = b.COMUNA_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°177
-print 'Foreign key n°177'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_NODO_INC', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from NODO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°178
-print 'Foreign key n°178'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_SUMINIS_PUNTO_CONSUM1', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from PUNTO_SUMINISTRO_INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°179
-print 'Foreign key n°179'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TRANSFORMADOR_PUNTO_COSUMO1', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from TRANSFORMADOR_TOPOLOGIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°180
-print 'Foreign key n°180'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_INCIDENC', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from INCIDENCIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°181
-print 'Foreign key n°181'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_RELATIONS_NUMERO_F', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from NUMERO_FASES b
-   where a.NUMERO_FASES = b.NUMERO_FASES
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°182
-print 'Foreign key n°182'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TIPO_EMPALME_PUNTO_CONSUM1', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from TIPO_EMPALME b
-   where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°183
-print 'Foreign key n°183'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TIPO_RURALIDA_PUNTO_CONSUM1', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from TIPO_RURALIDAD b
-   where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°184
-print 'Foreign key n°184'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_TIPO_TEN', 'F'
-from PUNTO_CONSUMO_TOPOLOGIA a
-where not exists
-   (select 1
-   from TIPO_TENSION b
-   where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°185
-print 'Foreign key n°185'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR_AFECTADO', 'FK_ALIMENTA_ALIMENTA', 'F'
-from ALIMENTADOR_AFECTADO a
-where not exists
-   (select 1
-   from ALIMENTADOR_INCIDENCIA b
-   where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°186
-print 'Foreign key n°186'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR_AFECTADO', 'FK_INTERRUPCION_ALIMENTADOR_1', 'F'
-from ALIMENTADOR_AFECTADO a
-where not exists
-   (select 1
-   from INTERRUPCION b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°187
-print 'Foreign key n°187'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'AVISO', 'FK_INTERRUPCION_AVISO1', 'F'
-from AVISO a
-where not exists
-   (select 1
-   from INTERRUPCION b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°188
-print 'Foreign key n°188'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'AVISO', 'FK_AVISO_TIPO_AVI', 'F'
-from AVISO a
-where not exists
-   (select 1
-   from TIPO_AVISO b
-   where a.TIPO_AVISO_ID = b.TIPO_AVISO_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°189
-print 'Foreign key n°189'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BLOQUE_REPOSICION', 'FK_BLOQUE_R_EVENTO_R', 'F'
-from BLOQUE_REPOSICION a
-where not exists
-   (select 1
-   from EVENTO_RED b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.EVENTORED_ID = b.EVENTORED_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°190
-print 'Foreign key n°190'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'BLOQUE_REPOSICION', 'FK_INTERRUPCION_BLOQUE_REPOS1', 'F'
-from BLOQUE_REPOSICION a
-where not exists
-   (select 1
-   from INTERRUPCION b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°191
-print 'Foreign key n°191'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR_REPOSICION', 'FK_ALIMENTA_ALIMENT1', 'F'
-from ALIMENTADOR_REPOSICION a
-where not exists
-   (select 1
-   from ALIMENTADOR_INCIDENCIA b
-   where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°192
-print 'Foreign key n°192'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'ALIMENTADOR_REPOSICION', 'FK_ALIMENTA_BLOQUE_R', 'F'
-from ALIMENTADOR_REPOSICION a
-where not exists
-   (select 1
-   from BLOQUE_REPOSICION b
-   where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°193
-print 'Foreign key n°193'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR_INTERRUPCION', 'FK_TRANSFOR_BLOQUE_R', 'F'
-from TRANSFORMADOR_INTERRUPCION a
-where not exists
-   (select 1
-   from BLOQUE_REPOSICION b
-   where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-      and a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
--- Foreign key n°194
-print 'Foreign key n°194'
-
-insert errores(d_rowid, table_name, constraint_name, type)
-select rowid(a), 'TRANSFORMADOR_INTERRUPCION', 'FK_TRANSFOR_TRANSFOR', 'F'
-from TRANSFORMADOR_INTERRUPCION a
-where not exists
-   (select 1
-   from TRANSFORMADOR_TOPOLOGIA b
-   where a.EMPRESA_ID = b.EMPRESA_ID
-      and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-      and a.PERIODO_STAR = b.PERIODO_STAR
-      and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-      and b.tiene_errores = 0);
-
-commit;
-
--------------------------------------------------------------------
-
+insert into errores(d_rowid, table_name, constraint_name, type)
+  select a.rowid, 'CAUSA', 'FK_CAUSA_CALIFICA', 'F'
+  from CAUSA a
+  where not exists
+    ( select 1
+     from CALIFICACION_INTERRUPCION b
+      where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
+        and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EMPRESA', 'FK_EMPRESA_ASSOCIATI_GRUPO_EC', 'F'
+ from EMPRESA a
+ where not exists
+   ( select 1
+    from GRUPO_ECONOMICO b
+    where a.GRUPO_ECONOMICO_ID = b.GRUPO_ECONOMICO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+  select a.rowid, 'ALIMENTADOR', 'FK_EMPRESA_ALIMENTADO1', 'F'
+  from ALIMENTADOR a
+  where not exists
+    ( select 1
+     from EMPRESA b
+     where a.EMPRESA_ID = b.EMPRESA_ID
+        and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ALIMENTADOR', 'FK_ALIMENTA_EMPRES1', 'F'
+ from ALIMENTADOR a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CANALIZACION', 'FK_CANALIZA_COMUNA', 'F'
+ from CANALIZACION a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CANALIZACION', 'FK_CANALIZA_EMPRESA', 'F'
+ from CANALIZACION a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CANALIZACION', 'FK_CANALIZA_TIPO_PRO', 'F'
+ from CANALIZACION a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CANALIZACION', 'FK_CANALIZA_TIPO_TEN', 'F'
+ from CANALIZACION a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EMPALME', 'FK_EMPALME_COMUNA', 'F'
+ from EMPALME a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EMPALME', 'FK_EMPALME_EMPRESA', 'F'
+ from EMPALME a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EMPALME', 'FK_EMPALME_TIPO_PRO', 'F'
+ from EMPALME a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INCIDENCIA', 'FK_INCIDENC_EMPRESA', 'F'
+ from INCIDENCIA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PERIODO_INFORMACION', 'FK_PERIODO__EMPRESA', 'F'
+ from PERIODO_INFORMACION a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_DERIVACION', 'FK_PUNTO_DE_EMPRESA', 'F'
+ from PUNTO_DERIVACION a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_SUMINISTRO', 'FK_PUNTO_SU_EMPRESA', 'F'
+ from PUNTO_SUMINISTRO a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'SISTEMA_ELECTRICO', 'FK_SISTEMA__EMPRESA', 'F'
+ from SISTEMA_ELECTRICO a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'SUBESTACION_DISTRIBUCION', 'FK_SUBESTAC_EMPRES1', 'F'
+ from SUBESTACION_DISTRIBUCION a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'SUBESTACION_DISTRIBUCION', 'FK_SUBESTAC_TIPO_DIS', 'F'
+ from SUBESTACION_DISTRIBUCION a
+ where not exists
+   ( select 1
+    from TIPO_DISPOSICION b
+    where a.TIPO_DISPOSICION_ID = b.TIPO_DISPOSICION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_COMUNA', 'F'
+ from TRAMO_BT a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_EMPRESA', 'F'
+ from TRAMO_BT a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_RELATIONS_NUMERO_F', 'F'
+ from TRAMO_BT a
+ where not exists
+   ( select 1
+    from NUMERO_FASES b
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_TIPO_DIS', 'F'
+ from TRAMO_BT a
+ where not exists
+   ( select 1
+    from TIPO_DISPOSICION_TRAMO b
+    where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_TIPO_PRO', 'F'
+ from TRAMO_BT a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_COMUNA', 'F'
+ from TRAMO_MT a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_EMPRESA', 'F'
+ from TRAMO_MT a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_RELATIONS_NUMERO_F', 'F'
+ from TRAMO_MT a
+ where not exists
+   ( select 1
+    from NUMERO_FASES b
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_TIPO_DIS', 'F'
+ from TRAMO_MT a
+ where not exists
+   ( select 1
+    from TIPO_DISPOSICION_TRAMO b
+    where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_TIPO_PRO', 'F'
+ from TRAMO_MT a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ALIMENTADOR_INCIDENCIA', 'FK_ALIMENTA_INCIDENC', 'F'
+ from ALIMENTADOR_INCIDENCIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ALIMENTADOR_INCIDENCIA', 'FK_ALIMENTA_EMPRESA', 'F'
+ from ALIMENTADOR_INCIDENCIA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_ALIMENTA', 'F'
+ from NODO_IEC a
+ where not exists
+   ( select 1
+    from ALIMENTADOR b
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_DATUM', 'F'
+ from NODO_IEC a
+ where not exists
+   ( select 1
+    from DATUM b
+    where a.DATUM_ID = b.DATUM_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_EMPRES1', 'F'
+ from NODO_IEC a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_TIPO_INS', 'F'
+ from NODO_IEC a
+ where not exists
+   ( select 1
+    from TIPO_INSTALACION b
+    where a.TIPO_INSTALACION_ID = b.TIPO_INSTALACION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_TIPO_NOD', 'F'
+ from NODO_IEC a
+ where not exists
+   ( select 1
+    from TIPO_NODO b
+    where a.TIPO_NODO_ID = b.TIPO_NODO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_REFERENCE_ZONA_UTM', 'F'
+ from NODO_IEC a
+ where not exists
+   ( select 1
+    from ZONA_UTM b
+    where a.ZONA_UTM = b.ZONA_UTM
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_SUMINISTRO_INCIDENCIA', 'FK_PUNTO_SU_INCIDENC', 'F'
+ from PUNTO_SUMINISTRO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'SUBESTACION_INCIDENCIA', 'FK_SUBESTAC_INCIDENC', 'F'
+ from SUBESTACION_INCIDENCIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BAJADA', 'FK_BAJADA_COMUNA', 'F'
+ from BAJADA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BAJADA', 'FK_BAJADA_NODO_IEC', 'F'
+ from BAJADA a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BAJADA', 'FK_BAJADA_EMPRESA', 'F'
+ from BAJADA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BAJADA', 'FK_BAJADA_TIPO_PRO', 'F'
+ from BAJADA a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BOVEDA', 'FK_BOVEDA_COMUNA', 'F'
+ from BOVEDA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BOVEDA', 'FK_BOVEDA_EMPRESA', 'F'
+ from BOVEDA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BOVEDA', 'FK_BOVEDA_NODO_IEC', 'F'
+ from BOVEDA a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BOVEDA', 'FK_BOVEDA_TIPO_PRO', 'F'
+ from BOVEDA a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CAMARA', 'FK_CAMARA_COMUNA', 'F'
+ from CAMARA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CAMARA', 'FK_CAMARA_EMPRESA', 'F'
+ from CAMARA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CAMARA', 'FK_CAMARA_NODO_IEC', 'F'
+ from CAMARA a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CAMARA', 'FK_CAMARA_TIPO_PRO', 'F'
+ from CAMARA a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CAMARA', 'FK_CAMARA_TIPO_TEN', 'F'
+ from CAMARA a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CONEXION_NODO_IEC', 'FK_NODO_IEC_CONEXION_NOD1', 'F'
+ from CONEXION_NODO_IEC a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID_2 = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CONEXION_NODO_IEC', 'FK_NODO_IEC_CONEXION_NOD2', 'F'
+ from CONEXION_NODO_IEC a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID_1 = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CONEXION_NODO_IEC', 'FK_CONEXION_TIPO_CON', 'F'
+ from CONEXION_NODO_IEC a
+ where not exists
+   ( select 1
+    from TIPO_CONEXION_NODO b
+    where a.TIPO_CONEXION_NODO_ID = b.TIPO_CONEXION_NODO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ENMALLE', 'FK_ENMALLE_COMUNA', 'F'
+ from ENMALLE a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ENMALLE', 'FK_ENMALLE_EMPRESA', 'F'
+ from ENMALLE a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ENMALLE', 'FK_ENMALLE_NODO_IEC', 'F'
+ from ENMALLE a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ENMALLE', 'FK_ENMALLE_TIPO_PRO', 'F'
+ from ENMALLE a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ENMALLE', 'FK_ENMALLE_TIPO_TEN', 'F'
+ from ENMALLE a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO', 'FK_EQUIPO_COMUNA', 'F'
+ from EQUIPO a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO', 'FK_EQUIPO_NODO_IEC', 'F'
+ from EQUIPO a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO', 'FK_EQUIPO_EMPRESA', 'F'
+ from EQUIPO a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_EQU', 'F'
+ from EQUIPO a
+ where not exists
+   ( select 1
+    from TIPO_EQUIPO b
+    where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_PRO', 'F'
+ from EQUIPO a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_SER', 'F'
+ from EQUIPO a
+ where not exists
+   ( select 1
+    from TIPO_SERVICIO_EQUIPO b
+    where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_TEN', 'F'
+ from EQUIPO a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_COMUN2', 'F'
+ from ESTRUCTURA_BT a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_NODO_IE3', 'F'
+ from ESTRUCTURA_BT a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_EMPRES1', 'F'
+ from ESTRUCTURA_BT a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_TIPO_PR2', 'F'
+ from ESTRUCTURA_BT a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_COMUN1', 'F'
+ from ESTRUCTURA_MT a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_EMPRES3', 'F'
+ from ESTRUCTURA_MT a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_NODO_IE1', 'F'
+ from ESTRUCTURA_MT a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_TIPO_PR1', 'F'
+ from ESTRUCTURA_MT a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_COMUNA', 'F'
+ from ESTRUCTURA_SED a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_NODO_IE2', 'F'
+ from ESTRUCTURA_SED a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_EMPRES2', 'F'
+ from ESTRUCTURA_SED a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_TIPO_PR3', 'F'
+ from ESTRUCTURA_SED a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'MARCA', 'FK_MARCA_NODO_IEC', 'F'
+ from MARCA a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'MARCA', 'FK_MARCA_EMPRESA', 'F'
+ from MARCA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_COMUNA', 'F'
+ from MEDIDOR a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_NODO_IEC', 'F'
+ from MEDIDOR a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_EMPRESA', 'F'
+ from MEDIDOR a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_TIPO_PRO', 'F'
+ from MEDIDOR a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC_CABECERA', 'FK_NODO_IEC_NODO_IE1', 'F'
+ from NODO_IEC_CABECERA a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_EMPRESA', 'F'
+ from NODO_IEC_EXTERNO a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_NODO_IEC', 'F'
+ from NODO_IEC_EXTERNO a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_SENTIDO_', 'F'
+ from NODO_IEC_EXTERNO a
+ where not exists
+   ( select 1
+    from SENTIDO_ENERGIA b
+    where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_ALIMENTA', 'F'
+ from NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from ALIMENTADOR_INCIDENCIA b
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_DATUM', 'F'
+ from NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from DATUM b
+    where a.DATUM_ID = b.DATUM_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_INCIDENC', 'F'
+ from NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_EMPRESA', 'F'
+ from NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_TIPO_INS', 'F'
+ from NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from TIPO_INSTALACION_INCIDENCIA b
+    where a.TIPO_INSTALACION_INCIDENCIA_ID = b.TIPO_INSTALACION_INCIDENCIA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_TIPO_NOD', 'F'
+ from NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from TIPO_NODO b
+    where a.TIPO_NODO_ID = b.TIPO_NODO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_REFERENCE_ZONA_UTM', 'F'
+ from NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from ZONA_UTM b
+    where a.ZONA_UTM = b.ZONA_UTM
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_SUBESTACION', 'FK_NODO_SUB_NODO_IEC', 'F'
+ from NODO_SUBESTACION a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_SUBESTACION', 'FK_NODO_SUB_SUBESTAC', 'F'
+ from NODO_SUBESTACION a
+ where not exists
+   ( select 1
+    from SUBESTACION_DISTRIBUCION b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.SUBESTACION_DISTRIBUCION_ID = b.SUBESTACION_DISTRIBUCION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'POSTE', 'FK_POSTE_COMUNA', 'F'
+ from POSTE a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'POSTE', 'FK_POSTE_EMPRESA', 'F'
+ from POSTE a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'POSTE', 'FK_POSTE_NODO_IEC', 'F'
+ from POSTE a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'POSTE', 'FK_POSTE_TIPO_PRO', 'F'
+ from POSTE a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'POSTE', 'FK_POSTE_TIPO_TEN', 'F'
+ from POSTE a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'SUBESTACION_PRIMARIA_DISTRIBUC', 'FK_NODO_IEC', 'F'
+ from SUBESTACION_PRIMARIA_DISTRIBUC a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'SUBESTACION_PRIMARIA_DISTRIBUC', 'FK_SUBESTAC_EMPRES2', 'F'
+ from SUBESTACION_PRIMARIA_DISTRIBUC a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TIRANTE', 'FK_TIRANTE_COMUNA', 'F'
+ from TIRANTE a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TIRANTE', 'FK_TIRANTE_EMPRESA', 'F'
+ from TIRANTE a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TIRANTE', 'FK_TIRANTE_NODO_IEC', 'F'
+ from TIRANTE a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TIRANTE', 'FK_TIRANTE_TIPO_PRO', 'F'
+ from TIRANTE a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_COMUNA', 'F'
+ from TOMA_TIERRA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_EMPRESA', 'F'
+ from TOMA_TIERRA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_NODO_IEC', 'F'
+ from TOMA_TIERRA a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_PRO', 'F'
+ from TOMA_TIERRA a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_TEN', 'F'
+ from TOMA_TIERRA a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_TOM', 'F'
+ from TOMA_TIERRA a
+ where not exists
+   ( select 1
+    from TIPO_TOMA_TIERRA b
+    where a.TIPO_TOMA_TIERRA_ID = b.TIPO_TOMA_TIERRA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_COMUNA', 'F'
+ from TRANSFORMADOR a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_NODO_IEC', 'F'
+ from TRANSFORMADOR a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_EMPRESA', 'F'
+ from TRANSFORMADOR a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_TIPO_PRO', 'F'
+ from TRANSFORMADOR a
+ where not exists
+   ( select 1
+    from TIPO_PROPIEDAD b
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_TIPO_RUR', 'F'
+ from TRANSFORMADOR a
+ where not exists
+   ( select 1
+    from TIPO_RURALIDAD b
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_CANALIZACION', 'FK_VERTICE__CANALIZA', 'F'
+ from VERTICE_CANALIZACION a
+ where not exists
+   ( select 1
+    from CANALIZACION b
+    where a.CANALIZACION_ID = b.CANALIZACION_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_CANALIZACION', 'FK_VERTICE__NODO_IE2', 'F'
+ from VERTICE_CANALIZACION a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_EMPALME', 'FK_VERTICE__EMPALME', 'F'
+ from VERTICE_EMPALME a
+ where not exists
+   ( select 1
+    from EMPALME b
+    where a.EMPALME_ID = b.EMPALME_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_EMPALME', 'FK_VERTICE__NODO_IE3', 'F'
+ from VERTICE_EMPALME a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_TRAMO_BT', 'FK_NODO_IEC_VERTICE_TRAM2', 'F'
+ from VERTICE_TRAMO_BT a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_TRAMO_BT', 'FK_TRAMO_BT_VERTICE_TRAM1', 'F'
+ from VERTICE_TRAMO_BT a
+ where not exists
+   ( select 1
+    from TRAMO_BT b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRAMO_BT_ID = b.TRAMO_BT_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_TRAMO_MT', 'FK_VERTICE__TRAMO_MT', 'F'
+ from VERTICE_TRAMO_MT a
+ where not exists
+   ( select 1
+    from TRAMO_MT b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRAMO_MT_ID = b.TRAMO_MT_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'VERTICE_TRAMO_MT', 'FK_VERTICE__NODO_IE1', 'F'
+ from VERTICE_TRAMO_MT a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CONEXION_NODO_INCIDENCIA', 'FK_NODO_INCIDENC_CONEXION_NOD2', 'F'
+ from CONEXION_NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID_1 = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CONEXION_NODO_INCIDENCIA', 'FK_NODO_INCIDENC_CONEXION_NOD1', 'F'
+ from CONEXION_NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID_2 = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'CONEXION_NODO_INCIDENCIA', 'FK_CONEXION_EMPRESA', 'F'
+ from CONEXION_NODO_INCIDENCIA a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_COMUNA', 'F'
+ from EQUIPO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_NODO_INC', 'F'
+ from EQUIPO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_INCIDENC', 'F'
+ from EQUIPO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_EQU', 'F'
+ from EQUIPO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TIPO_EQUIPO b
+    where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_SER', 'F'
+ from EQUIPO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TIPO_SERVICIO_EQUIPO b
+    where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_TEN', 'F'
+ from EQUIPO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_INCIDENC', 'F'
+ from EVENTO_RED a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_NODO_INC', 'F'
+ from EVENTO_RED a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_TIPO_EFE', 'F'
+ from EVENTO_RED a
+ where not exists
+   ( select 1
+    from TIPO_EFECTO_EVENTO b
+    where a.TIPO_EFECTO_EVENTO_ID = b.TIPO_EFECTO_EVENTO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_TIPO_EVE', 'F'
+ from EVENTO_RED a
+ where not exists
+   ( select 1
+    from TIPO_EVENTO_RED b
+    where a.TIPO_EVENTO_ID = b.TIPO_EVENTO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_NODO_INC', 'F'
+ from FUENTE_ENERGIA_RED a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_INCIDENC', 'F'
+ from FUENTE_ENERGIA_RED a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_TIPO_FUE', 'F'
+ from FUENTE_ENERGIA_RED a
+ where not exists
+   ( select 1
+    from TIPO_FUENTE_ENERGIA b
+    where a.TIPO_FUENTE_ENERGIA_ID = b.TIPO_FUENTE_ENERGIA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA_CABECERA', 'FK_NODO_INC_NODO_INC', 'F'
+ from NODO_INCIDENCIA_CABECERA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA_EXTERNO', 'FK_EMPRESA_NODO_INCIDEN1', 'F'
+ from NODO_INCIDENCIA_EXTERNO a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA_EXTERNO', 'FK_NODO_INCIDENC_NODO_INCIDEN2', 'F'
+ from NODO_INCIDENCIA_EXTERNO a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'NODO_INCIDENCIA_EXTERNO', 'FK_SENTIDO_ENERG_NODO_INCIDEN1', 'F'
+ from NODO_INCIDENCIA_EXTERNO a
+ where not exists
+   ( select 1
+    from SENTIDO_ENERGIA b
+    where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUENTE', 'FK_PUENTE_COMUNA', 'F'
+ from PUENTE a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUENTE', 'FK_PUENTE_NODO_INC', 'F'
+ from PUENTE a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUENTE', 'FK_PUENTE_INCIDENC', 'F'
+ from PUENTE a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_COMUNA', 'F'
+ from PUNTO_CONSUMO a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_PUNTO_SU', 'F'
+ from PUNTO_CONSUMO a
+ where not exists
+   ( select 1
+    from PUNTO_SUMINISTRO b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_SUBESTAC', 'F'
+ from PUNTO_CONSUMO a
+ where not exists
+   ( select 1
+    from SUBESTACION_PRIMARIA_DISTRIBUC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.SUBESTACION_PRIMARIA_ID = b.SUBESTACION_PRIMARIA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_NODO_IEC', 'F'
+ from PUNTO_CONSUMO a
+ where not exists
+   ( select 1
+    from NODO_IEC b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_RELATIONS_NUM_F', 'F'
+ from PUNTO_CONSUMO a
+ where not exists
+   ( select 1
+    from NUMERO_FASES b
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_TIPO_EMP', 'F'
+ from PUNTO_CONSUMO a
+ where not exists
+   ( select 1
+    from TIPO_EMPALME b
+    where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_TIPO_RUR', 'F'
+ from PUNTO_CONSUMO a
+ where not exists
+   ( select 1
+    from TIPO_RURALIDAD b
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_DERIVACION_INCIDENCIA', 'FK_PUNTO_DE_NODO_INC', 'F'
+ from PUNTO_DERIVACION_INCIDENCIA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_DERIVACION_INCIDENCIA', 'FK_PUNTO_DE_INCIDENC', 'F'
+ from PUNTO_DERIVACION_INCIDENCIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_FALLA', 'FK_PUNTO_FA_COMUNA', 'F'
+ from PUNTO_FALLA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_FALLA', 'FK_PUNTO_FA_INCIDENC', 'F'
+ from PUNTO_FALLA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_FALLA', 'FK_PUNTO_FA_NODO_INC', 'F'
+ from PUNTO_FALLA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_COMUNA_TRANSFORMADO1', 'F'
+ from TRANSFORMADOR_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_NODO_INC', 'F'
+ from TRANSFORMADOR_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_INCIDENC', 'F'
+ from TRANSFORMADOR_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_SUBESTAC', 'F'
+ from TRANSFORMADOR_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from SUBESTACION_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.SUBESTACION_INCIDENCIA_ID = b.SUBESTACION_INCIDENCIA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TIPO_RURALIDA_TRANSFORMADO1', 'F'
+ from TRANSFORMADOR_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TIPO_RURALIDAD b
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'DESCRIPCION_EVENTO', 'FK_DESCRIPC_EVENTO_R', 'F'
+ from DESCRIPCION_EVENTO a
+ where not exists
+   ( select 1
+    from EVENTO_RED b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EVENTORED_ID = b.EVENTORED_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_CALIFICA', 'F'
+ from INTERRUPCION a
+ where not exists
+   ( select 1
+    from CALIFICACION_INTERRUPCION b
+    where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_CAUSA', 'F'
+ from INTERRUPCION a
+ where not exists
+   ( select 1
+    from CAUSA b
+    where a.CAUSA_ID = b.CAUSA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_EVENTO_R', 'F'
+ from INTERRUPCION a
+ where not exists
+   ( select 1
+    from EVENTO_RED b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EVENTORED_ID = b.EVENTORED_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_EMPRESA', 'F'
+ from INTERRUPCION a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INTERRUPCION', 'FK_EMPRESA_INTERRUPCIO1', 'F'
+ from INTERRUPCION a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_SISTEMA_', 'F'
+ from INTERRUPCION a
+ where not exists
+   ( select 1
+    from SISTEMA_ELECTRICO b
+    where a.SISTEMA_ELECTRICO_ID = b.SISTEMA_ELECTRICO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_TIPO_ORI', 'F'
+ from INTERRUPCION a
+ where not exists
+   ( select 1
+    from TIPO_ORIGEN_INTERRUPCION b
+    where a.TIPO_ORIGEN_INTERRUPCION_ID = b.TIPO_ORIGEN_INTERRUPCION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_COMUNA_PUNTO_CONSUM1', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from COMUNA b
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_NODO_INC', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from NODO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_SUMINIS_PUNTO_CONSUM1', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from PUNTO_SUMINISTRO_INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TRANSFORMADOR_PUNTO_COSUMO1', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TRANSFORMADOR_TOPOLOGIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_INCIDENC', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from INCIDENCIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_RELATIONS_NUMERO_F', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from NUMERO_FASES b
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TIPO_EMPALME_PUNTO_CONSUM1', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TIPO_EMPALME b
+    where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TIPO_RURALIDA_PUNTO_CONSUM1', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TIPO_RURALIDAD b
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_TIPO_TEN', 'F'
+ from PUNTO_CONSUMO_TOPOLOGIA a
+ where not exists
+   ( select 1
+    from TIPO_TENSION b
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ALIMENTADOR_AFECTADO', 'FK_ALIMENTA_ALIMENTA', 'F'
+ from ALIMENTADOR_AFECTADO a
+ where not exists
+   ( select 1
+    from ALIMENTADOR_INCIDENCIA b
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ALIMENTADOR_AFECTADO', 'FK_INTERRUPCION_ALIMENTADOR_1', 'F'
+ from ALIMENTADOR_AFECTADO a
+ where not exists
+   ( select 1
+    from INTERRUPCION b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'AVISO', 'FK_INTERRUPCION_AVISO1', 'F'
+ from AVISO a
+ where not exists
+   ( select 1
+    from INTERRUPCION b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'AVISO', 'FK_AVISO_TIPO_AVI', 'F'
+ from AVISO a
+ where not exists
+   ( select 1
+    from TIPO_AVISO b
+    where a.TIPO_AVISO_ID = b.TIPO_AVISO_ID
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BLOQUE_REPOSICION', 'FK_BLOQUE_R_EVENTO_R', 'F'
+ from BLOQUE_REPOSICION a
+ where not exists
+   ( select 1
+    from EVENTO_RED b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EVENTORED_ID = b.EVENTORED_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'BLOQUE_REPOSICION', 'FK_INTERRUPCION_BLOQUE_REPOS1', 'F'
+ from BLOQUE_REPOSICION a
+ where not exists
+   ( select 1
+    from INTERRUPCION b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ALIMENTADOR_REPOSICION', 'FK_ALIMENTA_ALIMENT1', 'F'
+ from ALIMENTADOR_REPOSICION a
+ where not exists
+   ( select 1
+    from ALIMENTADOR_INCIDENCIA b
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'ALIMENTADOR_REPOSICION', 'FK_ALIMENTA_BLOQUE_R', 'F'
+ from ALIMENTADOR_REPOSICION a
+ where not exists
+   ( select 1
+    from BLOQUE_REPOSICION b
+    where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR_INTERRUPCION', 'FK_TRANSFOR_BLOQUE_R', 'F'
+ from TRANSFORMADOR_INTERRUPCION a
+ where not exists
+   ( select 1
+    from BLOQUE_REPOSICION b
+    where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 0);
+
+insert into errores(d_rowid, table_name, constraint_name, type)
+ select a.rowid, 'TRANSFORMADOR_INTERRUPCION', 'FK_TRANSFOR_TRANSFOR', 'F'
+ from TRANSFORMADOR_INTERRUPCION a
+ where not exists
+   ( select 1
+    from TRANSFORMADOR_TOPOLOGIA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
+       and b.tiene_errores = 0);
