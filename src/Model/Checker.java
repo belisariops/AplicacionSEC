@@ -25,10 +25,11 @@ public class Checker implements  Runnable {
     executeCheck("resultsPeriodoStarId");
   }
   public List<Error> getErrors() {
-    return errors;
+      run();
+      return errors;
   }
 
-  public void executeCheck(String fileName) {
+  private void executeCheck(String fileName) {
     StringBuilder builder = new StringBuilder();
     String line;
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/CheckScripts/" + fileName+".txt"))) {

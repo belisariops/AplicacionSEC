@@ -68,6 +68,12 @@ public class SQLConnection {
         return errorList;
     }
 
+    public void executeAddQuery(String query,String tableName) throws SQLException {
+        Statement s = connection.createStatement();
+        //TODO insert into con el table name y los campos que hay que obteenrlos de alguna forma (hash)
+        s.close();
+    }
+
     public Connection getConnection() {
         return connection;
     }
