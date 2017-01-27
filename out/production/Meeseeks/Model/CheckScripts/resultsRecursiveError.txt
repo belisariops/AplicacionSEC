@@ -1,2638 +1,2069 @@
--- Propagating errors from TIPO_AVISO to AVISO
-print 'Propagating errors from TIPO_AVISO to AVISO'
 
-Update AVISO a
-set a.tiene_errores = 1
-from TIPO_AVISO b
-where a.TIPO_AVISO_ID = b.TIPO_AVISO_ID
-   and b.tiene_errores = 1;
 
-commit;
 
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to BAJADA
-print 'Propagating errors from COMUNA to BAJADA'
-
-Update BAJADA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to BOVEDA
-print 'Propagating errors from COMUNA to BOVEDA'
-
-Update BOVEDA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to CAMARA
-print 'Propagating errors from COMUNA to CAMARA'
-
-Update CAMARA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to CANALIZACION
-print 'Propagating errors from COMUNA to CANALIZACION'
-
-Update CANALIZACION a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to EMPALME
-print 'Propagating errors from COMUNA to EMPALME'
-
-Update EMPALME a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to ENMALLE
-print 'Propagating errors from COMUNA to ENMALLE'
-
-Update ENMALLE a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to EQUIPO
-print 'Propagating errors from COMUNA to EQUIPO'
-
-Update EQUIPO a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to EQUIPO_TOPOLOGIA
-print 'Propagating errors from COMUNA to EQUIPO_TOPOLOGIA'
-
-Update EQUIPO_TOPOLOGIA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to ESTRUCTURA_BT
-print 'Propagating errors from COMUNA to ESTRUCTURA_BT'
-
-Update ESTRUCTURA_BT a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to ESTRUCTURA_MT
-print 'Propagating errors from COMUNA to ESTRUCTURA_MT'
-
-Update ESTRUCTURA_MT a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to ESTRUCTURA_SED
-print 'Propagating errors from COMUNA to ESTRUCTURA_SED'
-
-Update ESTRUCTURA_SED a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to MEDIDOR
-print 'Propagating errors from COMUNA to MEDIDOR'
-
-Update MEDIDOR a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to POSTE
-print 'Propagating errors from COMUNA to POSTE'
-
-Update POSTE a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to PUENTE
-print 'Propagating errors from COMUNA to PUENTE'
-
-Update PUENTE a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to PUNTO_CONSUMO
-print 'Propagating errors from COMUNA to PUNTO_CONSUMO'
-
-Update PUNTO_CONSUMO a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from COMUNA to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to PUNTO_FALLA
-print 'Propagating errors from COMUNA to PUNTO_FALLA'
-
-Update PUNTO_FALLA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to TIRANTE
-print 'Propagating errors from COMUNA to TIRANTE'
-
-Update TIRANTE a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to TOMA_TIERRA
-print 'Propagating errors from COMUNA to TOMA_TIERRA'
-
-Update TOMA_TIERRA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to TRAMO_BT
-print 'Propagating errors from COMUNA to TRAMO_BT'
-
-Update TRAMO_BT a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to TRAMO_MT
-print 'Propagating errors from COMUNA to TRAMO_MT'
-
-Update TRAMO_MT a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to TRANSFORMADOR
-print 'Propagating errors from COMUNA to TRANSFORMADOR'
-
-Update TRANSFORMADOR a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from COMUNA to TRANSFORMADOR_TOPOLOGIA
-print 'Propagating errors from COMUNA to TRANSFORMADOR_TOPOLOGIA'
-
-Update TRANSFORMADOR_TOPOLOGIA a
-set a.tiene_errores = 1
-from COMUNA b
-where a.COMUNA_ID = b.COMUNA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from CANALIZACION to VERTICE_CANALIZACION
-print 'Propagating errors from CANALIZACION to VERTICE_CANALIZACION'
-
-Update VERTICE_CANALIZACION a
-set a.tiene_errores = 1
-from CANALIZACION b
-where a.CANALIZACION_ID = b.CANALIZACION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPALME to VERTICE_EMPALME
-print 'Propagating errors from EMPALME to VERTICE_EMPALME'
-
-Update VERTICE_EMPALME a
-set a.tiene_errores = 1
-from EMPALME b
-where a.EMPALME_ID = b.EMPALME_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TRAMO_BT to VERTICE_TRAMO_BT
-print 'Propagating errors from TRAMO_BT to VERTICE_TRAMO_BT'
-
-Update VERTICE_TRAMO_BT a
-set a.tiene_errores = 1
-from TRAMO_BT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRAMO_BT_ID = b.TRAMO_BT_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TRAMO_MT to VERTICE_TRAMO_MT
-print 'Propagating errors from TRAMO_MT to VERTICE_TRAMO_MT'
-
-Update VERTICE_TRAMO_MT a
-set a.tiene_errores = 1
-from TRAMO_MT b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRAMO_MT_ID = b.TRAMO_MT_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TRANSFORMADOR_TOPOLOGIA to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from TRANSFORMADOR_TOPOLOGIA to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from TRANSFORMADOR_TOPOLOGIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TRANSFORMADOR_TOPOLOGIA to TRANSFORMADOR_INTERRUPCION
-print 'Propagating errors from TRANSFORMADOR_TOPOLOGIA to TRANSFORMADOR_INTERRUPCION'
-
-Update TRANSFORMADOR_INTERRUPCION a
-set a.tiene_errores = 1
-from TRANSFORMADOR_TOPOLOGIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to BAJADA
-print 'Propagating errors from TIPO_PROPIEDAD to BAJADA'
-
-Update BAJADA a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to BOVEDA
-print 'Propagating errors from TIPO_PROPIEDAD to BOVEDA'
-
-Update BOVEDA a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to CAMARA
-print 'Propagating errors from TIPO_PROPIEDAD to CAMARA'
-
-Update CAMARA a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to CANALIZACION
-print 'Propagating errors from TIPO_PROPIEDAD to CANALIZACION'
-
-Update CANALIZACION a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to EMPALME
-print 'Propagating errors from TIPO_PROPIEDAD to EMPALME'
-
-Update EMPALME a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to ENMALLE
-print 'Propagating errors from TIPO_PROPIEDAD to ENMALLE'
-
-Update ENMALLE a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to EQUIPO
-print 'Propagating errors from TIPO_PROPIEDAD to EQUIPO'
-
-Update EQUIPO a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to ESTRUCTURA_BT
-print 'Propagating errors from TIPO_PROPIEDAD to ESTRUCTURA_BT'
-
-Update ESTRUCTURA_BT a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to ESTRUCTURA_MT
-print 'Propagating errors from TIPO_PROPIEDAD to ESTRUCTURA_MT'
-
-Update ESTRUCTURA_MT a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to ESTRUCTURA_SED
-print 'Propagating errors from TIPO_PROPIEDAD to ESTRUCTURA_SED'
-
-Update ESTRUCTURA_SED a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to MEDIDOR
-print 'Propagating errors from TIPO_PROPIEDAD to MEDIDOR'
-
-Update MEDIDOR a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to POSTE
-print 'Propagating errors from TIPO_PROPIEDAD to POSTE'
-
-Update POSTE a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to TIRANTE
-print 'Propagating errors from TIPO_PROPIEDAD to TIRANTE'
-
-Update TIRANTE a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to TOMA_TIERRA
-print 'Propagating errors from TIPO_PROPIEDAD to TOMA_TIERRA'
-
-Update TOMA_TIERRA a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to TRAMO_BT
-print 'Propagating errors from TIPO_PROPIEDAD to TRAMO_BT'
-
-Update TRAMO_BT a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to TRAMO_MT
-print 'Propagating errors from TIPO_PROPIEDAD to TRAMO_MT'
-
-Update TRAMO_MT a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_PROPIEDAD to TRANSFORMADOR
-print 'Propagating errors from TIPO_PROPIEDAD to TRANSFORMADOR'
-
-Update TRANSFORMADOR a
-set a.tiene_errores = 1
-from TIPO_PROPIEDAD b
-where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to CAMARA
-print 'Propagating errors from TIPO_TENSION to CAMARA'
-
-Update CAMARA a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to CANALIZACION
-print 'Propagating errors from TIPO_TENSION to CANALIZACION'
-
-Update CANALIZACION a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to ENMALLE
-print 'Propagating errors from TIPO_TENSION to ENMALLE'
-
-Update ENMALLE a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to EQUIPO
-print 'Propagating errors from TIPO_TENSION to EQUIPO'
-
-Update EQUIPO a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to EQUIPO_TOPOLOGIA
-print 'Propagating errors from TIPO_TENSION to EQUIPO_TOPOLOGIA'
-
-Update EQUIPO_TOPOLOGIA a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to POSTE
-print 'Propagating errors from TIPO_TENSION to POSTE'
-
-Update POSTE a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from TIPO_TENSION to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TENSION to TOMA_TIERRA
-print 'Propagating errors from TIPO_TENSION to TOMA_TIERRA'
-
-Update TOMA_TIERRA a
-set a.tiene_errores = 1
-from TIPO_TENSION b
-where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from CALIFICACION_INTERRUPCION to CAUSA
-print 'Propagating errors from CALIFICACION_INTERRUPCION to CAUSA'
-
-Update CAUSA a
-set a.tiene_errores = 1
-from CALIFICACION_INTERRUPCION b
-where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from CALIFICACION_INTERRUPCION to INTERRUPCION
-print 'Propagating errors from CALIFICACION_INTERRUPCION to INTERRUPCION'
-
-Update INTERRUPCION a
-set a.tiene_errores = 1
-from CALIFICACION_INTERRUPCION b
-where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from CAUSA to INTERRUPCION
-print 'Propagating errors from CAUSA to INTERRUPCION'
-
-Update INTERRUPCION a
-set a.tiene_errores = 1
-from CAUSA b
-where a.CAUSA_ID = b.CAUSA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INTERRUPCION to ALIMENTADOR_AFECTADO
-print 'Propagating errors from INTERRUPCION to ALIMENTADOR_AFECTADO'
-
-Update ALIMENTADOR_AFECTADO a
-set a.tiene_errores = 1
-from INTERRUPCION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INTERRUPCION to AVISO
-print 'Propagating errors from INTERRUPCION to AVISO'
-
-Update AVISO a
-set a.tiene_errores = 1
-from INTERRUPCION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INTERRUPCION to BLOQUE_REPOSICION
-print 'Propagating errors from INTERRUPCION to BLOQUE_REPOSICION'
-
-Update BLOQUE_REPOSICION a
-set a.tiene_errores = 1
-from INTERRUPCION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from BLOQUE_REPOSICION to ALIMENTADOR_REPOSICION
-print 'Propagating errors from BLOQUE_REPOSICION to ALIMENTADOR_REPOSICION'
-
-Update ALIMENTADOR_REPOSICION a
-set a.tiene_errores = 1
-from BLOQUE_REPOSICION b
-where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from BLOQUE_REPOSICION to TRANSFORMADOR_INTERRUPCION
-print 'Propagating errors from BLOQUE_REPOSICION to TRANSFORMADOR_INTERRUPCION'
-
-Update TRANSFORMADOR_INTERRUPCION a
-set a.tiene_errores = 1
-from BLOQUE_REPOSICION b
-where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INTERRUPCION_ID = b.INTERRUPCION_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_CONEXION_NODO to CONEXION_NODO_IEC
-print 'Propagating errors from TIPO_CONEXION_NODO to CONEXION_NODO_IEC'
-
-Update CONEXION_NODO_IEC a
-set a.tiene_errores = 1
-from TIPO_CONEXION_NODO b
-where a.TIPO_CONEXION_NODO_ID = b.TIPO_CONEXION_NODO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from GRUPO_ECONOMICO to EMPRESA
-print 'Propagating errors from GRUPO_ECONOMICO to EMPRESA'
-
-Update EMPRESA a
-set a.tiene_errores = 1
-from GRUPO_ECONOMICO b
-where a.GRUPO_ECONOMICO_ID = b.GRUPO_ECONOMICO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to ALIMENTADOR
-print 'Propagating errors from EMPRESA to ALIMENTADOR'
-
-Update ALIMENTADOR a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to ALIMENTADOR_INCIDENCIA
-print 'Propagating errors from EMPRESA to ALIMENTADOR_INCIDENCIA'
-
-Update ALIMENTADOR_INCIDENCIA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to BAJADA
-print 'Propagating errors from EMPRESA to BAJADA'
-
-Update BAJADA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to BOVEDA
-print 'Propagating errors from EMPRESA to BOVEDA'
-
-Update BOVEDA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to CAMARA
-print 'Propagating errors from EMPRESA to CAMARA'
-
-Update CAMARA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to CANALIZACION
-print 'Propagating errors from EMPRESA to CANALIZACION'
-
-Update CANALIZACION a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to CONEXION_NODO_INCIDENCIA
-print 'Propagating errors from EMPRESA to CONEXION_NODO_INCIDENCIA'
-
-Update CONEXION_NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to EMPALME
-print 'Propagating errors from EMPRESA to EMPALME'
-
-Update EMPALME a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to ENMALLE
-print 'Propagating errors from EMPRESA to ENMALLE'
-
-Update ENMALLE a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to EQUIPO
-print 'Propagating errors from EMPRESA to EQUIPO'
-
-Update EQUIPO a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to ESTRUCTURA_BT
-print 'Propagating errors from EMPRESA to ESTRUCTURA_BT'
-
-Update ESTRUCTURA_BT a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to ESTRUCTURA_MT
-print 'Propagating errors from EMPRESA to ESTRUCTURA_MT'
-
-Update ESTRUCTURA_MT a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to ESTRUCTURA_SED
-print 'Propagating errors from EMPRESA to ESTRUCTURA_SED'
-
-Update ESTRUCTURA_SED a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to INCIDENCIA
-print 'Propagating errors from EMPRESA to INCIDENCIA'
-
-Update INCIDENCIA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to INTERRUPCION
-print 'Propagating errors from EMPRESA to INTERRUPCION'
-
-Update INTERRUPCION a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to MARCA
-print 'Propagating errors from EMPRESA to MARCA'
-
-Update MARCA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to MEDIDOR
-print 'Propagating errors from EMPRESA to MEDIDOR'
-
-Update MEDIDOR a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to NODO_IEC
-print 'Propagating errors from EMPRESA to NODO_IEC'
-
-Update NODO_IEC a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to NODO_IEC_EXTERNO
-print 'Propagating errors from EMPRESA to NODO_IEC_EXTERNO'
-
-Update NODO_IEC_EXTERNO a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to NODO_INCIDENCIA
-print 'Propagating errors from EMPRESA to NODO_INCIDENCIA'
-
-Update NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to NODO_INCIDENCIA_EXTERNO
-print 'Propagating errors from EMPRESA to NODO_INCIDENCIA_EXTERNO'
-
-Update NODO_INCIDENCIA_EXTERNO a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to PERIODO_INFORMACION
-print 'Propagating errors from EMPRESA to PERIODO_INFORMACION'
-
-Update PERIODO_INFORMACION a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to POSTE
-print 'Propagating errors from EMPRESA to POSTE'
-
-Update POSTE a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to PUNTO_DERIVACION
-print 'Propagating errors from EMPRESA to PUNTO_DERIVACION'
-
-Update PUNTO_DERIVACION a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to PUNTO_SUMINISTRO
-print 'Propagating errors from EMPRESA to PUNTO_SUMINISTRO'
-
-Update PUNTO_SUMINISTRO a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to SISTEMA_ELECTRICO
-print 'Propagating errors from EMPRESA to SISTEMA_ELECTRICO'
-
-Update SISTEMA_ELECTRICO a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to SUBESTACION_DISTRIBUCION
-print 'Propagating errors from EMPRESA to SUBESTACION_DISTRIBUCION'
-
-Update SUBESTACION_DISTRIBUCION a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to SUBESTACION_PRIMARIA_DISTRIBUC
-print 'Propagating errors from EMPRESA to SUBESTACION_PRIMARIA_DISTRIBUC'
-
-Update SUBESTACION_PRIMARIA_DISTRIBUC a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to TIRANTE
-print 'Propagating errors from EMPRESA to TIRANTE'
-
-Update TIRANTE a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to TOMA_TIERRA
-print 'Propagating errors from EMPRESA to TOMA_TIERRA'
-
-Update TOMA_TIERRA a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to TRAMO_BT
-print 'Propagating errors from EMPRESA to TRAMO_BT'
-
-Update TRAMO_BT a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to TRAMO_MT
-print 'Propagating errors from EMPRESA to TRAMO_MT'
-
-Update TRAMO_MT a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EMPRESA to TRANSFORMADOR
-print 'Propagating errors from EMPRESA to TRANSFORMADOR'
-
-Update TRANSFORMADOR a
-set a.tiene_errores = 1
-from EMPRESA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from ALIMENTADOR to NODO_IEC
-print 'Propagating errors from ALIMENTADOR to NODO_IEC'
-
-Update NODO_IEC a
-set a.tiene_errores = 1
-from ALIMENTADOR b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to BAJADA
-print 'Propagating errors from NODO_IEC to BAJADA'
-
-Update BAJADA a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to BOVEDA
-print 'Propagating errors from NODO_IEC to BOVEDA'
-
-Update BOVEDA a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to CAMARA
-print 'Propagating errors from NODO_IEC to CAMARA'
-
-Update CAMARA a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to CONEXION_NODO_IEC
-print 'Propagating errors from NODO_IEC to CONEXION_NODO_IEC'
-
-Update CONEXION_NODO_IEC a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID_1 = b.NODO_IEC_ID
-   and a.NODO_IEC_ID_2 = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to ENMALLE
-print 'Propagating errors from NODO_IEC to ENMALLE'
-
-Update ENMALLE a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to EQUIPO
-print 'Propagating errors from NODO_IEC to EQUIPO'
-
-Update EQUIPO a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to ESTRUCTURA_BT
-print 'Propagating errors from NODO_IEC to ESTRUCTURA_BT'
-
-Update ESTRUCTURA_BT a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to ESTRUCTURA_MT
-print 'Propagating errors from NODO_IEC to ESTRUCTURA_MT'
-
-Update ESTRUCTURA_MT a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to ESTRUCTURA_SED
-print 'Propagating errors from NODO_IEC to ESTRUCTURA_SED'
-
-Update ESTRUCTURA_SED a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to MARCA
-print 'Propagating errors from NODO_IEC to MARCA'
-
-Update MARCA a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to MEDIDOR
-print 'Propagating errors from NODO_IEC to MEDIDOR'
-
-Update MEDIDOR a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to NODO_IEC_CABECERA
-print 'Propagating errors from NODO_IEC to NODO_IEC_CABECERA'
-
-Update NODO_IEC_CABECERA a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to NODO_IEC_EXTERNO
-print 'Propagating errors from NODO_IEC to NODO_IEC_EXTERNO'
-
-Update NODO_IEC_EXTERNO a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to NODO_SUBESTACION
-print 'Propagating errors from NODO_IEC to NODO_SUBESTACION'
-
-Update NODO_SUBESTACION a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to POSTE
-print 'Propagating errors from NODO_IEC to POSTE'
-
-Update POSTE a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to PUNTO_CONSUMO
-print 'Propagating errors from NODO_IEC to PUNTO_CONSUMO'
-
-Update PUNTO_CONSUMO a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to SUBESTACION_PRIMARIA_DISTRIBUC
-print 'Propagating errors from NODO_IEC to SUBESTACION_PRIMARIA_DISTRIBUC'
-
-Update SUBESTACION_PRIMARIA_DISTRIBUC a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to TIRANTE
-print 'Propagating errors from NODO_IEC to TIRANTE'
-
-Update TIRANTE a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to TOMA_TIERRA
-print 'Propagating errors from NODO_IEC to TOMA_TIERRA'
-
-Update TOMA_TIERRA a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to TRANSFORMADOR
-print 'Propagating errors from NODO_IEC to TRANSFORMADOR'
-
-Update TRANSFORMADOR a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to VERTICE_CANALIZACION
-print 'Propagating errors from NODO_IEC to VERTICE_CANALIZACION'
-
-Update VERTICE_CANALIZACION a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to VERTICE_EMPALME
-print 'Propagating errors from NODO_IEC to VERTICE_EMPALME'
-
-Update VERTICE_EMPALME a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to VERTICE_TRAMO_BT
-print 'Propagating errors from NODO_IEC to VERTICE_TRAMO_BT'
-
-Update VERTICE_TRAMO_BT a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_IEC to VERTICE_TRAMO_MT
-print 'Propagating errors from NODO_IEC to VERTICE_TRAMO_MT'
-
-Update VERTICE_TRAMO_MT a
-set a.tiene_errores = 1
-from NODO_IEC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.NODO_IEC_ID = b.NODO_IEC_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from SUBESTACION_PRIMARIA_DISTRIBUC to PUNTO_CONSUMO
-print 'Propagating errors from SUBESTACION_PRIMARIA_DISTRIBUC to PUNTO_CONSUMO'
-
-Update PUNTO_CONSUMO a
-set a.tiene_errores = 1
-from SUBESTACION_PRIMARIA_DISTRIBUC b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.SUBESTACION_PRIMARIA_ID = b.SUBESTACION_PRIMARIA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from ALIMENTADOR_INCIDENCIA to ALIMENTADOR_AFECTADO
-print 'Propagating errors from ALIMENTADOR_INCIDENCIA to ALIMENTADOR_AFECTADO'
-
-Update ALIMENTADOR_AFECTADO a
-set a.tiene_errores = 1
-from ALIMENTADOR_INCIDENCIA b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from ALIMENTADOR_INCIDENCIA to ALIMENTADOR_REPOSICION
-print 'Propagating errors from ALIMENTADOR_INCIDENCIA to ALIMENTADOR_REPOSICION'
-
-Update ALIMENTADOR_REPOSICION a
-set a.tiene_errores = 1
-from ALIMENTADOR_INCIDENCIA b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from ALIMENTADOR_INCIDENCIA to NODO_INCIDENCIA
-print 'Propagating errors from ALIMENTADOR_INCIDENCIA to NODO_INCIDENCIA'
-
-Update NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from ALIMENTADOR_INCIDENCIA b
-where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
-   and a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to CONEXION_NODO_INCIDENCIA
-print 'Propagating errors from NODO_INCIDENCIA to CONEXION_NODO_INCIDENCIA'
-
-Update CONEXION_NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID_1 = b.NODO_INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID_2 = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to EQUIPO_TOPOLOGIA
-print 'Propagating errors from NODO_INCIDENCIA to EQUIPO_TOPOLOGIA'
-
-Update EQUIPO_TOPOLOGIA a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to EVENTO_RED
-print 'Propagating errors from NODO_INCIDENCIA to EVENTO_RED'
-
-Update EVENTO_RED a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to FUENTE_ENERGIA_RED
-print 'Propagating errors from NODO_INCIDENCIA to FUENTE_ENERGIA_RED'
-
-Update FUENTE_ENERGIA_RED a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to NODO_INCIDENCIA_CABECERA
-print 'Propagating errors from NODO_INCIDENCIA to NODO_INCIDENCIA_CABECERA'
-
-Update NODO_INCIDENCIA_CABECERA a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to NODO_INCIDENCIA_EXTERNO
-print 'Propagating errors from NODO_INCIDENCIA to NODO_INCIDENCIA_EXTERNO'
-
-Update NODO_INCIDENCIA_EXTERNO a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to PUENTE
-print 'Propagating errors from NODO_INCIDENCIA to PUENTE'
-
-Update PUENTE a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from NODO_INCIDENCIA to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to PUNTO_DERIVACION_INCIDENCIA
-print 'Propagating errors from NODO_INCIDENCIA to PUNTO_DERIVACION_INCIDENCIA'
-
-Update PUNTO_DERIVACION_INCIDENCIA a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to PUNTO_FALLA
-print 'Propagating errors from NODO_INCIDENCIA to PUNTO_FALLA'
-
-Update PUNTO_FALLA a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NODO_INCIDENCIA to TRANSFORMADOR_TOPOLOGIA
-print 'Propagating errors from NODO_INCIDENCIA to TRANSFORMADOR_TOPOLOGIA'
-
-Update TRANSFORMADOR_TOPOLOGIA a
-set a.tiene_errores = 1
-from NODO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EVENTO_RED to BLOQUE_REPOSICION
-print 'Propagating errors from EVENTO_RED to BLOQUE_REPOSICION'
-
-Update BLOQUE_REPOSICION a
-set a.tiene_errores = 1
-from EVENTO_RED b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EVENTORED_ID = b.EVENTORED_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EVENTO_RED to DESCRIPCION_EVENTO
-print 'Propagating errors from EVENTO_RED to DESCRIPCION_EVENTO'
-
-Update DESCRIPCION_EVENTO a
-set a.tiene_errores = 1
-from EVENTO_RED b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EVENTORED_ID = b.EVENTORED_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from EVENTO_RED to INTERRUPCION
-print 'Propagating errors from EVENTO_RED to INTERRUPCION'
-
-Update INTERRUPCION a
-set a.tiene_errores = 1
-from EVENTO_RED b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.EVENTORED_ID = b.EVENTORED_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to ALIMENTADOR_INCIDENCIA
-print 'Propagating errors from INCIDENCIA to ALIMENTADOR_INCIDENCIA'
-
-Update ALIMENTADOR_INCIDENCIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to EQUIPO_TOPOLOGIA
-print 'Propagating errors from INCIDENCIA to EQUIPO_TOPOLOGIA'
-
-Update EQUIPO_TOPOLOGIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to EVENTO_RED
-print 'Propagating errors from INCIDENCIA to EVENTO_RED'
-
-Update EVENTO_RED a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to FUENTE_ENERGIA_RED
-print 'Propagating errors from INCIDENCIA to FUENTE_ENERGIA_RED'
-
-Update FUENTE_ENERGIA_RED a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to NODO_INCIDENCIA
-print 'Propagating errors from INCIDENCIA to NODO_INCIDENCIA'
-
-Update NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to PUENTE
-print 'Propagating errors from INCIDENCIA to PUENTE'
-
-Update PUENTE a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from INCIDENCIA to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to PUNTO_DERIVACION_INCIDENCIA
-print 'Propagating errors from INCIDENCIA to PUNTO_DERIVACION_INCIDENCIA'
-
-Update PUNTO_DERIVACION_INCIDENCIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to PUNTO_FALLA
-print 'Propagating errors from INCIDENCIA to PUNTO_FALLA'
-
-Update PUNTO_FALLA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to PUNTO_SUMINISTRO_INCIDENCIA
-print 'Propagating errors from INCIDENCIA to PUNTO_SUMINISTRO_INCIDENCIA'
-
-Update PUNTO_SUMINISTRO_INCIDENCIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to SUBESTACION_INCIDENCIA
-print 'Propagating errors from INCIDENCIA to SUBESTACION_INCIDENCIA'
-
-Update SUBESTACION_INCIDENCIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from INCIDENCIA to TRANSFORMADOR_TOPOLOGIA
-print 'Propagating errors from INCIDENCIA to TRANSFORMADOR_TOPOLOGIA'
-
-Update TRANSFORMADOR_TOPOLOGIA a
-set a.tiene_errores = 1
-from INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from PUNTO_SUMINISTRO_INCIDENCIA to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from PUNTO_SUMINISTRO_INCIDENCIA to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from PUNTO_SUMINISTRO_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from SUBESTACION_INCIDENCIA to TRANSFORMADOR_TOPOLOGIA
-print 'Propagating errors from SUBESTACION_INCIDENCIA to TRANSFORMADOR_TOPOLOGIA'
-
-Update TRANSFORMADOR_TOPOLOGIA a
-set a.tiene_errores = 1
-from SUBESTACION_INCIDENCIA b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.INCIDENCIA_ID = b.INCIDENCIA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.SUBESTACION_INCIDENCIA_ID = b.SUBESTACION_INCIDENCIA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from PUNTO_SUMINISTRO to PUNTO_CONSUMO
-print 'Propagating errors from PUNTO_SUMINISTRO to PUNTO_CONSUMO'
-
-Update PUNTO_CONSUMO a
-set a.tiene_errores = 1
-from PUNTO_SUMINISTRO b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from SISTEMA_ELECTRICO to INTERRUPCION
-print 'Propagating errors from SISTEMA_ELECTRICO to INTERRUPCION'
-
-Update INTERRUPCION a
-set a.tiene_errores = 1
-from SISTEMA_ELECTRICO b
-where a.SISTEMA_ELECTRICO_ID = b.SISTEMA_ELECTRICO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from SUBESTACION_DISTRIBUCION to NODO_SUBESTACION
-print 'Propagating errors from SUBESTACION_DISTRIBUCION to NODO_SUBESTACION'
-
-Update NODO_SUBESTACION a
-set a.tiene_errores = 1
-from SUBESTACION_DISTRIBUCION b
-where a.EMPRESA_ID = b.EMPRESA_ID
-   and a.PERIODO_STAR = b.PERIODO_STAR
-   and a.SUBESTACION_DISTRIBUCION_ID = b.SUBESTACION_DISTRIBUCION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_EQUIPO to EQUIPO
-print 'Propagating errors from TIPO_EQUIPO to EQUIPO'
-
-Update EQUIPO a
-set a.tiene_errores = 1
-from TIPO_EQUIPO b
-where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_EQUIPO to EQUIPO_TOPOLOGIA
-print 'Propagating errors from TIPO_EQUIPO to EQUIPO_TOPOLOGIA'
-
-Update EQUIPO_TOPOLOGIA a
-set a.tiene_errores = 1
-from TIPO_EQUIPO b
-where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_SERVICIO_EQUIPO to EQUIPO
-print 'Propagating errors from TIPO_SERVICIO_EQUIPO to EQUIPO'
-
-Update EQUIPO a
-set a.tiene_errores = 1
-from TIPO_SERVICIO_EQUIPO b
-where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_SERVICIO_EQUIPO to EQUIPO_TOPOLOGIA
-print 'Propagating errors from TIPO_SERVICIO_EQUIPO to EQUIPO_TOPOLOGIA'
-
-Update EQUIPO_TOPOLOGIA a
-set a.tiene_errores = 1
-from TIPO_SERVICIO_EQUIPO b
-where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_EFECTO_EVENTO to EVENTO_RED
-print 'Propagating errors from TIPO_EFECTO_EVENTO to EVENTO_RED'
-
-Update EVENTO_RED a
-set a.tiene_errores = 1
-from TIPO_EFECTO_EVENTO b
-where a.TIPO_EFECTO_EVENTO_ID = b.TIPO_EFECTO_EVENTO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_EVENTO_RED to EVENTO_RED
-print 'Propagating errors from TIPO_EVENTO_RED to EVENTO_RED'
-
-Update EVENTO_RED a
-set a.tiene_errores = 1
-from TIPO_EVENTO_RED b
-where a.TIPO_EVENTO_ID = b.TIPO_EVENTO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_FUENTE_ENERGIA to FUENTE_ENERGIA_RED
-print 'Propagating errors from TIPO_FUENTE_ENERGIA to FUENTE_ENERGIA_RED'
-
-Update FUENTE_ENERGIA_RED a
-set a.tiene_errores = 1
-from TIPO_FUENTE_ENERGIA b
-where a.TIPO_FUENTE_ENERGIA_ID = b.TIPO_FUENTE_ENERGIA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_ORIGEN_INTERRUPCION to INTERRUPCION
-print 'Propagating errors from TIPO_ORIGEN_INTERRUPCION to INTERRUPCION'
-
-Update INTERRUPCION a
-set a.tiene_errores = 1
-from TIPO_ORIGEN_INTERRUPCION b
-where a.TIPO_ORIGEN_INTERRUPCION_ID = b.TIPO_ORIGEN_INTERRUPCION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from DATUM to NODO_IEC
-print 'Propagating errors from DATUM to NODO_IEC'
-
-Update NODO_IEC a
-set a.tiene_errores = 1
-from DATUM b
-where a.DATUM_ID = b.DATUM_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from DATUM to NODO_INCIDENCIA
-print 'Propagating errors from DATUM to NODO_INCIDENCIA'
-
-Update NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from DATUM b
-where a.DATUM_ID = b.DATUM_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_INSTALACION to NODO_IEC
-print 'Propagating errors from TIPO_INSTALACION to NODO_IEC'
-
-Update NODO_IEC a
-set a.tiene_errores = 1
-from TIPO_INSTALACION b
-where a.TIPO_INSTALACION_ID = b.TIPO_INSTALACION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_NODO to NODO_IEC
-print 'Propagating errors from TIPO_NODO to NODO_IEC'
-
-Update NODO_IEC a
-set a.tiene_errores = 1
-from TIPO_NODO b
-where a.TIPO_NODO_ID = b.TIPO_NODO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_NODO to NODO_INCIDENCIA
-print 'Propagating errors from TIPO_NODO to NODO_INCIDENCIA'
-
-Update NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from TIPO_NODO b
-where a.TIPO_NODO_ID = b.TIPO_NODO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from ZONA_UTM to NODO_IEC
-print 'Propagating errors from ZONA_UTM to NODO_IEC'
-
-Update NODO_IEC a
-set a.tiene_errores = 1
-from ZONA_UTM b
-where a.ZONA_UTM = b.ZONA_UTM
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from ZONA_UTM to NODO_INCIDENCIA
-print 'Propagating errors from ZONA_UTM to NODO_INCIDENCIA'
-
-Update NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from ZONA_UTM b
-where a.ZONA_UTM = b.ZONA_UTM
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from SENTIDO_ENERGIA to NODO_IEC_EXTERNO
-print 'Propagating errors from SENTIDO_ENERGIA to NODO_IEC_EXTERNO'
-
-Update NODO_IEC_EXTERNO a
-set a.tiene_errores = 1
-from SENTIDO_ENERGIA b
-where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from SENTIDO_ENERGIA to NODO_INCIDENCIA_EXTERNO
-print 'Propagating errors from SENTIDO_ENERGIA to NODO_INCIDENCIA_EXTERNO'
-
-Update NODO_INCIDENCIA_EXTERNO a
-set a.tiene_errores = 1
-from SENTIDO_ENERGIA b
-where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_INSTALACION_INCIDENCIA to NODO_INCIDENCIA
-print 'Propagating errors from TIPO_INSTALACION_INCIDENCIA to NODO_INCIDENCIA'
-
-Update NODO_INCIDENCIA a
-set a.tiene_errores = 1
-from TIPO_INSTALACION_INCIDENCIA b
-where a.TIPO_INSTALACION_INCIDENCIA_ID = b.TIPO_INSTALACION_INCIDENCIA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NUMERO_FASES to PUNTO_CONSUMO
-print 'Propagating errors from NUMERO_FASES to PUNTO_CONSUMO'
-
-Update PUNTO_CONSUMO a
-set a.tiene_errores = 1
-from NUMERO_FASES b
-where a.NUMERO_FASES = b.NUMERO_FASES
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NUMERO_FASES to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from NUMERO_FASES to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from NUMERO_FASES b
-where a.NUMERO_FASES = b.NUMERO_FASES
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NUMERO_FASES to TRAMO_BT
-print 'Propagating errors from NUMERO_FASES to TRAMO_BT'
-
-Update TRAMO_BT a
-set a.tiene_errores = 1
-from NUMERO_FASES b
-where a.NUMERO_FASES = b.NUMERO_FASES
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from NUMERO_FASES to TRAMO_MT
-print 'Propagating errors from NUMERO_FASES to TRAMO_MT'
-
-Update TRAMO_MT a
-set a.tiene_errores = 1
-from NUMERO_FASES b
-where a.NUMERO_FASES = b.NUMERO_FASES
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_EMPALME to PUNTO_CONSUMO
-print 'Propagating errors from TIPO_EMPALME to PUNTO_CONSUMO'
-
-Update PUNTO_CONSUMO a
-set a.tiene_errores = 1
-from TIPO_EMPALME b
-where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_EMPALME to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from TIPO_EMPALME to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from TIPO_EMPALME b
-where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_RURALIDAD to PUNTO_CONSUMO
-print 'Propagating errors from TIPO_RURALIDAD to PUNTO_CONSUMO'
-
-Update PUNTO_CONSUMO a
-set a.tiene_errores = 1
-from TIPO_RURALIDAD b
-where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_RURALIDAD to PUNTO_CONSUMO_TOPOLOGIA
-print 'Propagating errors from TIPO_RURALIDAD to PUNTO_CONSUMO_TOPOLOGIA'
-
-Update PUNTO_CONSUMO_TOPOLOGIA a
-set a.tiene_errores = 1
-from TIPO_RURALIDAD b
-where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_RURALIDAD to TRANSFORMADOR
-print 'Propagating errors from TIPO_RURALIDAD to TRANSFORMADOR'
-
-Update TRANSFORMADOR a
-set a.tiene_errores = 1
-from TIPO_RURALIDAD b
-where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_RURALIDAD to TRANSFORMADOR_TOPOLOGIA
-print 'Propagating errors from TIPO_RURALIDAD to TRANSFORMADOR_TOPOLOGIA'
-
-Update TRANSFORMADOR_TOPOLOGIA a
-set a.tiene_errores = 1
-from TIPO_RURALIDAD b
-where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_DISPOSICION to SUBESTACION_DISTRIBUCION
-print 'Propagating errors from TIPO_DISPOSICION to SUBESTACION_DISTRIBUCION'
-
-Update SUBESTACION_DISTRIBUCION a
-set a.tiene_errores = 1
-from TIPO_DISPOSICION b
-where a.TIPO_DISPOSICION_ID = b.TIPO_DISPOSICION_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_TOMA_TIERRA to TOMA_TIERRA
-print 'Propagating errors from TIPO_TOMA_TIERRA to TOMA_TIERRA'
-
-Update TOMA_TIERRA a
-set a.tiene_errores = 1
-from TIPO_TOMA_TIERRA b
-where a.TIPO_TOMA_TIERRA_ID = b.TIPO_TOMA_TIERRA_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_DISPOSICION_TRAMO to TRAMO_BT
-print 'Propagating errors from TIPO_DISPOSICION_TRAMO to TRAMO_BT'
-
-Update TRAMO_BT a
-set a.tiene_errores = 1
-from TIPO_DISPOSICION_TRAMO b
-where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
--- Propagating errors from TIPO_DISPOSICION_TRAMO to TRAMO_MT
-print 'Propagating errors from TIPO_DISPOSICION_TRAMO to TRAMO_MT'
-
-Update TRAMO_MT a
-set a.tiene_errores = 1
-from TIPO_DISPOSICION_TRAMO b
-where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
-   and b.tiene_errores = 1;
-
-commit;
-
------------------------------------------------------------------------------
-
-
+Update AVISO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_AVISO b, AVISO a
+    where a.TIPO_AVISO_ID = b.TIPO_AVISO_ID
+       and b.tiene_errores = 1
+);
+
+Update BAJADA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, BAJADA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update BOVEDA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, BOVEDA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update CAMARA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, CAMARA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update CANALIZACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, CANALIZACION a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update EMPALME
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, EMPALME a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update ENMALLE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, ENMALLE a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, EQUIPO a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, EQUIPO_TOPOLOGIA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, ESTRUCTURA_BT a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, ESTRUCTURA_MT a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_SED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, ESTRUCTURA_SED a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update MEDIDOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, MEDIDOR a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update POSTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, POSTE a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUENTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, PUENTE a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, PUNTO_CONSUMO a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_FALLA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, PUNTO_FALLA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update TIRANTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, TIRANTE a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update TOMA_TIERRA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, TOMA_TIERRA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, TRAMO_BT a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, TRAMO_MT a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, TRANSFORMADOR a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from COMUNA b, TRANSFORMADOR_TOPOLOGIA a
+    where a.COMUNA_ID = b.COMUNA_ID
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_CANALIZACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from CANALIZACION b, VERTICE_CANALIZACION a
+    where a.CANALIZACION_ID = b.CANALIZACION_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_EMPALME
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPALME b, VERTICE_EMPALME a
+    where a.EMPALME_ID = b.EMPALME_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_TRAMO_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TRAMO_BT b, VERTICE_TRAMO_BT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRAMO_BT_ID = b.TRAMO_BT_ID
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_TRAMO_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TRAMO_MT b, VERTICE_TRAMO_MT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRAMO_MT_ID = b.TRAMO_MT_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TRANSFORMADOR_TOPOLOGIA b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR_INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TRANSFORMADOR_TOPOLOGIA b, TRANSFORMADOR_INTERRUPCION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
+       and b.tiene_errores = 1
+);
+
+Update BAJADA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, BAJADA a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update BOVEDA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, BOVEDA a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update CAMARA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, CAMARA a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update CANALIZACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, CANALIZACION a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update EMPALME
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, EMPALME a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update ENMALLE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, ENMALLE a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, EQUIPO a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, ESTRUCTURA_BT a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, ESTRUCTURA_MT a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_SED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, ESTRUCTURA_SED a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update MEDIDOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, MEDIDOR a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update POSTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, POSTE a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update TIRANTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, TIRANTE a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update TOMA_TIERRA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, TOMA_TIERRA a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, TRAMO_BT a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, TRAMO_MT a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_PROPIEDAD b, TRANSFORMADOR a
+    where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update CAMARA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, CAMARA a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update CANALIZACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, CANALIZACION a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update ENMALLE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, ENMALLE a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, EQUIPO a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, EQUIPO_TOPOLOGIA a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update POSTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, POSTE a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update TOMA_TIERRA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TENSION b, TOMA_TIERRA a
+    where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
+       and b.tiene_errores = 1
+);
+
+Update CAUSA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from CALIFICACION_INTERRUPCION b, CAUSA a
+    where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
+       and b.tiene_errores = 1
+);
+
+Update INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from CALIFICACION_INTERRUPCION b, INTERRUPCION a
+    where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
+       and b.tiene_errores = 1
+);
+
+Update INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from CAUSA b, INTERRUPCION a
+    where a.CAUSA_ID = b.CAUSA_ID
+       and b.tiene_errores = 1
+);
+
+Update ALIMENTADOR_AFECTADO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INTERRUPCION b, ALIMENTADOR_AFECTADO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update AVISO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INTERRUPCION b, AVISO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update BLOQUE_REPOSICION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INTERRUPCION b, BLOQUE_REPOSICION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update ALIMENTADOR_REPOSICION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from BLOQUE_REPOSICION b, ALIMENTADOR_REPOSICION a
+    where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR_INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from BLOQUE_REPOSICION b, TRANSFORMADOR_INTERRUPCION a
+    where a.BLOQUE_REPOSICION_ID = b.BLOQUE_REPOSICION_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INTERRUPCION_ID = b.INTERRUPCION_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update CONEXION_NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_CONEXION_NODO b, CONEXION_NODO_IEC a
+    where a.TIPO_CONEXION_NODO_ID = b.TIPO_CONEXION_NODO_ID
+       and b.tiene_errores = 1
+);
+
+Update EMPRESA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from GRUPO_ECONOMICO b, EMPRESA a
+    where a.GRUPO_ECONOMICO_ID = b.GRUPO_ECONOMICO_ID
+       and b.tiene_errores = 1
+);
+
+Update ALIMENTADOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, ALIMENTADOR a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update ALIMENTADOR_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, ALIMENTADOR_INCIDENCIA a
+    where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update BAJADA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, BAJADA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update BOVEDA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, BOVEDA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update CAMARA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, CAMARA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update CANALIZACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, CANALIZACION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update CONEXION_NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, CONEXION_NODO_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update EMPALME
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, EMPALME a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update ENMALLE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, ENMALLE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, EQUIPO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, ESTRUCTURA_BT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, ESTRUCTURA_MT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_SED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, ESTRUCTURA_SED a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, INTERRUPCION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update MARCA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, MARCA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update MEDIDOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, MEDIDOR a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, NODO_IEC a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC_EXTERNO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, NODO_IEC_EXTERNO a
+    where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, NODO_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA_EXTERNO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, NODO_INCIDENCIA_EXTERNO a
+    where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update PERIODO_INFORMACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, PERIODO_INFORMACION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update POSTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, POSTE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_DERIVACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, PUNTO_DERIVACION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_SUMINISTRO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, PUNTO_SUMINISTRO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update SISTEMA_ELECTRICO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, SISTEMA_ELECTRICO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update SUBESTACION_DISTRIBUCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, SUBESTACION_DISTRIBUCION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update SUBESTACION_PRIMARIA_DISTRIBUC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, SUBESTACION_PRIMARIA_DISTRIBUC a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update TIRANTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, TIRANTE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update TOMA_TIERRA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, TOMA_TIERRA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, TRAMO_BT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, TRAMO_MT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EMPRESA b, TRANSFORMADOR a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from ALIMENTADOR b, NODO_IEC a
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update BAJADA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, BAJADA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update BOVEDA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, BOVEDA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update CAMARA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, CAMARA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update CONEXION_NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, CONEXION_NODO_IEC a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID_1 = b.NODO_IEC_ID
+       and a.NODO_IEC_ID_2 = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update ENMALLE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, ENMALLE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, EQUIPO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, ESTRUCTURA_BT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, ESTRUCTURA_MT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update ESTRUCTURA_SED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, ESTRUCTURA_SED a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update MARCA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, MARCA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update MEDIDOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, MEDIDOR a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC_CABECERA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, NODO_IEC_CABECERA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC_EXTERNO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, NODO_IEC_EXTERNO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update NODO_SUBESTACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, NODO_SUBESTACION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update POSTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, POSTE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, PUNTO_CONSUMO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update SUBESTACION_PRIMARIA_DISTRIBUC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, SUBESTACION_PRIMARIA_DISTRIBUC a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update TIRANTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, TIRANTE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update TOMA_TIERRA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, TOMA_TIERRA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, TRANSFORMADOR a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_CANALIZACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, VERTICE_CANALIZACION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_EMPALME
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, VERTICE_EMPALME a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_TRAMO_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, VERTICE_TRAMO_BT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update VERTICE_TRAMO_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_IEC b, VERTICE_TRAMO_MT a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.NODO_IEC_ID = b.NODO_IEC_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from SUBESTACION_PRIMARIA_DISTRIBUC b, PUNTO_CONSUMO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.SUBESTACION_PRIMARIA_ID = b.SUBESTACION_PRIMARIA_ID
+       and b.tiene_errores = 1
+);
+
+Update ALIMENTADOR_AFECTADO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from ALIMENTADOR_INCIDENCIA b, ALIMENTADOR_AFECTADO a
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update ALIMENTADOR_REPOSICION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from ALIMENTADOR_INCIDENCIA b, ALIMENTADOR_REPOSICION a
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from ALIMENTADOR_INCIDENCIA b, NODO_INCIDENCIA a
+    where a.ALIMENTADOR_ID = b.ALIMENTADOR_ID
+       and a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update CONEXION_NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, CONEXION_NODO_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID_1 = b.NODO_INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID_2 = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, EQUIPO_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update EVENTO_RED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, EVENTO_RED a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update FUENTE_ENERGIA_RED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, FUENTE_ENERGIA_RED a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA_CABECERA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, NODO_INCIDENCIA_CABECERA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA_EXTERNO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, NODO_INCIDENCIA_EXTERNO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUENTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, PUENTE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_DERIVACION_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, PUNTO_DERIVACION_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_FALLA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, PUNTO_FALLA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NODO_INCIDENCIA b, TRANSFORMADOR_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update BLOQUE_REPOSICION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EVENTO_RED b, BLOQUE_REPOSICION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EVENTORED_ID = b.EVENTORED_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update DESCRIPCION_EVENTO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EVENTO_RED b, DESCRIPCION_EVENTO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EVENTORED_ID = b.EVENTORED_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from EVENTO_RED b, INTERRUPCION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.EVENTORED_ID = b.EVENTORED_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update ALIMENTADOR_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, ALIMENTADOR_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, EQUIPO_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update EVENTO_RED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, EVENTO_RED a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update FUENTE_ENERGIA_RED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, FUENTE_ENERGIA_RED a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, NODO_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUENTE
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, PUENTE a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_DERIVACION_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, PUNTO_DERIVACION_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_FALLA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, PUNTO_FALLA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_SUMINISTRO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, PUNTO_SUMINISTRO_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update SUBESTACION_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, SUBESTACION_INCIDENCIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from INCIDENCIA b, TRANSFORMADOR_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from PUNTO_SUMINISTRO_INCIDENCIA b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from SUBESTACION_INCIDENCIA b, TRANSFORMADOR_TOPOLOGIA a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.INCIDENCIA_ID = b.INCIDENCIA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.SUBESTACION_INCIDENCIA_ID = b.SUBESTACION_INCIDENCIA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from PUNTO_SUMINISTRO b, PUNTO_CONSUMO a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
+       and b.tiene_errores = 1
+);
+
+Update INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from SISTEMA_ELECTRICO b, INTERRUPCION a
+    where a.SISTEMA_ELECTRICO_ID = b.SISTEMA_ELECTRICO_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_SUBESTACION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from SUBESTACION_DISTRIBUCION b, NODO_SUBESTACION a
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and a.PERIODO_STAR = b.PERIODO_STAR
+       and a.SUBESTACION_DISTRIBUCION_ID = b.SUBESTACION_DISTRIBUCION_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_EQUIPO b, EQUIPO a
+    where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_EQUIPO b, EQUIPO_TOPOLOGIA a
+    where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_SERVICIO_EQUIPO b, EQUIPO a
+    where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
+       and b.tiene_errores = 1
+);
+
+Update EQUIPO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_SERVICIO_EQUIPO b, EQUIPO_TOPOLOGIA a
+    where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
+       and b.tiene_errores = 1
+);
+
+Update EVENTO_RED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_EFECTO_EVENTO b, EVENTO_RED a
+    where a.TIPO_EFECTO_EVENTO_ID = b.TIPO_EFECTO_EVENTO_ID
+       and b.tiene_errores = 1
+);
+
+Update EVENTO_RED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_EVENTO_RED b, EVENTO_RED a
+    where a.TIPO_EVENTO_ID = b.TIPO_EVENTO_ID
+       and b.tiene_errores = 1
+);
+
+Update FUENTE_ENERGIA_RED
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_FUENTE_ENERGIA b, FUENTE_ENERGIA_RED a
+    where a.TIPO_FUENTE_ENERGIA_ID = b.TIPO_FUENTE_ENERGIA_ID
+       and b.tiene_errores = 1
+);
+
+Update INTERRUPCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_ORIGEN_INTERRUPCION b, INTERRUPCION a
+    where a.TIPO_ORIGEN_INTERRUPCION_ID = b.TIPO_ORIGEN_INTERRUPCION_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from DATUM b, NODO_IEC a
+    where a.DATUM_ID = b.DATUM_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from DATUM b, NODO_INCIDENCIA a
+    where a.DATUM_ID = b.DATUM_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_INSTALACION b, NODO_IEC a
+    where a.TIPO_INSTALACION_ID = b.TIPO_INSTALACION_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_NODO b, NODO_IEC a
+    where a.TIPO_NODO_ID = b.TIPO_NODO_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_NODO b, NODO_INCIDENCIA a
+    where a.TIPO_NODO_ID = b.TIPO_NODO_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from ZONA_UTM b, NODO_IEC a
+    where a.ZONA_UTM = b.ZONA_UTM
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from ZONA_UTM b, NODO_INCIDENCIA a
+    where a.ZONA_UTM = b.ZONA_UTM
+       and b.tiene_errores = 1
+);
+
+Update NODO_IEC_EXTERNO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from SENTIDO_ENERGIA b, NODO_IEC_EXTERNO a
+    where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA_EXTERNO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from SENTIDO_ENERGIA b, NODO_INCIDENCIA_EXTERNO a
+    where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
+       and b.tiene_errores = 1
+);
+
+Update NODO_INCIDENCIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_INSTALACION_INCIDENCIA b, NODO_INCIDENCIA a
+    where a.TIPO_INSTALACION_INCIDENCIA_ID = b.TIPO_INSTALACION_INCIDENCIA_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NUMERO_FASES b, PUNTO_CONSUMO a
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NUMERO_FASES b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NUMERO_FASES b, TRAMO_BT a
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from NUMERO_FASES b, TRAMO_MT a
+    where a.NUMERO_FASES = b.NUMERO_FASES
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_EMPALME b, PUNTO_CONSUMO a
+    where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_EMPALME b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_RURALIDAD b, PUNTO_CONSUMO a
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update PUNTO_CONSUMO_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_RURALIDAD b, PUNTO_CONSUMO_TOPOLOGIA a
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_RURALIDAD b, TRANSFORMADOR a
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update TRANSFORMADOR_TOPOLOGIA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_RURALIDAD b, TRANSFORMADOR_TOPOLOGIA a
+    where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
+       and b.tiene_errores = 1
+);
+
+Update SUBESTACION_DISTRIBUCION
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_DISPOSICION b, SUBESTACION_DISTRIBUCION a
+    where a.TIPO_DISPOSICION_ID = b.TIPO_DISPOSICION_ID
+       and b.tiene_errores = 1
+);
+
+Update TOMA_TIERRA
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_TOMA_TIERRA b, TOMA_TIERRA a
+    where a.TIPO_TOMA_TIERRA_ID = b.TIPO_TOMA_TIERRA_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_BT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_DISPOSICION_TRAMO b, TRAMO_BT a
+    where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
+       and b.tiene_errores = 1
+);
+
+Update TRAMO_MT
+ set tiene_errores = 1
+ where exists
+(
+    select 1
+    from TIPO_DISPOSICION_TRAMO b, TRAMO_MT a
+    where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
+       and b.tiene_errores = 1
+);

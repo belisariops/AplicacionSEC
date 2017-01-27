@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Created by bpanay on 25-01-2017.
+ * @author Belisario Panay
  */
 public class Checker implements  Runnable {
   private SQLConnection connection;
@@ -16,16 +16,14 @@ public class Checker implements  Runnable {
 
   public Checker(SQLConnection connection)  {
     this.connection = connection;
-    try {
-      errors = connection.executeCheckQuery("SELECT * FROM errores;");
-    }
-    catch (SQLException e) {
-      System.out.println("La query probablemente \"SELECT * FROM errores;\" esta incorrecta");
-    }
+    executeCheck("resultsCheckQueries");
+    executeCheck("resultsPrimaryKey");
+    executeCheck("resultUpdatingTables");
+    executeCheck("resultForeignKey");
+    executeCheck("resultUpdatingTables");
+    executeCheck("resultsRecursiveError");
+    executeCheck("resultsPeriodoStarId");
   }
-
-
-
   public List<Error> getErrors() {
     return errors;
   }
@@ -33,7 +31,7 @@ public class Checker implements  Runnable {
   public void executeCheck(String fileName) {
     StringBuilder builder = new StringBuilder();
     String line;
-    try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/CheckScripts/" + fileName))) {
+    try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/CheckScripts/" + fileName+".txt"))) {
       while ((line = bufferedReader.readLine()) != null) {
         builder.append(line);
 
@@ -49,23 +47,33 @@ public class Checker implements  Runnable {
       System.out.println("Algo salio mal");
 
     }
-
+    int a = 0;
     String[] s = builder.toString().split(";");
     for (int j=0;j<s.length;j++) {
       try {
         connection.executeCreationQuery(s[j]);
       }
       catch (SQLException e) {
+        a++;
+        //e.printStackTrace();
         System.out.println(s[j]);
       }
     }
+
+    System.out.println("Se tienen "+s.length+" consultas de las cuales "+a+" tienen errores.");
 
   }
 
 
   @Override
   public void run() {
-
+    this.connection = connection;
+    try {
+      errors = connection.executeCheckQuery("SELECT * FROM errores;");
+    }
+    catch (SQLException e) {
+      System.out.println("La query probablemente \"SELECT * FROM errores;\" esta incorrecta");
+    }
 
 
   }

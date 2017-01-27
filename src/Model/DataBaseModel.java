@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class DataBaseModel {
     private SQLConnection connection;
+    private Checker checker;
 
     public DataBaseModel(){
 
@@ -24,6 +25,9 @@ public class DataBaseModel {
         }
         DatabaseCreator creator = new DatabaseCreator(connection);
         creator.run();
+        checker = new Checker(connection);
+
+
 
     }
 
