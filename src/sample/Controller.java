@@ -4,6 +4,7 @@ import Model.DataBaseModel;
 import Model.Error;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -59,12 +60,10 @@ public class Controller {
         this.stage = primaryStage;
         this.fxmlLoader = fxmlLoader;
 
-        data = FXCollections.observableArrayList(
-            new Error(1, "Z", "a@example.com", 'F'),
-            new Error(2, "X", "b@example.com", 'P'),
-            new Error(4, "W", "c@example.com", 'C'),
-            new Error(10, "V", "e@example.com", 'F')
-        );
+        data = FXCollections.observableArrayList();
+
+        primaryStage.setMinWidth(400);
+        primaryStage.setMinHeight(300);
 
         secTile.fitWidthProperty().bind(stage.widthProperty());
         secTile.fitHeightProperty().bind(stage.heightProperty());
@@ -133,6 +132,9 @@ public class Controller {
         });
     }
 
+    public void addData(List<Error> newData){
+        data.addAll(newData);
+    }
 
     private void fixLabelWithResize(Label label, Number oldValue, Number newValue){
         Point2D myPosition = getPosition(label);
