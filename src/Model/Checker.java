@@ -17,7 +17,7 @@ public class Checker implements  Runnable {
   public Checker(SQLConnection connection)  {
     this.connection = connection;
   }
-  
+
   public List<Error> getErrors() {
       executeCheck("resultsCheckQueries");
       executeCheck("resultsPrimaryKey");
