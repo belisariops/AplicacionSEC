@@ -185,8 +185,8 @@ public class Controller {
         new AutoCompleteComboBoxListener<>(myComboBox);
         new AutoCompleteComboBoxListener<>(comboBoxTablas);
 
-        listView.setMinSize(388,169);
-        listView.setMaxSize(388,169);
+        listView.setMinSize(388,188);
+        listView.setMaxSize(388,188);
         listView.setDisable(true);
 
         myView.setMinSize(688,188);
