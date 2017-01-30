@@ -78,4 +78,18 @@ public class SQLConnection {
         return connection;
     }
 
+
+    public List<Vertice_tramo_bt> executeTestQuery(String query) throws  SQLException {
+        Statement s = connection.createStatement();
+        ResultSet result = s.executeQuery(query);
+        List<Vertice_tramo_bt> errorList = new ArrayList<>();
+        while (result.next()) {
+            int rowId = result.getInt("empresa_id");
+            String tableName = result.getString("periodo_star");
+            double constraintName = result.getDouble("TRAMO_BT_ID");
+            errorList.add(new Vertice_tramo_bt(rowId,tableName,constraintName));
+        }
+        return errorList;
+
+    }
 }

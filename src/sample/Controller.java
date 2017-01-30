@@ -3,6 +3,7 @@ package sample;
 import Model.Empresa;
 import Model.DataBaseModel;
 import Model.Error;
+import Model.Vertice_tramo_bt;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,13 +69,15 @@ public class Controller {
     @FXML
     private ListView listView;
     @FXML
-    private TableView<Error> myView;
+    private TableView myView;
 
     private ObservableList<Error> data;
+    private ObservableList<Vertice_tramo_bt> testData;
     private List<Label> labels;
     private List<ComboBox> comboBoxes;
     private File loadedFile;
     private String fileChooserPath;
+    private double fontComboBox;
 
     public void initModel(DataBaseModel model, Stage primaryStage, FXMLLoader fxmlLoader) {
         if (this.model != null) {
@@ -85,10 +88,19 @@ public class Controller {
         this.fxmlLoader = fxmlLoader;
         comboBoxes = new ArrayList<>();
         fileChooserPath = "null";
+        fontComboBox = 15;
 
         stage.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if(key.getCode()== KeyCode.ENTER) {
-                model.getTable();
+                testData = FXCollections.observableArrayList();
+                testData.removeAll(testData);
+
+                testData.addAll(model.getTable());
+
+                myView.setItems(testData);
+
+                // Para que automaticamente use el ancho de la tabla
+                myView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             }
         });
 
@@ -180,6 +192,9 @@ public class Controller {
         myView.setMinSize(688,188);
         myView.setMaxSize(688,188);
 
+        // Datos a ingresar a la tabla de errores.
+        data = FXCollections.observableArrayList();
+
         // Agregar columnas de errores a la tabla.
         TableColumn rowiId = new TableColumn("d_rowid");
         rowiId.setCellValueFactory(new PropertyValueFactory<Error, Integer>("rowId"));
@@ -249,6 +264,8 @@ public class Controller {
             }
         });
     }
+
+
 
     /**
      * Dado el nodo en la ventana, retorna la posición de este nodo.
@@ -369,12 +386,21 @@ public class Controller {
                 } catch (IOException e) {
                     System.out.println("algo salió mal en la lectura del archivo.");
                 } finally {
-                    data.addAll(model.getErrors());
+                    reinitializeData();
                     System.out.println("insertando errores.");
                 }
             }
         };
         one.run();
 
+    }
+
+    /**
+     * Reinicializa la tabla de errores para que no existan datos duplicados.
+     */
+    private void reinitializeData() {
+        // Datos a ingresar a la tabla de errores.
+        data.removeAll(data);
+        data.addAll(model.getErrors());
     }
 }

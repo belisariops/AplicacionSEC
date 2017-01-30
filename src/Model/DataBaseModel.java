@@ -5,13 +5,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -66,6 +75,7 @@ public class DataBaseModel {
         columnNames.addAll(database.get(tableName));
         StringBuilder insertQuery = new StringBuilder();
         StringBuilder insertValues = new StringBuilder();
+        StringBuilder query = new StringBuilder();
         int count = 0;
 
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -114,16 +124,21 @@ public class DataBaseModel {
                 count++;
                 if(count == 100) {
                     try {
-                        connection.executeAddQuery(insertQuery.toString() + insertValues.toString());
+                        connection.executeAddQuery(query.toString());
+                        count = 0;
+                        query = new StringBuilder();
                     } catch (SQLException e) {
                         System.out.println(insertQuery.toString() + insertValues.toString());
                     }
+                } else {
+                    query.append(insertQuery.toString());
+                    query.append(insertValues.toString());
                 }
                 line = br.readLine();
             }
             try {
-                if(!insertQuery.toString().equals(""))
-                    connection.executeAddQuery(insertQuery.toString() + insertValues.toString());
+                if(!query.toString().equals(""))
+                    connection.executeAddQuery(query.toString());
             } catch (SQLException e){
                 System.out.println(insertQuery.toString() + insertValues.toString());
             }
@@ -230,13 +245,13 @@ public class DataBaseModel {
     /**
      * Para obtener las 100 primeras filas de una tabla.
      */
-    public List<Error> getTable(){
-        List<Error> errors = new ArrayList<>();
+    public List<Vertice_tramo_bt> getTable(){
+        List<Vertice_tramo_bt> errors = new ArrayList<>();
         try {
-                errors = connection.executeCheckQuery("SELECT * FROM VERTICE_TRAMO_BT;");
+            errors = connection.executeTestQuery("SELECT * FROM VERTICE_TRAMO_BT;");
         }
         catch (SQLException e) {
-            System.out.println("La query probablemente esta incorrecta");
+            e.printStackTrace();
         }
 
         return errors;

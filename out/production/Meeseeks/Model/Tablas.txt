@@ -897,7 +897,7 @@ create table FBG_RESUMEN_CARGA
    REGISTROS_RECHAZADOS numeric                        ,
    FECHA_INICIO         timestamp                      ,
    FECHA_TERMINO        timestamp                      ,
-   NOMBRE_ARCHIVO       varchar(255)                   ,
+   NOMBRE_ARCHIVO       varchar(255)                   
 );
 
 /*==============================================================*/
@@ -2311,7 +2311,7 @@ create table REGION_COMUNA_PROVINCIA
 /*==============================================================*/
 create table ROW_COUNT
 (
-   NROWS                numeric                        ,
+   NROWS                numeric                        
 );
 
 /*==============================================================*/
