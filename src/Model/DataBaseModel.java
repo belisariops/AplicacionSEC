@@ -1,6 +1,5 @@
 package Model;
 
-import Model.CheckScripts.Empresa;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 
@@ -66,43 +64,83 @@ public class DataBaseModel {
     public void loadData(File file, String tableName) throws IOException{
         List<String> columnNames = new ArrayList<>();
         columnNames.addAll(database.get(tableName));
-        StringBuilder query = new StringBuilder();
-
-        query.append("INSERT INTO ");
-        query.append(tableName);
-        query.append(" (");
-        query.append(columnNames.get(0));
-        for(int i = 1; i < columnNames.size(); i++){
-            query.append(",");
-            query.append(columnNames.get(i));
-        }
-        query.append(") VALUES \n");
+        StringBuilder insertQuery = new StringBuilder();
+        StringBuilder insertValues = new StringBuilder();
+        int count = 0;
 
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line = br.readLine();
 
             while (line != null) {
+
+                /* Debemos ir insertando valores aunque tenga valores nulos en algunos campos,
+                 * por lo que se insertarán valor a valor y con los campor respectivos
+                 * que no tengan valor nulo.
+                 */
+                int insertedValues = 0;
+                insertQuery = new StringBuilder();
+                insertValues = new StringBuilder();
+
+                /* Query insert into de sqlite. */
+                insertQuery.append("INSERT INTO ");
+                insertQuery.append(tableName);
+                insertQuery.append(" (");
+
+                /* Separamos la línea por los valores entre las comas. */
                 List<String> list = new ArrayList<String>(Arrays.asList(line.split(",")));
 
-                query.append(" (");
-                query.append(list.get(0));
+                insertValues.append(" (");
+
+                /* Iteramos sobre los valores a insertar. */
                 for (int i = 1; i < list.size(); i++) {
-                    query.append(",");
-                    query.append(list.get(i));
+                    if(!list.get(i).equals("")){
+                        if(!isNumeric(list.get(i)))
+                            list.set(i, "'" + list.get(i) + "'");
+
+                        if(insertedValues == 0){
+                            insertQuery.append(columnNames.get(i));
+                            insertValues.append(list.get(i));
+                            insertedValues++;
+                            continue;
+                        }
+                        insertQuery.append(",");
+                        insertQuery.append(columnNames.get(i));
+                        insertValues.append(",");
+                        insertValues.append(list.get(i));
+                    }
                 }
-                query.append("),\n");
+                insertQuery.append(") VALUES \n");
+                insertValues.append(");\n");
+                count++;
+                if(count == 100) {
+                    try {
+                        connection.executeAddQuery(insertQuery.toString() + insertValues.toString());
+                    } catch (SQLException e) {
+                        System.out.println(insertQuery.toString() + insertValues.toString());
+                    }
+                }
                 line = br.readLine();
             }
-            query.replace(query.length()-2, query.length()-1, ";");
-
             try {
-                connection.executeAddQuery(query.toString());
+                if(!insertQuery.toString().equals(""))
+                    connection.executeAddQuery(insertQuery.toString() + insertValues.toString());
             } catch (SQLException e){
-                System.out.println(query.toString());
+                System.out.println(insertQuery.toString() + insertValues.toString());
             }
         }
+    }
 
-
+    private boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -113,7 +151,7 @@ public class DataBaseModel {
     private Map<String,ArrayList<String>> createDataBaseModel() {
         Map<String, ArrayList<String>> myMap = new HashMap<>();
 
-        String csvFile = "src/Model/DataBase.csv";
+        String csvFile = "src/Model/DataBaseCsv/DataBase.csv";
 
         BufferedReader br = null;
         String line;
@@ -156,7 +194,7 @@ public class DataBaseModel {
     public void loadCompanies(){
         companies = new ArrayList<>();
 
-        String csvFile = "src/Model/Empresas.csv";
+        String csvFile = "src/Model/DataBaseCsv/Empresas.csv";
 
         BufferedReader br = null;
         String line;
@@ -187,6 +225,21 @@ public class DataBaseModel {
                 }
             }
         }
+    }
+
+    /**
+     * Para obtener las 100 primeras filas de una tabla.
+     */
+    public List<Error> getTable(){
+        List<Error> errors = new ArrayList<>();
+        try {
+                errors = connection.executeCheckQuery("SELECT * FROM VERTICE_TRAMO_BT;");
+        }
+        catch (SQLException e) {
+            System.out.println("La query probablemente esta incorrecta");
+        }
+
+        return errors;
     }
 
     /**

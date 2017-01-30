@@ -1,4 +1,4 @@
-package Model.CheckScripts;
+package Model;
 
 /**
  * Created by juakotorres on 27-01-2017.

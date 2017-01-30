@@ -16,15 +16,16 @@ public class Checker implements  Runnable {
 
   public Checker(SQLConnection connection)  {
     this.connection = connection;
-    executeCheck("resultsCheckQueries");
-    executeCheck("resultsPrimaryKey");
-    executeCheck("resultUpdatingTables");
-    executeCheck("resultForeignKey");
-    executeCheck("resultUpdatingTables");
-    executeCheck("resultsRecursiveError");
-    executeCheck("resultsPeriodoStarId");
   }
+  
   public List<Error> getErrors() {
+      executeCheck("resultsCheckQueries");
+      executeCheck("resultsPrimaryKey");
+      executeCheck("resultUpdatingTables");
+      executeCheck("resultForeignKey");
+      executeCheck("resultUpdatingTables");
+      executeCheck("resultsRecursiveError");
+      executeCheck("resultsPeriodoStarId");
       run();
       return errors;
   }

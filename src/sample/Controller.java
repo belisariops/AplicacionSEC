@@ -1,6 +1,6 @@
 package sample;
 
-import Model.CheckScripts.Empresa;
+import Model.Empresa;
 import Model.DataBaseModel;
 import Model.Error;
 import java.io.File;
@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,11 +22,12 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
@@ -74,6 +74,7 @@ public class Controller {
     private List<Label> labels;
     private List<ComboBox> comboBoxes;
     private File loadedFile;
+    private String fileChooserPath;
 
     public void initModel(DataBaseModel model, Stage primaryStage, FXMLLoader fxmlLoader) {
         if (this.model != null) {
@@ -83,7 +84,13 @@ public class Controller {
         this.stage = primaryStage;
         this.fxmlLoader = fxmlLoader;
         comboBoxes = new ArrayList<>();
+        fileChooserPath = "null";
 
+        stage.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            if(key.getCode()== KeyCode.ENTER) {
+                model.getTable();
+            }
+        });
 
         // Datos a ingresar a la tabla de errores.
         data = FXCollections.observableArrayList();
@@ -330,11 +337,18 @@ public class Controller {
     @FXML void buttonPressed() {
         FileChooser fileChooser  = new FileChooser();
         fileChooser.setTitle("Seleccionar archivo");
+
+        if (!fileChooserPath.equals("null")){
+            File myFile = new File(fileChooserPath);
+            fileChooser.setInitialDirectory(myFile);
+        }
+
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
             textoArchivoCargado.setText(file.getName());
             loadedFile = file;
+            fileChooserPath = file.getParentFile().getPath();
         }
     }
 
@@ -356,6 +370,7 @@ public class Controller {
                     System.out.println("algo salió mal en la lectura del archivo.");
                 } finally {
                     data.addAll(model.getErrors());
+                    System.out.println("insertando errores.");
                 }
             }
         };

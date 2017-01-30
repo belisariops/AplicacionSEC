@@ -27,34 +27,6 @@ create table resumen_ok
 
 
 insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
- select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR', count(*), 0, 0
- from ALIMENTADOR a
- group by a.empresa_id, a.periodo_star_id;
-
-
-
-insert into resumen_error(empresa_id, periodo_star_id, table_name, registros_error)
- select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR', count(*)
- from ALIMENTADOR a, errores b
- where b.table_name = 'ALIMENTADOR'
-  and a.rowid = b.rowid
- group by a.empresa_id, a.periodo_star_id;
-
-
-
-insert into resumen_ok(empresa_id, periodo_star_id, table_name, registros_ok)
- select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR', count(*)
- from ALIMENTADOR a
- where a.tiene_errores = 0
- group by a.empresa_id, a.periodo_star_id;
-
-
-
-
-
-
-
-insert into resumen_carga(empresa_id, periodo_star_id, table_name, registros_enviados, registros_error,  registros_ok)
  select a.empresa_id, a.periodo_star_id, 'ALIMENTADOR_AFECTADO', count(*), 0, 0
  from ALIMENTADOR_AFECTADO a
  group by a.empresa_id, a.periodo_star_id;

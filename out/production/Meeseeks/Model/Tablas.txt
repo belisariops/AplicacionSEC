@@ -89,7 +89,6 @@ create table ALIMENTADOR_INCIDENCIA
    tiene_errores                tinyint
 );
 
-
 /*==============================================================*/
 /* Table: ALIMENTADOR_REPOSICION                                */
 /*==============================================================*/
