@@ -167,6 +167,8 @@ public class Controller {
         errores.setMaxSize(142, 27);
         insertingData.setMinSize(181, 17);
         insertingData.setMaxSize(181, 17);
+        indicator.setMinSize(200, 17);
+        indicator.setMaxSize(200, 17);
 
         for(Labeled label : labels){
             label.setMaxSize(300, 30);
@@ -267,6 +269,7 @@ public class Controller {
                 fixLabeledWithResize(errores, oldValue, newValue, false);
                 fixControlWithResize(myView, oldValue, newValue, false);
                 fixControlWithResize(insertingData, oldValue, newValue, false);
+                fixControlWithResize(indicator, oldValue, newValue, false);
                 fixControlWithResize(listView, oldValue, newValue, false);
                 fixControlWithResize(tableList, oldValue, newValue, false);
             }
@@ -295,6 +298,7 @@ public class Controller {
                 fixLabeledWithResize(errores, oldValue, newValue, true);
                 fixControlWithResize(myView, oldValue, newValue, true);
                 fixControlWithResize(insertingData, oldValue, newValue, true);
+                fixControlWithResize(indicator, oldValue, newValue, true);
                 fixControlWithResize(listView, oldValue, newValue, true);
                 fixControlWithResize(tableList, oldValue, newValue, true);
             }
@@ -452,30 +456,7 @@ public class Controller {
             }
         };
         two.start();
-        Thread three = new Thread() {
-            public void run() {
-                String uno = ".";
-                String dos = "..";
-                String tres = "...";
-                String text= "Revisando constraints ";
-                int conteo = 0;
-                while (two.isAlive()) {
-                    if (conteo == 0) {
-                        indicatorText.setText(text+uno);
-                    }
-                    else if (conteo == 1) {
-                        indicatorText.setText(text+dos);
-                    }
-                    else if (conteo == 2) {
-                        indicatorText.setText(text+tres);
-                    }
-                    else
-                        conteo = 0;
-                    conteo++;
-                }
-            }
-        };
-        three.start();
+
     }
 
     /**
