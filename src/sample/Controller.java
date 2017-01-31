@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -38,7 +44,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import net.lingala.zip4j.exception.ZipException;
+
 
 public class Controller {
 
@@ -137,6 +145,7 @@ public class Controller {
         labels.add(textoArchivoCargado);
         labels.add(textoErrores);
         labels.add(textoTabla);
+        labels.add(indicatorText);
 
         // juntar comboboxes
         comboBoxes.add(comboBoxTablas);
@@ -154,6 +163,8 @@ public class Controller {
         okButton.setMaxSize(112, 22);
         errorCheck.setMinSize(152, 22);
         errorCheck.setMaxSize(152, 22);
+        errores.setMinSize(142, 27);
+        errores.setMaxSize(142, 27);
         insertingData.setMinSize(181, 17);
         insertingData.setMaxSize(181, 17);
 
@@ -253,6 +264,7 @@ public class Controller {
                 fixLabeledWithResize(myButton, oldValue, newValue, false);
                 fixLabeledWithResize(okButton, oldValue, newValue, false);
                 fixLabeledWithResize(errorCheck, oldValue, newValue, false);
+                fixLabeledWithResize(errores, oldValue, newValue, false);
                 fixControlWithResize(myView, oldValue, newValue, false);
                 fixControlWithResize(insertingData, oldValue, newValue, false);
                 fixControlWithResize(listView, oldValue, newValue, false);
@@ -280,6 +292,7 @@ public class Controller {
                 fixLabeledWithResize(myButton, oldValue, newValue, true);
                 fixLabeledWithResize(okButton, oldValue, newValue, true);
                 fixLabeledWithResize(errorCheck, oldValue, newValue, true);
+                fixLabeledWithResize(errores, oldValue, newValue, true);
                 fixControlWithResize(myView, oldValue, newValue, true);
                 fixControlWithResize(insertingData, oldValue, newValue, true);
                 fixControlWithResize(listView, oldValue, newValue, true);
@@ -400,6 +413,9 @@ public class Controller {
         String nombreTabla = comboBoxTablas.getValue();
         if (nombreTabla == null | tablasCargadas.contains(nombreTabla))
             return;
+
+        okButton.setDisable(true);
+        okButton.setText("Subiendo archivo...");
         Thread one = new Thread() {
             public void run() {
                 System.out.println(nombreTabla);
@@ -411,6 +427,12 @@ public class Controller {
                 } finally {
                     listaTablasCargadas.removeAll(listaTablasCargadas);
                     listaTablasCargadas.addAll(getTablasCargadas());
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+                        okButton.setDisable(false);
+                        okButton.setText("Subir archivo.");
+                    }));
+                    timeline.play();
+
                     System.out.println("insertados datos.");
                 }
             }
