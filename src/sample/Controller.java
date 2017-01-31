@@ -10,6 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,6 +41,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Controller {
 
@@ -385,6 +392,9 @@ public class Controller {
         String nombreTabla = comboBoxTablas.getValue();
         if (nombreTabla == null | tablasCargadas.contains(nombreTabla))
             return;
+
+        okButton.setDisable(true);
+        okButton.setText("Subiendo archivo...");
         Thread one = new Thread() {
             public void run() {
                 System.out.println(nombreTabla);
@@ -396,6 +406,12 @@ public class Controller {
                 } finally {
                     listaTablasCargadas.removeAll(listaTablasCargadas);
                     listaTablasCargadas.addAll(getTablasCargadas());
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+                        okButton.setDisable(false);
+                        okButton.setText("Subir archivo.");
+                    }));
+                    timeline.play();
+
                     System.out.println("insertados datos.");
                 }
             }
