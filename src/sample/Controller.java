@@ -23,6 +23,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -61,6 +62,12 @@ public class Controller {
     @FXML
     private Label textoTabla;
     @FXML
+    private ProgressBar insertingData;
+    @FXML
+    private TableView tableList;
+    @FXML
+    private Button errorCheck;
+    @FXML
     private Label textoArchivoCargado;
     @FXML
     private ComboBox<String> myComboBox;
@@ -90,7 +97,7 @@ public class Controller {
         fileChooserPath = "null";
         fontComboBox = 15;
 
-        stage.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+        /*stage.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if(key.getCode()== KeyCode.ENTER) {
                 testData = FXCollections.observableArrayList();
                 testData.removeAll(testData);
@@ -102,7 +109,7 @@ public class Controller {
                 // Para que automaticamente use el ancho de la tabla
                 myView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             }
-        });
+        });*/
 
         // Datos a ingresar a la tabla de errores.
         data = FXCollections.observableArrayList();
@@ -185,8 +192,8 @@ public class Controller {
         new AutoCompleteComboBoxListener<>(myComboBox);
         new AutoCompleteComboBoxListener<>(comboBoxTablas);
 
-        listView.setMinSize(388,188);
-        listView.setMaxSize(388,188);
+        listView.setMinSize(688,215);
+        listView.setMaxSize(688,215);
         listView.setDisable(true);
 
         myView.setMinSize(688,188);
@@ -391,7 +398,7 @@ public class Controller {
                 }
             }
         };
-        one.run();
+        one.start();
 
     }
 
