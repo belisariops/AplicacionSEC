@@ -59,6 +59,7 @@ public class Main extends Application {
         System.out.println( encrypt);
         System.out.println( dencrypt);
         */
+        /* Ejemplo que crea un archivo zip con clave.
         try {
             ArrayList<File> files = new ArrayList<File>();
             files.add(new File("src/sample/test.txt"));
@@ -69,6 +70,7 @@ public class Main extends Application {
         catch (ZipException e) {
             e.printStackTrace();
         }
+        */
 
 
 
