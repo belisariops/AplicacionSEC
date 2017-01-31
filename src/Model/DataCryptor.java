@@ -17,7 +17,7 @@ public class DataCryptor {
 
         /* Todos los simbolos ASCII. */
         StringBuilder ascii = new StringBuilder();
-        for (int c=1; c<255; c++) {
+        for (int c=33; c<127; c++) {
             ascii.append((char)c);
         }
         alphabet = ascii.toString();

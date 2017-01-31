@@ -1,5 +1,6 @@
 package Model;
 
+import com.sun.javaws.progress.Progress;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.paint.Color;
 
 
@@ -27,6 +29,7 @@ public class DataBaseModel {
     DatabaseCreator creator;
     private Map<String, ArrayList<String>> database;
     private List<Empresa> companies;
+    private ProgressBar indicator;
 
     /**
      * Se setea la coneccion y se crea la base de datos vacia.
@@ -58,7 +61,7 @@ public class DataBaseModel {
      */
     public List<Error> getErrors() {
         //creator.addData(data)
-        return checker.getErrors();
+        return checker.getErrors(indicator);
     }
 
     private void setBarColor(ProgressBar bar, Color newColor) {
@@ -304,5 +307,9 @@ public class DataBaseModel {
      */
     public void setProgressBar(ProgressBar progressBar) {
         this.progressBar = progressBar;
+    }
+
+    public void setProgressIndicator(ProgressBar indicator) {
+        this.indicator = indicator;
     }
 }

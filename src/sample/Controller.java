@@ -5,6 +5,7 @@ import Model.DataBaseModel;
 import Model.Error;
 import Model.Tabla;
 import Model.Vertice_tramo_bt;
+import Zip.ZipCreator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,9 +41,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import net.lingala.zip4j.exception.ZipException;
+
 
 public class Controller {
 
@@ -81,6 +86,14 @@ public class Controller {
     private ListView listView;
     @FXML
     private TableView myView;
+    @FXML
+    private ProgressBar indicator;
+    @FXML
+    private Text indicatorText;
+    @FXML
+    private Button export;
+    @FXML
+    private Button errores;
 
     private ObservableList<Error> data;
     private ObservableList<Vertice_tramo_bt> testData;
@@ -91,6 +104,7 @@ public class Controller {
     private File loadedFile;
     private String fileChooserPath;
     private double fontComboBox;
+    private ArrayList<File> filesToAdd;
 
 
     public void initModel(DataBaseModel model, Stage primaryStage, FXMLLoader fxmlLoader) {
@@ -120,6 +134,7 @@ public class Controller {
         });*/
 
         model.setProgressBar(insertingData);
+        model.setProgressIndicator(indicator);
 
         // Datos a ingresar a la tabla de errores.
         data = FXCollections.observableArrayList();
@@ -373,6 +388,7 @@ public class Controller {
 
         if (!fileChooserPath.equals("null")){
             File myFile = new File(fileChooserPath);
+            filesToAdd.add(myFile);
             fileChooser.setInitialDirectory(myFile);
         }
 
@@ -430,15 +446,35 @@ public class Controller {
             }
         };
         two.start();
+        indicatorText.setText("Revisando constraints ...");
     }
 
     /**
      * Reinicializa la tabla de errores para que no existan datos duplicados.
      */
-    private void reinitializeData() {
+    private  void reinitializeData() {
         // Datos a ingresar a la tabla de errores.
         data.removeAll(data);
         data.addAll(model.getErrors());
+        if (data.size() == 0) {
+            export.setVisible(true);
+        }
+        else
+            errores.setVisible(true);
+
+    }
+
+    /**
+     * Este metodo es llamado por el boton export (esto se define en el archivo main.fxml con SceneBuilder) y
+     * se encarga de crear el archivo zip con los CSV entregados.
+     */
+    private void exportData() {
+        try {
+            ZipCreator zip = new ZipCreator(filesToAdd);
+        } catch (ZipException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

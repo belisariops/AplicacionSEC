@@ -43,6 +43,10 @@
       <Button fx:id="okButton" layoutX="94.0" layoutY="246.0" mnemonicParsing="false" onAction="#okPressed" prefHeight="22.0" prefWidth="112.0" text="Subir archivo." />
       <ProgressBar fx:id="insertingData" layoutX="228.0" layoutY="249.0" prefHeight="17.0" prefWidth="181.0" progress="0.0" />
       <TableView fx:id="tableList" layoutX="455.0" layoutY="117.0" prefHeight="171.0" prefWidth="265.0" />
-      <Button fx:id="errorCheck" layoutX="334.0" layoutY="539.0" mnemonicParsing="false" onAction="#checkErrorPressed" prefHeight="22.0" prefWidth="152.0" text="Revisar errores." />
+      <Button fx:id="errorCheck" layoutX="67.0" layoutY="548.0" mnemonicParsing="false" onAction="#checkErrorPressed" prefHeight="22.0" prefWidth="152.0" text="Revisar errores." />
+      <Text fx:id="indicatorText" layoutX="240.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="238.13671875" />
+      <ProgressBar fx:id="indicator" layoutX="234.0" layoutY="551.0" prefWidth="200.0" progress="0.0" visible="false" />
+      <Button fx:id="export" layoutX="578.0" layoutY="544.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="142.0" text="Exportar" visible="false" />
+      <Button fx:id="errores" layoutX="578.0" layoutY="549.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="142.0" text="Exportar con errores" visible="false" />
    </children>
 </Pane>
