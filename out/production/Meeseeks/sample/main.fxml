@@ -22,37 +22,27 @@
          </image>
       </ImageView>
       <ListView fx:id="listView" layoutX="55.0" layoutY="98.0" prefHeight="215.0" prefWidth="688.0" />
-      <Label fx:id="textoArchivo" layoutX="105.0" layoutY="202.0" text="Archivo: ">
+      <Label fx:id="textoArchivo" layoutX="105.0" layoutY="188.0" text="Archivo: ">
          <font>
             <Font name="Bodoni MT" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="myButton" layoutX="228.0" layoutY="206.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="22.0" prefWidth="24.0" text="+" />
-      <Label fx:id="textoSeleccione" layoutX="71.0" layoutY="127.0" text="Seleccione la empresa: ">
-         <font>
-            <Font name="Bodoni MT" size="15.0" />
-         </font>
-      </Label>
+      <Button fx:id="myButton" layoutX="228.0" layoutY="191.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="22.0" prefWidth="24.0" text="+" />
       <TableView fx:id="myView" layoutX="56.0" layoutY="342.0" prefHeight="188.0" prefWidth="688.0" />
       <Label fx:id="textoErrores" layoutX="72.0" layoutY="316.0" prefHeight="27.0" prefWidth="181.0" text="Resultados tabla de errores:" />
-      <Label fx:id="textoArchivoCargado" layoutX="266.0" layoutY="202.0" prefHeight="18.0" prefWidth="142.0" text="Archivo.." textAlignment="CENTER">
+      <Label fx:id="textoArchivoCargado" layoutX="263.0" layoutY="188.0" prefHeight="18.0" prefWidth="142.0" text="Archivo.." textAlignment="CENTER">
          <font>
             <Font name="Bodoni MT" size="11.0" />
          </font></Label>
-      <Label fx:id="textoTabla" layoutX="112.0" layoutY="162.0" prefHeight="14.0" prefWidth="75.0" text="Tablas:">
+      <Label fx:id="textoTabla" layoutX="105.0" layoutY="133.0" prefHeight="14.0" prefWidth="75.0" text="Tabla:">
          <font>
             <Font name="Bodoni MT" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="myComboBox" layoutX="228.0" layoutY="133.0" prefHeight="22.0" prefWidth="181.0" />
-      <ComboBox fx:id="comboBoxTablas" layoutX="228.0" layoutY="166.0" prefHeight="22.0" prefWidth="181.0" />
-      <Button fx:id="okButton" layoutX="142.0" layoutY="255.0" mnemonicParsing="false" onAction="#okPressed" prefHeight="22.0" prefWidth="112.0" text="Upload file" />
-      <ProgressBar fx:id="insertingData" layoutX="281.0" layoutY="257.0" prefHeight="17.0" prefWidth="112.0" progress="0.0" />
-      <TableView fx:id="tableList" layoutX="455.0" layoutY="117.0" prefHeight="171.0" prefWidth="265.0">
-         <columns>
-            <TableColumn prefWidth="262.66668701171875" text="Tablas Cargadas" />
-         </columns>
-      </TableView>
-      <Button fx:id="errorCheck" layoutX="334.0" layoutY="539.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="152.0" text="Check Errores" />
+      <ComboBox fx:id="comboBoxTablas" layoutX="228.0" layoutY="135.0" prefHeight="22.0" prefWidth="181.0" />
+      <Button fx:id="okButton" layoutX="94.0" layoutY="246.0" mnemonicParsing="false" onAction="#okPressed" prefHeight="22.0" prefWidth="112.0" text="Subir archivo." />
+      <ProgressBar fx:id="insertingData" layoutX="228.0" layoutY="249.0" prefHeight="17.0" prefWidth="181.0" progress="0.0" />
+      <TableView fx:id="tableList" layoutX="455.0" layoutY="117.0" prefHeight="171.0" prefWidth="265.0" />
+      <Button fx:id="errorCheck" layoutX="334.0" layoutY="539.0" mnemonicParsing="false" onAction="#checkErrorPressed" prefHeight="22.0" prefWidth="152.0" text="Revisar errores." />
    </children>
 </Pane>
