@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -20,19 +21,32 @@
             <Image url="@../Images/Banner.JPG" />
          </image>
       </ImageView>
-      <Label fx:id="textoArchivo" layoutX="110.0" layoutY="173.0" text="Archivos: ">
+      <ListView fx:id="listView" layoutX="55.0" layoutY="98.0" prefHeight="215.0" prefWidth="688.0" />
+      <Label fx:id="textoArchivo" layoutX="105.0" layoutY="188.0" text="Archivo: ">
          <font>
-            <Font name="Bodoni MT" size="19.0" />
+            <Font name="Bodoni MT" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="myButton" layoutX="311.0" layoutY="174.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="22.0" prefWidth="133.0" text="Elija archivo" />
-      <ComboBox fx:id="myComboBox" layoutX="311.0" layoutY="116.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" promptText="Empresas" />
-      <Label fx:id="textoSeleccione" layoutX="51.0" layoutY="114.0" text="Seleccione la empresa: ">
+      <Button fx:id="myButton" layoutX="228.0" layoutY="191.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="22.0" prefWidth="24.0" text="+" />
+      <TableView fx:id="myView" layoutX="56.0" layoutY="342.0" prefHeight="188.0" prefWidth="688.0" />
+      <Label fx:id="textoErrores" layoutX="72.0" layoutY="316.0" prefHeight="27.0" prefWidth="181.0" text="Resultados tabla de errores:" />
+      <Label fx:id="textoArchivoCargado" layoutX="263.0" layoutY="188.0" prefHeight="18.0" prefWidth="142.0" text="Archivo.." textAlignment="CENTER">
          <font>
-            <Font name="Bodoni MT" size="21.0" />
+            <Font name="Bodoni MT" size="11.0" />
+         </font></Label>
+      <Label fx:id="textoTabla" layoutX="105.0" layoutY="133.0" prefHeight="14.0" prefWidth="75.0" text="Tabla:">
+         <font>
+            <Font name="Bodoni MT" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="myView" layoutX="66.0" layoutY="365.0" prefHeight="188.0" prefWidth="688.0" />
-      <Label fx:id="textoErrores" layoutX="96.0" layoutY="322.0" prefHeight="27.0" prefWidth="181.0" text="Resultados tabla de errores:" />
+      <ComboBox fx:id="comboBoxTablas" layoutX="228.0" layoutY="135.0" prefHeight="22.0" prefWidth="181.0" />
+      <Button fx:id="okButton" layoutX="94.0" layoutY="246.0" mnemonicParsing="false" onAction="#okPressed" prefHeight="22.0" prefWidth="112.0" text="Subir archivo." />
+      <ProgressBar fx:id="insertingData" layoutX="228.0" layoutY="249.0" prefHeight="17.0" prefWidth="181.0" progress="0.0" />
+      <TableView fx:id="tableList" layoutX="455.0" layoutY="117.0" prefHeight="171.0" prefWidth="265.0" />
+      <Button fx:id="errorCheck" layoutX="67.0" layoutY="548.0" mnemonicParsing="false" onAction="#checkErrorPressed" prefHeight="22.0" prefWidth="152.0" text="Revisar errores." />
+      <Label fx:id="indicatorText" layoutX="234.0" layoutY="547.0" prefHeight="22.0" prefWidth="158.0" />
+      <ProgressBar fx:id="indicator" layoutX="234.0" layoutY="551.0" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="export" layoutX="578.0" layoutY="544.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="142.0" text="Exportar" visible="false" />
+      <Button fx:id="errores" layoutX="578.0" layoutY="549.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="142.0" text="Exportar con errores" visible="false" />
    </children>
 </Pane>

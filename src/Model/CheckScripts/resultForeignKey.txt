@@ -1,11 +1,12 @@
 insert into errores(d_rowid, table_name, constraint_name, type)
-  select a.rowid, 'CAUSA', 'FK_CAUSA_CALIFICA', 'F'
-  from CAUSA a
-  where not exists
-    ( select 1
-     from CALIFICACION_INTERRUPCION b
-      where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
-        and b.tiene_errores = 0);
+ select a.rowid, 'CAUSA', 'FK_CAUSA_CALIFICA', 'F'
+ from CAUSA a
+ where not exists
+   ( select 1
+    from CALIFICACION_INTERRUPCION b
+    where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
+       and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EMPRESA', 'FK_EMPRESA_ASSOCIATI_GRUPO_EC', 'F'
@@ -14,16 +15,19 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from GRUPO_ECONOMICO b
     where a.GRUPO_ECONOMICO_ID = b.GRUPO_ECONOMICO_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.GRUPO_ECONOMICO_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
-  select a.rowid, 'ALIMENTADOR', 'FK_EMPRESA_ALIMENTADO1', 'F'
-  from ALIMENTADOR a
-  where not exists
-    ( select 1
-     from EMPRESA b
-     where a.EMPRESA_ID = b.EMPRESA_ID
-        and b.tiene_errores = 0);
+ select a.rowid, 'ALIMENTADOR', 'FK_EMPRESA_ALIMENTADO1', 'F'
+ from ALIMENTADOR a
+ where not exists
+   ( select 1
+    from EMPRESA b
+    where a.EMPRESA_ID = b.EMPRESA_ID
+       and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ALIMENTADOR', 'FK_ALIMENTA_EMPRES1', 'F'
@@ -32,7 +36,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from EMPRESA b
     where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.EMPRESA_SUMINISTRADORA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CANALIZACION', 'FK_CANALIZA_COMUNA', 'F'
@@ -43,6 +49,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CANALIZACION', 'FK_CANALIZA_EMPRESA', 'F'
  from CANALIZACION a
@@ -51,6 +58,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CANALIZACION', 'FK_CANALIZA_TIPO_PRO', 'F'
@@ -61,6 +69,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CANALIZACION', 'FK_CANALIZA_TIPO_TEN', 'F'
  from CANALIZACION a
@@ -69,6 +78,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_TENSION b
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EMPALME', 'FK_EMPALME_COMUNA', 'F'
@@ -79,6 +89,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EMPALME', 'FK_EMPALME_EMPRESA', 'F'
  from EMPALME a
@@ -87,6 +98,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EMPALME', 'FK_EMPALME_TIPO_PRO', 'F'
@@ -97,6 +109,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INCIDENCIA', 'FK_INCIDENC_EMPRESA', 'F'
  from INCIDENCIA a
@@ -105,6 +118,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PERIODO_INFORMACION', 'FK_PERIODO__EMPRESA', 'F'
@@ -115,6 +129,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_DERIVACION', 'FK_PUNTO_DE_EMPRESA', 'F'
  from PUNTO_DERIVACION a
@@ -123,6 +138,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_SUMINISTRO', 'FK_PUNTO_SU_EMPRESA', 'F'
@@ -133,6 +149,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'SISTEMA_ELECTRICO', 'FK_SISTEMA__EMPRESA', 'F'
  from SISTEMA_ELECTRICO a
@@ -141,6 +158,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'SUBESTACION_DISTRIBUCION', 'FK_SUBESTAC_EMPRES1', 'F'
@@ -151,6 +169,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'SUBESTACION_DISTRIBUCION', 'FK_SUBESTAC_TIPO_DIS', 'F'
  from SUBESTACION_DISTRIBUCION a
@@ -159,6 +178,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_DISPOSICION b
     where a.TIPO_DISPOSICION_ID = b.TIPO_DISPOSICION_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_COMUNA', 'F'
@@ -169,6 +189,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_EMPRESA', 'F'
  from TRAMO_BT a
@@ -177,6 +198,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_RELATIONS_NUMERO_F', 'F'
@@ -187,6 +209,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.NUMERO_FASES = b.NUMERO_FASES
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_TIPO_DIS', 'F'
  from TRAMO_BT a
@@ -195,6 +218,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_DISPOSICION_TRAMO b
     where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_BT', 'FK_TRAMO_BT_TIPO_PRO', 'F'
@@ -205,6 +229,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_COMUNA', 'F'
  from TRAMO_MT a
@@ -213,6 +238,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_EMPRESA', 'F'
@@ -223,6 +249,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_RELATIONS_NUMERO_F', 'F'
  from TRAMO_MT a
@@ -231,6 +258,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from NUMERO_FASES b
     where a.NUMERO_FASES = b.NUMERO_FASES
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_TIPO_DIS', 'F'
@@ -241,6 +269,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_DISPOSICION_TRAMO_ID = b.TIPO_DISPOSICION_TRAMO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRAMO_MT', 'FK_TRAMO_MT_TIPO_PRO', 'F'
  from TRAMO_MT a
@@ -249,6 +278,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ALIMENTADOR_INCIDENCIA', 'FK_ALIMENTA_INCIDENC', 'F'
@@ -261,6 +291,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ALIMENTADOR_INCIDENCIA', 'FK_ALIMENTA_EMPRESA', 'F'
  from ALIMENTADOR_INCIDENCIA a
@@ -268,7 +299,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from EMPRESA b
     where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.EMPRESA_SUMINISTRADORA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_ALIMENTA', 'F'
@@ -281,6 +314,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_DATUM', 'F'
  from NODO_IEC a
@@ -289,6 +323,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from DATUM b
     where a.DATUM_ID = b.DATUM_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_EMPRES1', 'F'
@@ -299,6 +334,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_TIPO_INS', 'F'
  from NODO_IEC a
@@ -307,6 +343,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_INSTALACION b
     where a.TIPO_INSTALACION_ID = b.TIPO_INSTALACION_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_TIPO_NOD', 'F'
@@ -317,6 +354,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_NODO_ID = b.TIPO_NODO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC', 'FK_NODO_IEC_REFERENCE_ZONA_UTM', 'F'
  from NODO_IEC a
@@ -325,6 +363,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from ZONA_UTM b
     where a.ZONA_UTM = b.ZONA_UTM
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_SUMINISTRO_INCIDENCIA', 'FK_PUNTO_SU_INCIDENC', 'F'
@@ -337,6 +376,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'SUBESTACION_INCIDENCIA', 'FK_SUBESTAC_INCIDENC', 'F'
  from SUBESTACION_INCIDENCIA a
@@ -348,6 +388,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BAJADA', 'FK_BAJADA_COMUNA', 'F'
  from BAJADA a
@@ -356,6 +397,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BAJADA', 'FK_BAJADA_NODO_IEC', 'F'
@@ -368,6 +410,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BAJADA', 'FK_BAJADA_EMPRESA', 'F'
  from BAJADA a
@@ -376,6 +419,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BAJADA', 'FK_BAJADA_TIPO_PRO', 'F'
@@ -386,6 +430,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BOVEDA', 'FK_BOVEDA_COMUNA', 'F'
  from BOVEDA a
@@ -395,6 +440,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BOVEDA', 'FK_BOVEDA_EMPRESA', 'F'
  from BOVEDA a
@@ -403,6 +449,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BOVEDA', 'FK_BOVEDA_NODO_IEC', 'F'
@@ -415,6 +462,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BOVEDA', 'FK_BOVEDA_TIPO_PRO', 'F'
  from BOVEDA a
@@ -423,6 +471,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CAMARA', 'FK_CAMARA_COMUNA', 'F'
@@ -433,6 +482,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CAMARA', 'FK_CAMARA_EMPRESA', 'F'
  from CAMARA a
@@ -441,6 +491,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CAMARA', 'FK_CAMARA_NODO_IEC', 'F'
@@ -453,6 +504,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CAMARA', 'FK_CAMARA_TIPO_PRO', 'F'
  from CAMARA a
@@ -462,6 +514,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CAMARA', 'FK_CAMARA_TIPO_TEN', 'F'
  from CAMARA a
@@ -470,6 +523,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_TENSION b
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CONEXION_NODO_IEC', 'FK_NODO_IEC_CONEXION_NOD1', 'F'
@@ -482,6 +536,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CONEXION_NODO_IEC', 'FK_NODO_IEC_CONEXION_NOD2', 'F'
  from CONEXION_NODO_IEC a
@@ -493,6 +548,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CONEXION_NODO_IEC', 'FK_CONEXION_TIPO_CON', 'F'
  from CONEXION_NODO_IEC a
@@ -501,6 +557,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_CONEXION_NODO b
     where a.TIPO_CONEXION_NODO_ID = b.TIPO_CONEXION_NODO_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ENMALLE', 'FK_ENMALLE_COMUNA', 'F'
@@ -511,6 +568,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ENMALLE', 'FK_ENMALLE_EMPRESA', 'F'
  from ENMALLE a
@@ -519,6 +577,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ENMALLE', 'FK_ENMALLE_NODO_IEC', 'F'
@@ -531,6 +590,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ENMALLE', 'FK_ENMALLE_TIPO_PRO', 'F'
  from ENMALLE a
@@ -540,6 +600,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ENMALLE', 'FK_ENMALLE_TIPO_TEN', 'F'
  from ENMALLE a
@@ -547,7 +608,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from TIPO_TENSION b
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.TIPO_TENSION_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO', 'FK_EQUIPO_COMUNA', 'F'
@@ -557,6 +620,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO', 'FK_EQUIPO_NODO_IEC', 'F'
@@ -569,6 +633,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO', 'FK_EQUIPO_EMPRESA', 'F'
  from EQUIPO a
@@ -577,6 +642,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_EQU', 'F'
@@ -587,6 +653,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_PRO', 'F'
  from EQUIPO a
@@ -595,6 +662,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_SER', 'F'
@@ -605,6 +673,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO', 'FK_EQUIPO_TIPO_TEN', 'F'
  from EQUIPO a
@@ -614,6 +683,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_COMUN2', 'F'
  from ESTRUCTURA_BT a
@@ -622,6 +692,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_NODO_IE3', 'F'
@@ -634,6 +705,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_EMPRES1', 'F'
  from ESTRUCTURA_BT a
@@ -642,6 +714,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_BT', 'FK_ESTRUCTU_TIPO_PR2', 'F'
@@ -652,6 +725,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_COMUN1', 'F'
  from ESTRUCTURA_MT a
@@ -661,6 +735,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_EMPRES3', 'F'
  from ESTRUCTURA_MT a
@@ -669,6 +744,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_NODO_IE1', 'F'
@@ -681,6 +757,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_MT', 'FK_ESTRUCTU_TIPO_PR1', 'F'
  from ESTRUCTURA_MT a
@@ -690,6 +767,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_COMUNA', 'F'
  from ESTRUCTURA_SED a
@@ -698,6 +776,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_NODO_IE2', 'F'
@@ -710,6 +789,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_EMPRES2', 'F'
  from ESTRUCTURA_SED a
@@ -719,6 +799,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ESTRUCTURA_SED', 'FK_ESTRUCTU_TIPO_PR3', 'F'
  from ESTRUCTURA_SED a
@@ -727,6 +808,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'MARCA', 'FK_MARCA_NODO_IEC', 'F'
@@ -739,6 +821,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'MARCA', 'FK_MARCA_EMPRESA', 'F'
  from MARCA a
@@ -748,6 +831,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_COMUNA', 'F'
  from MEDIDOR a
@@ -756,6 +840,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_NODO_IEC', 'F'
@@ -768,6 +853,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_EMPRESA', 'F'
  from MEDIDOR a
@@ -777,6 +863,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'MEDIDOR', 'FK_MEDIDOR_TIPO_PRO', 'F'
  from MEDIDOR a
@@ -785,6 +872,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC_CABECERA', 'FK_NODO_IEC_NODO_IE1', 'F'
@@ -797,6 +885,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_EMPRESA', 'F'
  from NODO_IEC_EXTERNO a
@@ -805,6 +894,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_NODO_IEC', 'F'
@@ -817,6 +907,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_IEC_EXTERNO', 'FK_NODO_IEC_SENTIDO_', 'F'
  from NODO_IEC_EXTERNO a
@@ -825,6 +916,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from SENTIDO_ENERGIA b
     where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_ALIMENTA', 'F'
@@ -838,6 +930,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_DATUM', 'F'
  from NODO_INCIDENCIA a
@@ -846,6 +939,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from DATUM b
     where a.DATUM_ID = b.DATUM_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_INCIDENC', 'F'
@@ -858,6 +952,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_EMPRESA', 'F'
  from NODO_INCIDENCIA a
@@ -866,6 +961,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_TIPO_INS', 'F'
@@ -876,6 +972,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_INSTALACION_INCIDENCIA_ID = b.TIPO_INSTALACION_INCIDENCIA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_TIPO_NOD', 'F'
  from NODO_INCIDENCIA a
@@ -885,6 +982,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_NODO_ID = b.TIPO_NODO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA', 'FK_NODO_INC_REFERENCE_ZONA_UTM', 'F'
  from NODO_INCIDENCIA a
@@ -893,6 +991,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from ZONA_UTM b
     where a.ZONA_UTM = b.ZONA_UTM
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_SUBESTACION', 'FK_NODO_SUB_NODO_IEC', 'F'
@@ -905,6 +1004,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_SUBESTACION', 'FK_NODO_SUB_SUBESTAC', 'F'
  from NODO_SUBESTACION a
@@ -916,6 +1016,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.SUBESTACION_DISTRIBUCION_ID = b.SUBESTACION_DISTRIBUCION_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'POSTE', 'FK_POSTE_COMUNA', 'F'
  from POSTE a
@@ -925,6 +1026,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'POSTE', 'FK_POSTE_EMPRESA', 'F'
  from POSTE a
@@ -933,6 +1035,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'POSTE', 'FK_POSTE_NODO_IEC', 'F'
@@ -945,6 +1048,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'POSTE', 'FK_POSTE_TIPO_PRO', 'F'
  from POSTE a
@@ -953,6 +1057,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'POSTE', 'FK_POSTE_TIPO_TEN', 'F'
@@ -963,6 +1068,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'SUBESTACION_PRIMARIA_DISTRIBUC', 'FK_NODO_IEC', 'F'
  from SUBESTACION_PRIMARIA_DISTRIBUC a
@@ -972,7 +1078,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and a.NODO_IEC_ID = b.NODO_IEC_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NODO_IEC_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'SUBESTACION_PRIMARIA_DISTRIBUC', 'FK_SUBESTAC_EMPRES2', 'F'
@@ -983,6 +1091,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TIRANTE', 'FK_TIRANTE_COMUNA', 'F'
  from TIRANTE a
@@ -992,6 +1101,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TIRANTE', 'FK_TIRANTE_EMPRESA', 'F'
  from TIRANTE a
@@ -1000,6 +1110,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TIRANTE', 'FK_TIRANTE_NODO_IEC', 'F'
@@ -1012,6 +1123,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TIRANTE', 'FK_TIRANTE_TIPO_PRO', 'F'
  from TIRANTE a
@@ -1020,6 +1132,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_COMUNA', 'F'
@@ -1030,6 +1143,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_EMPRESA', 'F'
  from TOMA_TIERRA a
@@ -1038,6 +1152,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_NODO_IEC', 'F'
@@ -1050,6 +1165,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_PRO', 'F'
  from TOMA_TIERRA a
@@ -1058,6 +1174,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_PROPIEDAD b
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_TEN', 'F'
@@ -1068,6 +1185,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TOMA_TIERRA', 'FK_TOMA_TIE_TIPO_TOM', 'F'
  from TOMA_TIERRA a
@@ -1077,6 +1195,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_TOMA_TIERRA_ID = b.TIPO_TOMA_TIERRA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_COMUNA', 'F'
  from TRANSFORMADOR a
@@ -1085,6 +1204,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_NODO_IEC', 'F'
@@ -1097,6 +1217,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_EMPRESA', 'F'
  from TRANSFORMADOR a
@@ -1105,6 +1226,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_TIPO_PRO', 'F'
@@ -1115,6 +1237,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_PROPIEDAD_ID = b.TIPO_PROPIEDAD_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR', 'FK_TRANSFOR_TIPO_RUR', 'F'
  from TRANSFORMADOR a
@@ -1123,6 +1246,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_RURALIDAD b
     where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_CANALIZACION', 'FK_VERTICE__CANALIZA', 'F'
@@ -1135,6 +1259,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_CANALIZACION', 'FK_VERTICE__NODO_IE2', 'F'
  from VERTICE_CANALIZACION a
@@ -1145,6 +1270,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.NODO_IEC_ID = b.NODO_IEC_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_EMPALME', 'FK_VERTICE__EMPALME', 'F'
@@ -1157,6 +1283,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_EMPALME', 'FK_VERTICE__NODO_IE3', 'F'
  from VERTICE_EMPALME a
@@ -1166,7 +1293,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and a.NODO_IEC_ID = b.NODO_IEC_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NODO_IEC_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_TRAMO_BT', 'FK_NODO_IEC_VERTICE_TRAM2', 'F'
@@ -1177,7 +1306,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and a.NODO_IEC_ID = b.NODO_IEC_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NODO_IEC_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_TRAMO_BT', 'FK_TRAMO_BT_VERTICE_TRAM1', 'F'
@@ -1190,6 +1321,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.TRAMO_BT_ID = b.TRAMO_BT_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_TRAMO_MT', 'FK_VERTICE__TRAMO_MT', 'F'
  from VERTICE_TRAMO_MT a
@@ -1201,6 +1333,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.TRAMO_MT_ID = b.TRAMO_MT_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'VERTICE_TRAMO_MT', 'FK_VERTICE__NODO_IE1', 'F'
  from VERTICE_TRAMO_MT a
@@ -1210,7 +1343,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and a.NODO_IEC_ID = b.NODO_IEC_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NODO_IEC_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CONEXION_NODO_INCIDENCIA', 'FK_NODO_INCIDENC_CONEXION_NOD2', 'F'
@@ -1224,6 +1359,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CONEXION_NODO_INCIDENCIA', 'FK_NODO_INCIDENC_CONEXION_NOD1', 'F'
  from CONEXION_NODO_INCIDENCIA a
@@ -1236,6 +1372,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'CONEXION_NODO_INCIDENCIA', 'FK_CONEXION_EMPRESA', 'F'
  from CONEXION_NODO_INCIDENCIA a
@@ -1245,6 +1382,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_COMUNA', 'F'
  from EQUIPO_TOPOLOGIA a
@@ -1253,6 +1391,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_NODO_INC', 'F'
@@ -1266,6 +1405,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_INCIDENC', 'F'
  from EQUIPO_TOPOLOGIA a
@@ -1277,6 +1417,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_EQU', 'F'
  from EQUIPO_TOPOLOGIA a
@@ -1285,6 +1426,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_EQUIPO b
     where a.TIPO_EQUIPO_ID = b.TIPO_EQUIPO_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_SER', 'F'
@@ -1295,6 +1437,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_SERVICIO_EQUIPO_ID = b.TIPO_SERVICIO_EQUIPO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EQUIPO_TOPOLOGIA', 'FK_EQUIPO_T_TIPO_TEN', 'F'
  from EQUIPO_TOPOLOGIA a
@@ -1303,6 +1446,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_TENSION b
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_INCIDENC', 'F'
@@ -1314,6 +1458,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_NODO_INC', 'F'
@@ -1327,6 +1472,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_TIPO_EFE', 'F'
  from EVENTO_RED a
@@ -1336,6 +1482,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_EFECTO_EVENTO_ID = b.TIPO_EFECTO_EVENTO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'EVENTO_RED', 'FK_EVENTO_R_TIPO_EVE', 'F'
  from EVENTO_RED a
@@ -1344,6 +1491,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_EVENTO_RED b
     where a.TIPO_EVENTO_ID = b.TIPO_EVENTO_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_NODO_INC', 'F'
@@ -1357,6 +1505,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_INCIDENC', 'F'
  from FUENTE_ENERGIA_RED a
@@ -1368,6 +1517,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'FUENTE_ENERGIA_RED', 'FK_FUENTE_E_TIPO_FUE', 'F'
  from FUENTE_ENERGIA_RED a
@@ -1376,6 +1526,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_FUENTE_ENERGIA b
     where a.TIPO_FUENTE_ENERGIA_ID = b.TIPO_FUENTE_ENERGIA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA_CABECERA', 'FK_NODO_INC_NODO_INC', 'F'
@@ -1389,6 +1540,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA_EXTERNO', 'FK_EMPRESA_NODO_INCIDEN1', 'F'
  from NODO_INCIDENCIA_EXTERNO a
@@ -1397,6 +1549,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from EMPRESA b
     where a.EMPRESA_EXTERNA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA_EXTERNO', 'FK_NODO_INCIDENC_NODO_INCIDEN2', 'F'
@@ -1410,6 +1563,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'NODO_INCIDENCIA_EXTERNO', 'FK_SENTIDO_ENERG_NODO_INCIDEN1', 'F'
  from NODO_INCIDENCIA_EXTERNO a
@@ -1419,6 +1573,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.SENTIDO_ENERGIA_ID = b.SENTIDO_ENERGIA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUENTE', 'FK_PUENTE_COMUNA', 'F'
  from PUENTE a
@@ -1427,6 +1582,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUENTE', 'FK_PUENTE_NODO_INC', 'F'
@@ -1440,6 +1596,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUENTE', 'FK_PUENTE_INCIDENC', 'F'
  from PUENTE a
@@ -1451,6 +1608,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_COMUNA', 'F'
  from PUNTO_CONSUMO a
@@ -1459,6 +1617,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_PUNTO_SU', 'F'
@@ -1471,6 +1630,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_SUBESTAC', 'F'
  from PUNTO_CONSUMO a
@@ -1481,6 +1641,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and a.SUBESTACION_PRIMARIA_ID = b.SUBESTACION_PRIMARIA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_NODO_IEC', 'F'
@@ -1493,6 +1654,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_RELATIONS_NUM_F', 'F'
  from PUNTO_CONSUMO a
@@ -1501,6 +1663,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from NUMERO_FASES b
     where a.NUMERO_FASES = b.NUMERO_FASES
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_TIPO_EMP', 'F'
@@ -1511,6 +1674,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO', 'FK_PUNTO_CO_TIPO_RUR', 'F'
  from PUNTO_CONSUMO a
@@ -1519,6 +1683,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_RURALIDAD b
     where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_DERIVACION_INCIDENCIA', 'FK_PUNTO_DE_NODO_INC', 'F'
@@ -1530,7 +1695,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NODO_INCIDENCIA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_DERIVACION_INCIDENCIA', 'FK_PUNTO_DE_INCIDENC', 'F'
@@ -1543,6 +1710,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_FALLA', 'FK_PUNTO_FA_COMUNA', 'F'
  from PUNTO_FALLA a
@@ -1551,6 +1719,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_FALLA', 'FK_PUNTO_FA_INCIDENC', 'F'
@@ -1562,6 +1731,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_FALLA', 'FK_PUNTO_FA_NODO_INC', 'F'
@@ -1575,6 +1745,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_COMUNA_TRANSFORMADO1', 'F'
  from TRANSFORMADOR_TOPOLOGIA a
@@ -1582,7 +1753,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.COMUNA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_NODO_INC', 'F'
@@ -1594,7 +1767,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NODO_INCIDENCIA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_INCIDENC', 'F'
@@ -1607,6 +1782,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TRANSFOR_SUBESTAC', 'F'
  from TRANSFORMADOR_TOPOLOGIA a
@@ -1617,7 +1793,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and a.SUBESTACION_INCIDENCIA_ID = b.SUBESTACION_INCIDENCIA_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.SUBESTACION_INCIDENCIA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR_TOPOLOGIA', 'FK_TIPO_RURALIDA_TRANSFORMADO1', 'F'
@@ -1626,7 +1804,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from TIPO_RURALIDAD b
     where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.TIPO_RURALIDAD_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'DESCRIPCION_EVENTO', 'FK_DESCRIPC_EVENTO_R', 'F'
@@ -1640,6 +1820,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_CALIFICA', 'F'
  from INTERRUPCION a
@@ -1649,6 +1830,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.CALIFICACION_INTERRUPCION_ID = b.CALIFICACION_INTERRUPCION_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_CAUSA', 'F'
  from INTERRUPCION a
@@ -1657,6 +1839,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from CAUSA b
     where a.CAUSA_ID = b.CAUSA_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_EVENTO_R', 'F'
@@ -1670,6 +1853,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_EMPRESA', 'F'
  from INTERRUPCION a
@@ -1679,6 +1863,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.EMPRESA_ID = b.EMPRESA_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INTERRUPCION', 'FK_EMPRESA_INTERRUPCIO1', 'F'
  from INTERRUPCION a
@@ -1686,7 +1871,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from EMPRESA b
     where a.EMPRESA_SUMINISTRADORA_ID = b.EMPRESA_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.EMPRESA_SUMINISTRADORA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_SISTEMA_', 'F'
@@ -1697,6 +1884,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.SISTEMA_ELECTRICO_ID = b.SISTEMA_ELECTRICO_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'INTERRUPCION', 'FK_INTERRUP_TIPO_ORI', 'F'
  from INTERRUPCION a
@@ -1706,6 +1894,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     where a.TIPO_ORIGEN_INTERRUPCION_ID = b.TIPO_ORIGEN_INTERRUPCION_ID
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_COMUNA_PUNTO_CONSUM1', 'F'
  from PUNTO_CONSUMO_TOPOLOGIA a
@@ -1713,7 +1902,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from COMUNA b
     where a.COMUNA_ID = b.COMUNA_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.COMUNA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_NODO_INC', 'F'
@@ -1725,7 +1916,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.NODO_INCIDENCIA_ID = b.NODO_INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NODO_INCIDENCIA_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_SUMINIS_PUNTO_CONSUM1', 'F'
@@ -1737,7 +1930,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and a.PUNTO_SUMINISTRO_ID = b.PUNTO_SUMINISTRO_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.PUNTO_SUMINISTRO_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TRANSFORMADOR_PUNTO_COSUMO1', 'F'
@@ -1749,7 +1944,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INCIDENCIA_ID = b.INCIDENCIA_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and a.TRANSFORMADOR_ID = b.TRANSFORMADOR_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.TRANSFORMADOR_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_INCIDENC', 'F'
@@ -1762,6 +1959,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_RELATIONS_NUMERO_F', 'F'
  from PUNTO_CONSUMO_TOPOLOGIA a
@@ -1769,7 +1967,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from NUMERO_FASES b
     where a.NUMERO_FASES = b.NUMERO_FASES
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.NUMERO_FASES is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TIPO_EMPALME_PUNTO_CONSUM1', 'F'
@@ -1778,7 +1978,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from TIPO_EMPALME b
     where a.TIPO_EMPALME_ID = b.TIPO_EMPALME_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.TIPO_EMPALME_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_TIPO_RURALIDA_PUNTO_CONSUM1', 'F'
@@ -1787,7 +1989,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from TIPO_RURALIDAD b
     where a.TIPO_RURALIDAD_ID = b.TIPO_RURALIDAD_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.TIPO_RURALIDAD_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'PUNTO_CONSUMO_TOPOLOGIA', 'FK_PUNTO_CO_TIPO_TEN', 'F'
@@ -1796,7 +2000,9 @@ insert into errores(d_rowid, table_name, constraint_name, type)
    ( select 1
     from TIPO_TENSION b
     where a.TIPO_TENSION_ID = b.TIPO_TENSION_ID
-       and b.tiene_errores = 0);
+       and b.tiene_errores = 0)
+    and (a.TIPO_TENSION_ID is not null);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ALIMENTADOR_AFECTADO', 'FK_ALIMENTA_ALIMENTA', 'F'
@@ -1810,6 +2016,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ALIMENTADOR_AFECTADO', 'FK_INTERRUPCION_ALIMENTADOR_1', 'F'
  from ALIMENTADOR_AFECTADO a
@@ -1820,6 +2027,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INTERRUPCION_ID = b.INTERRUPCION_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'AVISO', 'FK_INTERRUPCION_AVISO1', 'F'
@@ -1832,6 +2040,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'AVISO', 'FK_AVISO_TIPO_AVI', 'F'
  from AVISO a
@@ -1840,6 +2049,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
     from TIPO_AVISO b
     where a.TIPO_AVISO_ID = b.TIPO_AVISO_ID
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BLOQUE_REPOSICION', 'FK_BLOQUE_R_EVENTO_R', 'F'
@@ -1853,6 +2063,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'BLOQUE_REPOSICION', 'FK_INTERRUPCION_BLOQUE_REPOS1', 'F'
  from BLOQUE_REPOSICION a
@@ -1863,6 +2074,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INTERRUPCION_ID = b.INTERRUPCION_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ALIMENTADOR_REPOSICION', 'FK_ALIMENTA_ALIMENT1', 'F'
@@ -1876,6 +2088,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'ALIMENTADOR_REPOSICION', 'FK_ALIMENTA_BLOQUE_R', 'F'
  from ALIMENTADOR_REPOSICION a
@@ -1888,6 +2101,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
 
+
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR_INTERRUPCION', 'FK_TRANSFOR_BLOQUE_R', 'F'
  from TRANSFORMADOR_INTERRUPCION a
@@ -1899,6 +2113,7 @@ insert into errores(d_rowid, table_name, constraint_name, type)
        and a.INTERRUPCION_ID = b.INTERRUPCION_ID
        and a.PERIODO_STAR = b.PERIODO_STAR
        and b.tiene_errores = 0);
+
 
 insert into errores(d_rowid, table_name, constraint_name, type)
  select a.rowid, 'TRANSFORMADOR_INTERRUPCION', 'FK_TRANSFOR_TRANSFOR', 'F'
