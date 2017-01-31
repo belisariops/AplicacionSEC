@@ -5,22 +5,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.paint.Color;
 
 
 /**
@@ -29,6 +22,8 @@ import java.util.List;
 public class DataBaseModel {
     private SQLConnection connection;
     private Checker checker;
+    private ProgressBar progressBar;
+    private double progress;
     DatabaseCreator creator;
     private Map<String, ArrayList<String>> database;
     private List<Empresa> companies;
@@ -42,6 +37,7 @@ public class DataBaseModel {
         database = createDataBaseModel();
         /* Cargamos las empresas existentes. */
         loadCompanies();
+        progress = 0;
 
          /*Se crea la conexion con la base de datos*/
         try {
@@ -65,6 +61,23 @@ public class DataBaseModel {
         return checker.getErrors();
     }
 
+    private void setBarColor(ProgressBar bar, Color newColor) {
+        bar.lookup(".bar").setStyle("-fx-background-color: -fx-box-border, " + createGradientAttributeValue(newColor));
+    }
+
+    private String createGradientAttributeValue(Color newColor) {
+        String hsbAttribute = createHsbAttributeValue(newColor);
+        return "linear-gradient(to bottom, derive(" + hsbAttribute+ ",30%) 5%, derive(" + hsbAttribute + ",-17%))";
+    }
+
+    private String createHsbAttributeValue(Color newColor) {
+        return
+            "hsb(" +
+                (int)  newColor.getHue()               + "," +
+                (int) (newColor.getSaturation() * 100) + "%," +
+                (int) (newColor.getBrightness() * 100) + "%)";
+    }
+
     /**
      * Se lee el archivo linea a linea, (esto falta)cada vez que se lea una linea se agregara a la base de datos.
      * @param file
@@ -77,6 +90,13 @@ public class DataBaseModel {
         StringBuilder insertValues = new StringBuilder();
         StringBuilder query = new StringBuilder();
         int count = 0;
+        double numeroDeLineas = 0;
+        progress = 0;
+        progressBar.setProgress(0);
+        setBarColor(progressBar, new Color(30.0/255.0,144.0/255.0,1, 1));
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            numeroDeLineas = br.lines().count();
+        }
 
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line = br.readLine();
@@ -134,14 +154,19 @@ public class DataBaseModel {
                     query.append(insertQuery.toString());
                     query.append(insertValues.toString());
                 }
+                progress += 1.0/numeroDeLineas;
+                progressBar.setProgress(progress);
                 line = br.readLine();
             }
+
             try {
                 if(!query.toString().equals(""))
                     connection.executeAddQuery(query.toString());
             } catch (SQLException e){
                 System.out.println(insertQuery.toString() + insertValues.toString());
             }
+            setBarColor(progressBar, new Color(34.0/255.0,139.0/255.0,34.0/255.0, 1));
+
         }
     }
 
@@ -273,4 +298,11 @@ public class DataBaseModel {
         return companies;
     }
 
+    /**
+     * Sets progress bar for file reading.
+     * @param progressBar Progress bar object.
+     */
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
+    }
 }

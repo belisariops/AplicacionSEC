@@ -3,6 +3,7 @@ package sample;
 import Model.Empresa;
 import Model.DataBaseModel;
 import Model.Error;
+import Model.Tabla;
 import Model.Vertice_tramo_bt;
 import java.io.File;
 import java.io.IOException;
@@ -54,8 +55,6 @@ public class Controller {
     @FXML
     private Button okButton;
     @FXML
-    private Label textoSeleccione;
-    @FXML
     private Label textoArchivo;
     @FXML
     private Label textoErrores;
@@ -70,8 +69,6 @@ public class Controller {
     @FXML
     private Label textoArchivoCargado;
     @FXML
-    private ComboBox<String> myComboBox;
-    @FXML
     private ComboBox<String> comboBoxTablas;
     @FXML
     private ListView listView;
@@ -80,11 +77,14 @@ public class Controller {
 
     private ObservableList<Error> data;
     private ObservableList<Vertice_tramo_bt> testData;
+    private ObservableList<Tabla> listaTablasCargadas;
+    private List<String> tablasCargadas;
     private List<Label> labels;
     private List<ComboBox> comboBoxes;
     private File loadedFile;
     private String fileChooserPath;
     private double fontComboBox;
+
 
     public void initModel(DataBaseModel model, Stage primaryStage, FXMLLoader fxmlLoader) {
         if (this.model != null) {
@@ -96,6 +96,7 @@ public class Controller {
         comboBoxes = new ArrayList<>();
         fileChooserPath = "null";
         fontComboBox = 15;
+        tablasCargadas = new ArrayList<>();
 
         /*stage.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if(key.getCode()== KeyCode.ENTER) {
@@ -111,6 +112,8 @@ public class Controller {
             }
         });*/
 
+        model.setProgressBar(insertingData);
+
         // Datos a ingresar a la tabla de errores.
         data = FXCollections.observableArrayList();
 
@@ -119,11 +122,9 @@ public class Controller {
         labels.add(textoArchivo);
         labels.add(textoArchivoCargado);
         labels.add(textoErrores);
-        labels.add(textoSeleccione);
         labels.add(textoTabla);
 
         // juntar comboboxes
-        comboBoxes.add(myComboBox);
         comboBoxes.add(comboBoxTablas);
 
         // Tamaño minimo de la ventana.
@@ -137,6 +138,10 @@ public class Controller {
         myButton.setMaxSize(24, 22);
         okButton.setMinSize(112, 22);
         okButton.setMaxSize(112, 22);
+        errorCheck.setMinSize(152, 22);
+        errorCheck.setMaxSize(152, 22);
+        insertingData.setMinSize(181, 17);
+        insertingData.setMaxSize(181, 17);
 
         for(Labeled label : labels){
             label.setMaxSize(300, 30);
@@ -171,25 +176,6 @@ public class Controller {
         comboBoxTablas.setItems(myTables);
         comboBoxTablas.getSelectionModel().selectFirst();
 
-        // Agregamos las opciones de empresas.
-        List<Empresa> empresas = new ArrayList<>();
-        empresas.addAll(model.getCompanies());
-
-        // Ordenamos por comodidad al buscar en el combobox.
-        empresas.sort(new Comparator<Empresa>() {
-            @Override
-            public int compare(Empresa o1, Empresa o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
-        ObservableList<String> myCompanies = FXCollections.observableArrayList();
-
-        for(Empresa company : empresas){
-            myCompanies.add(company.getName());
-        }
-        myComboBox.setItems(myCompanies);
-        myComboBox.getSelectionModel().selectFirst();
-        new AutoCompleteComboBoxListener<>(myComboBox);
         new AutoCompleteComboBoxListener<>(comboBoxTablas);
 
         listView.setMinSize(688,215);
@@ -198,9 +184,12 @@ public class Controller {
 
         myView.setMinSize(688,188);
         myView.setMaxSize(688,188);
+        tableList.setMinSize(265,171);
+        tableList.setMaxSize(265,171);
 
         // Datos a ingresar a la tabla de errores.
         data = FXCollections.observableArrayList();
+        listaTablasCargadas = FXCollections.observableArrayList();
 
         // Agregar columnas de errores a la tabla.
         TableColumn rowiId = new TableColumn("d_rowid");
@@ -216,11 +205,18 @@ public class Controller {
         type.setCellValueFactory(new PropertyValueFactory<Error, Character>("type"));
         type.setStyle("-fx-alignment: CENTER;");
 
+        TableColumn tablasCargadas = new TableColumn("Tablas cargadas");
+        tablasCargadas.setCellValueFactory(new PropertyValueFactory<Tabla, String>("name"));
+        tablasCargadas.setStyle("-fx-alignment: CENTER;");
+
         myView.setItems(data);
+        tableList.setItems(listaTablasCargadas);
+        tableList.getColumns().add(tablasCargadas);
         myView.getColumns().addAll(rowiId, tableName, constraintName, type);
 
         // Para que automaticamente use el ancho de la tabla
         myView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         /*
          * Aqui agregamos un listener a todos los objetos para que se redimensionen al crecer la ventana.
@@ -242,8 +238,11 @@ public class Controller {
 
                 fixLabeledWithResize(myButton, oldValue, newValue, false);
                 fixLabeledWithResize(okButton, oldValue, newValue, false);
+                fixLabeledWithResize(errorCheck, oldValue, newValue, false);
                 fixControlWithResize(myView, oldValue, newValue, false);
+                fixControlWithResize(insertingData, oldValue, newValue, false);
                 fixControlWithResize(listView, oldValue, newValue, false);
+                fixControlWithResize(tableList, oldValue, newValue, false);
             }
         });
 
@@ -266,8 +265,11 @@ public class Controller {
 
                 fixLabeledWithResize(myButton, oldValue, newValue, true);
                 fixLabeledWithResize(okButton, oldValue, newValue, true);
+                fixLabeledWithResize(errorCheck, oldValue, newValue, true);
                 fixControlWithResize(myView, oldValue, newValue, true);
+                fixControlWithResize(insertingData, oldValue, newValue, true);
                 fixControlWithResize(listView, oldValue, newValue, true);
+                fixControlWithResize(tableList, oldValue, newValue, true);
             }
         });
     }
@@ -380,26 +382,38 @@ public class Controller {
      * Carga archivo a la base de datos.
      */
     @FXML void okPressed() {
-        String empresa = myComboBox.getValue();
         String nombreTabla = comboBoxTablas.getValue();
-        if(empresa == null | nombreTabla == null){
+        if (nombreTabla == null | tablasCargadas.contains(nombreTabla))
             return;
-        }
         Thread one = new Thread() {
             public void run() {
                 System.out.println(nombreTabla);
                 try {
                     model.loadData(loadedFile, nombreTabla);
+                    tablasCargadas.add(nombreTabla);
                 } catch (IOException e) {
                     System.out.println("algo salió mal en la lectura del archivo.");
                 } finally {
-                    reinitializeData();
-                    System.out.println("insertando errores.");
+                    listaTablasCargadas.removeAll(listaTablasCargadas);
+                    listaTablasCargadas.addAll(getTablasCargadas());
+                    System.out.println("insertados datos.");
                 }
             }
         };
         one.start();
 
+    }
+
+    /**
+     * Carga archivo a la base de datos.
+     */
+    @FXML void checkErrorPressed() {
+        Thread two = new Thread() {
+            public void run() {
+                reinitializeData();
+            }
+        };
+        two.start();
     }
 
     /**
@@ -409,5 +423,18 @@ public class Controller {
         // Datos a ingresar a la tabla de errores.
         data.removeAll(data);
         data.addAll(model.getErrors());
+    }
+
+    /**
+     * Retorna lista con las tablas cargadas.
+     * @return lista con las tablas cargadas.
+     */
+    public List<Tabla> getTablasCargadas() {
+        List<Tabla> tablas  = new ArrayList<>();
+
+        for(String s : tablasCargadas){
+            tablas.add(new Tabla(s));
+        }
+        return tablas;
     }
 }
