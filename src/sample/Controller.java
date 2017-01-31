@@ -89,7 +89,7 @@ public class Controller {
     @FXML
     private ProgressBar indicator;
     @FXML
-    private Text indicatorText;
+    private Label indicatorText;
     @FXML
     private Button export;
     @FXML
@@ -145,6 +145,7 @@ public class Controller {
         labels.add(textoArchivoCargado);
         labels.add(textoErrores);
         labels.add(textoTabla);
+        labels.add(indicatorText);
 
         // juntar comboboxes
         comboBoxes.add(comboBoxTablas);
@@ -162,6 +163,8 @@ public class Controller {
         okButton.setMaxSize(112, 22);
         errorCheck.setMinSize(152, 22);
         errorCheck.setMaxSize(152, 22);
+        errores.setMinSize(142, 27);
+        errores.setMaxSize(142, 27);
         insertingData.setMinSize(181, 17);
         insertingData.setMaxSize(181, 17);
 
@@ -261,6 +264,7 @@ public class Controller {
                 fixLabeledWithResize(myButton, oldValue, newValue, false);
                 fixLabeledWithResize(okButton, oldValue, newValue, false);
                 fixLabeledWithResize(errorCheck, oldValue, newValue, false);
+                fixLabeledWithResize(errores, oldValue, newValue, false);
                 fixControlWithResize(myView, oldValue, newValue, false);
                 fixControlWithResize(insertingData, oldValue, newValue, false);
                 fixControlWithResize(listView, oldValue, newValue, false);
@@ -288,6 +292,7 @@ public class Controller {
                 fixLabeledWithResize(myButton, oldValue, newValue, true);
                 fixLabeledWithResize(okButton, oldValue, newValue, true);
                 fixLabeledWithResize(errorCheck, oldValue, newValue, true);
+                fixLabeledWithResize(errores, oldValue, newValue, true);
                 fixControlWithResize(myView, oldValue, newValue, true);
                 fixControlWithResize(insertingData, oldValue, newValue, true);
                 fixControlWithResize(listView, oldValue, newValue, true);
