@@ -81,7 +81,7 @@ public class Controller {
     @FXML
     private ProgressBar indicator;
     @FXML
-    private Text indicatorText;
+    private Label indicatorText;
     @FXML
     private Button export;
     @FXML
@@ -426,10 +426,34 @@ public class Controller {
         Thread two = new Thread() {
             public void run() {
                 reinitializeData();
+
             }
         };
         two.start();
-        indicatorText.setText("Revisando constraints ...");
+        Thread three = new Thread() {
+            public void run() {
+                String uno = ".";
+                String dos = "..";
+                String tres = "...";
+                String text= "Revisando constraints ";
+                int conteo = 0;
+                while (two.isAlive()) {
+                    if (conteo == 0) {
+                        indicatorText.setText(text+uno);
+                    }
+                    else if (conteo == 1) {
+                        indicatorText.setText(text+dos);
+                    }
+                    else if (conteo == 2) {
+                        indicatorText.setText(text+tres);
+                    }
+                    else
+                        conteo = 0;
+                    conteo++;
+                }
+            }
+        };
+        three.start();
     }
 
     /**
